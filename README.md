@@ -4,8 +4,8 @@
 
 +sqlite bağlantı tamam
 
-+radio buton katsayilari calisiyor
-db'den katsayi ve gruplari alabiliyoruz
-cevaba göre gruba puan(katsayi*cvp_katsayisi) ekleniyor
++radio buton katsayilari calisiyor.
+Db'den katsayi ve gruplari alabiliyoruz.
+Cevaba göre gruba puan(katsayi*cvp_katsayisi) ekleniyor
 
 -db eski

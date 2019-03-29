@@ -4,6 +4,8 @@
 
 +sqlite bağlantı tamam
 
--katsayılar yok
++radio buton katsayilari calisiyor
+db'den katsayi ve gruplari alabiliyoruz
+cevaba göre gruba puan(katsayi*cvp_katsayisi) ekleniyor
 
 -db eski

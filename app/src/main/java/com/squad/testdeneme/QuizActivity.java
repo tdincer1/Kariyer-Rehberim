@@ -14,6 +14,7 @@ import java.util.List;
 
 
 public class QuizActivity extends AppCompatActivity {
+
     private TextView textViewQuestion;
     private TextView textViewQuestionCount;
     private RadioGroup rbGroup;
@@ -33,6 +34,23 @@ public class QuizActivity extends AppCompatActivity {
     private boolean answered;
 
     private long backPressedTime;
+
+    static int bilgisayar_puani;
+    static int egitim_puani;
+    static int elektronik_puani;
+    static int Harita;
+    static int Uzay;
+    static int Hukuk;
+    static int Toplum;
+    static int isletme;
+    static int Konser;
+    static int Makine;
+    static int Gastronomi;
+    static int Saglik;
+    static int Spor;
+    static int Tasarım;
+
+    static int answerNr;
 
 
     @Override
@@ -54,6 +72,8 @@ public class QuizActivity extends AppCompatActivity {
         questionCountTotal = questionList.size();           //toplam soru bulma
         Collections.shuffle(questionList);                  //soru listesini karisik listeleme
 
+
+
         showNextQuestion();                                 //siradaki soruya gec
 
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
@@ -64,17 +84,77 @@ public class QuizActivity extends AppCompatActivity {
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked() || rb5.isChecked()){
                         checkAnswer();          //opsiyonel ama secilen_sık * katsayida kullanabiliriz. Bunu kaldırırsan
                         //answered = true; yapmak lazım
-                        //hesapla(currentQuestion.getSoru_id());                TODO: Buraya da konulabilir
+                        //katsayiHesapDB(currentQuestion.getSoru_id());                TODO: Buraya da konulabilir
                     }else{
                         Toast.makeText(QuizActivity.this, "Lutfen secim yapin", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    //hesapla(currentQuestion.getSoru_id());                TODO: Veya buraya da konulabilir. Soru cevaplandiktan sonra
+                    QuizDbHelper.getInstance(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());   // TODO: Veya buraya da konulabilir. Soru cevaplandiktan sonra
                     showNextQuestion();
                 }
 
             }
         });
+    }
+
+    public static int cvp(){
+
+        int cvp_katsayi = 0;
+        switch (answerNr){
+            case 0: cvp_katsayi = 4;
+            break;
+            case 1: cvp_katsayi = 3;
+            break;
+            case 2: cvp_katsayi = 2;
+            break;
+            case 3: cvp_katsayi = 1;
+            break;
+            case 4: cvp_katsayi = 0;
+            break;
+        }
+
+        return cvp_katsayi;
+    }
+
+    public static void hesap(int ks, int gId){
+
+        //int denden = checkAnswer().answerNr;
+        int cevap_katsayısı = cvp();
+        //int cevap_katsayısı = secim();
+
+        switch(gId){
+            case 1: bilgisayar_puani = bilgisayar_puani + (ks * cevap_katsayısı);
+                break;
+            case 2: egitim_puani += ks * cevap_katsayısı;
+                break;
+            case 3: elektronik_puani += ks * cevap_katsayısı;
+                break;
+            case 4: Harita += ks * cevap_katsayısı;
+                break;
+            case 5: Uzay += ks * cevap_katsayısı;
+                break;
+            case 6: Hukuk += ks * cevap_katsayısı;
+                break;
+            case 7: Toplum += ks * cevap_katsayısı;
+                break;
+            case 8: isletme += ks * cevap_katsayısı;
+                break;
+            case 9: Konser += ks * cevap_katsayısı;
+                break;
+            case 10: Makine += ks * cevap_katsayısı;
+                break;
+            case 11: Gastronomi += ks * cevap_katsayısı;
+                break;
+            case 12: Saglik += ks * cevap_katsayısı;
+                break;
+            case 13: Spor += ks * cevap_katsayısı;
+                break;
+            case 14: Tasarım += ks * cevap_katsayısı;
+                break;
+        }
+
+        int deneme = 22;
+
     }
 
     public void showNextQuestion() {                       //siradaki soruya gec
@@ -102,7 +182,7 @@ public class QuizActivity extends AppCompatActivity {
         answered = true;
 
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //secilenin id'yi al
-        int answerNr = rbGroup.indexOfChild(rbSelected);        //secilen id'yi answerNr'de tut
+        answerNr = rbGroup.indexOfChild(rbSelected);        //secilen id'yi answerNr'de tut
         //youtube dk 9.30 link:(tlgrX3HF6AI)
 
         if (questionCounter < questionCountTotal){
@@ -113,21 +193,6 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-
-/*
-    public void hesapla(int soru_id) {
-        //QuizDbHelper.getHesap();
-
-        int deneme = checkAnswer();
-
-
-
-
-
-        String query = "SELECT * FROM mt_sorumeslek where soru_id="+ soru_id ;
-        //answerNr
-    }
-*/
     private void finishQuiz() {
         finish();
     }

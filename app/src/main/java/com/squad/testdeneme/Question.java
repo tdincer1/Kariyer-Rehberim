@@ -3,14 +3,13 @@ package com.squad.testdeneme;
 
 public class Question {
     private String question;
-    private int katsayi;
+
     private int soru_id;
 
     public Question (){}
 
-    public Question(String question, int katsayi, int soru_id) {
+    public Question(String question, int soru_id) {
         this.question = question;
-        this.katsayi = katsayi;
         this.soru_id = soru_id;
     }
 
@@ -23,13 +22,6 @@ public class Question {
         this.question = question;
     }
 
-    public int getKatsayi() {
-        return katsayi;
-    }
-
-    public void setKatsayi(int katsayi) {
-        this.katsayi = katsayi;
-    }
 
     public int getSoru_id() {
         return soru_id;

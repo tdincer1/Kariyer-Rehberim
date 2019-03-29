@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +43,6 @@ public class QuizDbHelper {
 
         openDB();
         String sql = "SELECT * FROM mt_soru";
-        String sql1 = "SELECT c.soru_detay  " +
-                "FROM mt_sorumeslek s " +
-                "INNER JOIN mt_soru c ON s.soru_id = c.soru_id " +
-                "INNER JOIN mt_grup g ON s.grup_id = g.grup_id";
         Question question;
 
         Cursor c = database.rawQuery(sql, null);
@@ -73,6 +71,42 @@ public class QuizDbHelper {
 
         database.close();
     }
+
+    public void katsayiHesapDB (int soruId){
+        String sql = "SELECT * FROM mt_sorumeslek WHERE soru_id = " + soruId;
+
+        Hesapla hesapla;
+
+        openDB();
+
+        Cursor cb = database.rawQuery(sql, null);
+        if (cb!=null && cb.getCount()!=0)
+        {
+            // c.moveToFirst();
+            while (cb.moveToNext())
+            {
+                hesapla = new Hesapla();
+                hesapla.setKatsayi(cb.getInt(cb.getColumnIndex("katsayi")));
+                hesapla.setSoruId(cb.getInt(cb.getColumnIndex("soru_id")));
+                hesapla.setGrupId(cb.getInt(cb.getColumnIndex("grup_id")));
+
+                //int katsayi = cb.getInt(cb.getColumnIndex("katsayi"));
+                //int grupId = cb.getInt(cb.getColumnIndex("grup_id"));
+
+                QuizActivity.hesap(hesapla.getKatsayi(),hesapla.getGrupId());
+
+                //QuizActivity activity = new QuizActivity();
+                //activity.hesap(hesapla.getKatsayi(),hesapla.getGrupId());
+            }
+        }
+
+
+
+
+        closeDB();
+    }
+
+
 /*
     public void deneme(int soru_id) {
         //QuizDbHelper.getHesap();

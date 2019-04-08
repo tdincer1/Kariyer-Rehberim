@@ -38,6 +38,16 @@ public class QuizDbHelper {
         return INSTANCE;
     }
 
+    private void openDB() throws SQLException {
+
+        database = myhelper.getWritableDatabase();
+    }
+
+    private void closeDB() {
+
+        database.close();
+    }
+
     public List<Question> getAllQuestions(){
         List<Question> questionList = new ArrayList<>();
 
@@ -62,22 +72,12 @@ public class QuizDbHelper {
         return questionList;
     }
 
-    private void openDB() throws SQLException {
 
-        database = myhelper.getWritableDatabase();
-    }
-
-    private void closeDB() {
-
-        database.close();
-    }
 
     public void katsayiHesapDB (int soruId){
 
         String sql = "SELECT * FROM mt_sorumeslek WHERE soru_id = " + soruId;
-
         Hesapla hesapla;
-
         openDB();
 
         Cursor cb = database.rawQuery(sql, null);
@@ -103,6 +103,24 @@ public class QuizDbHelper {
         closeDB();
     }
 
+    public String grupAdiCek(int id){
+
+        String sorgu = "SELECT * FROM mt_grup WHERE grup_id = " + id;
+        String grupAdi = null;
+
+        openDB();
+
+        Cursor cursor = database.rawQuery(sorgu, null);
+
+        if (cursor!=null && cursor.getCount()!=0){
+            while (cursor.moveToNext())
+            {
+                grupAdi = cursor.getString(cursor.getColumnIndex("grup_adi"));
+            }
+        }
+        closeDB();
+        return grupAdi;
+    }
 
 
 }

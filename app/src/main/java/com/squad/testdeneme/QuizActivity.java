@@ -49,16 +49,16 @@ public class QuizActivity extends AppCompatActivity {
     static int Gastronomi;
     static int Saglik;
     static int Spor;
-    static int Tasarım;
+    static int Tasarim;
 
     static int answerNr;
 
     static Puan puan;
 
     static int liste[] = new int[14];
-    int ilkGrupId;
-    int ikinciGrupId;
-    int ucuncuGrupId;
+    static int ilkGrupId;
+    static int ikinciGrupId;
+    static int ucuncuGrupId;
     static int ilkYuzde;
     static int ikinciYuzde;
     static int ucuncuYuzde;
@@ -106,6 +106,39 @@ public class QuizActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void showNextQuestion() {                       //siradaki soruya gec
+        rbGroup.clearCheck();                               //şık secimini temizle
+
+        if (questionCounter < questionCountTotal)
+        {
+            currentQuestion = questionList.get(questionCounter);
+
+            textViewQuestion.setText(currentQuestion.getQuestion());
+
+            questionCounter++;
+            textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
+            answered = false;
+            buttonConfirmNext.setText("Cevabi Onayla");
+        }else {     //TODO: Bu noktada gruplar karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
+            finishQuiz();
+        }
+    }
+
+    public void  checkAnswer(){                         //Secilen sikkin katsayiyla carpimi burada mı olacak?
+        answered = true;
+
+        RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //secilenin id'yi al
+        answerNr = rbGroup.indexOfChild(rbSelected);        //secilen id'yi answerNr'de tut
+        //youtube dk 9.30 link:(tlgrX3HF6AI)
+
+        if (questionCounter < questionCountTotal){
+            buttonConfirmNext.setText("Siradaki soru");
+        }else {
+            buttonConfirmNext.setText("Testi bitir");
+        }
+
     }
 
     public static int cvp(){
@@ -200,46 +233,11 @@ public class QuizActivity extends AppCompatActivity {
                 break;
             case 13: Spor += ks * cevap_katsayisi;
                 break;
-            case 14: Tasarım += ks * cevap_katsayisi;
+            case 14: Tasarim += ks * cevap_katsayisi;
                 break;
         }
 
         int deneme = 22;
-
-    }
-
-    public void showNextQuestion() {                       //siradaki soruya gec
-        rbGroup.clearCheck();                               //şık secimini temizle
-
-        if (questionCounter < questionCountTotal)
-        {
-            currentQuestion = questionList.get(questionCounter);
-
-            textViewQuestion.setText(currentQuestion.getQuestion());
-
-            questionCounter++;
-            textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
-            answered = false;
-            buttonConfirmNext.setText("Cevabi Onayla");
-        }else {     //TODO: Bu noktada gruplar karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
-            finishQuiz();
-        }
-    }
-
-
-
-    public void  checkAnswer(){                         //Secilen sikkin katsayiyla carpimi burada mı olacak?
-        answered = true;
-
-        RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //secilenin id'yi al
-        answerNr = rbGroup.indexOfChild(rbSelected);        //secilen id'yi answerNr'de tut
-        //youtube dk 9.30 link:(tlgrX3HF6AI)
-
-        if (questionCounter < questionCountTotal){
-            buttonConfirmNext.setText("Siradaki soru");
-        }else {
-            buttonConfirmNext.setText("Testi bitir");
-        }
 
     }
 
@@ -276,7 +274,7 @@ public class QuizActivity extends AppCompatActivity {
         liste[10] = Gastronomi;
         liste[11] = Saglik;
         liste[12] = Spor;
-        liste[13] = Tasarım;
+        liste[13] = Tasarim;
 
         int ilk = 0;
         int ikinci = 0;

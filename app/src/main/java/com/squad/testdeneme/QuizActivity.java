@@ -1,5 +1,6 @@
 package com.squad.testdeneme;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +43,7 @@ public class QuizActivity extends AppCompatActivity {
     static int Uzay;
     static int Hukuk;
     static int Toplum;
-    static int isletme;
+    static int Isletme;
     static int Konser;
     static int Makine;
     static int Gastronomi;
@@ -51,6 +52,16 @@ public class QuizActivity extends AppCompatActivity {
     static int Tasarım;
 
     static int answerNr;
+
+    static Puan puan;
+
+    static int liste[] = new int[14];
+    int ilkGrupId;
+    int ikinciGrupId;
+    int ucuncuGrupId;
+    static int ilkYuzde;
+    static int ikinciYuzde;
+    static int ucuncuYuzde;
 
 
     @Override
@@ -116,40 +127,80 @@ public class QuizActivity extends AppCompatActivity {
         return cvp_katsayi;
     }
 
+    public static void hesap1(int ks, int gId){
+        int cevap_katsayisi = cvp();
+        puan = new Puan();          //yukarida tanımladım gerekirse burada tanımla
+
+        switch (gId){
+            case 1: puan.setBilgisayar_puani(puan.getBilgisayar_puani() + (ks * cevap_katsayisi));
+                break;
+            case 2: puan.setEgitim_puani(puan.getEgitim_puani() + (ks * cevap_katsayisi));
+                    egitim_puani += ks * cevap_katsayisi;
+                break;
+            case 3: puan.setElektronik_puani(puan.getElektronik_puani() + (ks * cevap_katsayisi));
+                break;
+            case 4: puan.setHarita(puan.getHarita() + (ks * cevap_katsayisi));
+                break;
+            case 5: puan.setUzay(puan.getUzay() + (ks * cevap_katsayisi));
+                break;
+            case 6: puan.setHukuk(puan.getHukuk() + (ks * cevap_katsayisi));
+                break;
+            case 7: puan.setToplum(puan.getToplum() + (ks * cevap_katsayisi));
+                break;
+            case 8: puan.setIsletme(puan.getIsletme() + (ks * cevap_katsayisi));
+                break;
+            case 9: puan.setKonser(puan.getKonser() + (ks * cevap_katsayisi));
+                break;
+            case 10: puan.setMakine(puan.getMakine() + (ks * cevap_katsayisi));
+                break;
+            case 11: puan.setGastronomi(puan.getGastronomi() + (ks * cevap_katsayisi));
+                break;
+            case 12: puan.setSaglik(puan.getSaglik() + (ks * cevap_katsayisi));
+                break;
+            case 13: puan.setSpor(puan.getSpor() + (ks * cevap_katsayisi));
+                break;
+            case 14: puan.setTasarım(puan.getTasarım() + (ks * cevap_katsayisi));
+                break;
+        }
+
+        int deneme1 = 22;
+    }
+
     public static void hesap(int ks, int gId){
 
         //int denden = checkAnswer().answerNr;
-        int cevap_katsayısı = cvp();
-        //int cevap_katsayısı = secim();
+        int cevap_katsayisi = cvp();
+        //int cevap_katsayisi = secim();
 
         switch(gId){
-            case 1: bilgisayar_puani = bilgisayar_puani + (ks * cevap_katsayısı);
+            case 1: bilgisayar_puani = bilgisayar_puani + (ks * cevap_katsayisi);
+
                 break;
-            case 2: egitim_puani += ks * cevap_katsayısı;
+            case 2: egitim_puani += ks * cevap_katsayisi;
                 break;
-            case 3: elektronik_puani += ks * cevap_katsayısı;
+            case 3: elektronik_puani += ks * cevap_katsayisi;
                 break;
-            case 4: Harita += ks * cevap_katsayısı;
+            case 4: Harita += ks * cevap_katsayisi;
                 break;
-            case 5: Uzay += ks * cevap_katsayısı;
+            case 5: Uzay += ks * cevap_katsayisi;
                 break;
-            case 6: Hukuk += ks * cevap_katsayısı;
+            case 6: Hukuk += ks * cevap_katsayisi;
                 break;
-            case 7: Toplum += ks * cevap_katsayısı;
+            case 7: Toplum += ks * cevap_katsayisi;
                 break;
-            case 8: isletme += ks * cevap_katsayısı;
+            case 8: Isletme += ks * cevap_katsayisi;
                 break;
-            case 9: Konser += ks * cevap_katsayısı;
+            case 9: Konser += ks * cevap_katsayisi;
                 break;
-            case 10: Makine += ks * cevap_katsayısı;
+            case 10: Makine += ks * cevap_katsayisi;
                 break;
-            case 11: Gastronomi += ks * cevap_katsayısı;
+            case 11: Gastronomi += ks * cevap_katsayisi;
                 break;
-            case 12: Saglik += ks * cevap_katsayısı;
+            case 12: Saglik += ks * cevap_katsayisi;
                 break;
-            case 13: Spor += ks * cevap_katsayısı;
+            case 13: Spor += ks * cevap_katsayisi;
                 break;
-            case 14: Tasarım += ks * cevap_katsayısı;
+            case 14: Tasarım += ks * cevap_katsayisi;
                 break;
         }
 
@@ -158,20 +209,19 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void showNextQuestion() {                       //siradaki soruya gec
-        rbGroup.clearCheck();                               //secimi sifirla
+        rbGroup.clearCheck();                               //şık secimini temizle
 
         if (questionCounter < questionCountTotal)
         {
             currentQuestion = questionList.get(questionCounter);
 
             textViewQuestion.setText(currentQuestion.getQuestion());
-            //hesapla(currentQuestion.getSoru_id());                   //TODO: burada cok mantıklı degil cunku şık secimi henuz yapılmadı
 
             questionCounter++;
             textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
             answered = false;
             buttonConfirmNext.setText("Cevabi Onayla");
-        }else {
+        }else {     //TODO: Bu noktada gruplar karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
             finishQuiz();
         }
     }
@@ -193,14 +243,17 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-    private void finishQuiz() {
-        finish();
+    private void finishQuiz() { //TODO: finish metodu yerine intentle sonuc sayfasina gecis
+                                //ayrica gecisten once grup puanlarını karsılastıran metodu calıstır
+        grupPuani();
+        Intent intent = new Intent(QuizActivity.this, Sonuc_ekrani.class);
+        startActivity(intent);
     }
 
     @Override
     public void onBackPressed() {           //2sn icinde iki defa geri basarsa cik yoksa teste devam
         if (backPressedTime + 2000 > System.currentTimeMillis()){
-            finishQuiz();
+            finish();   //TODO: sonuc sayfasina gecis tamamlandiginda, bunu finish metoduna dondur
         }else {
             Toast.makeText(this, "Cikmak icin tekrar geriye basin", Toast.LENGTH_SHORT).show();
         }
@@ -208,5 +261,55 @@ public class QuizActivity extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
     }
 
+    public void grupPuani(){    //TODO: ilk 3 sec. Puan yüzde hesapla. DB'den o grupların meslegini cek.
+
+        liste[0] = bilgisayar_puani;
+        liste[1] = egitim_puani;
+        liste[2] = elektronik_puani;
+        liste[3] = Harita;
+        liste[4] = Uzay;
+        liste[5] = Hukuk;
+        liste[6] = Toplum;
+        liste[7] = Isletme;
+        liste[8] = Konser;
+        liste[9] = Makine;
+        liste[10] = Gastronomi;
+        liste[11] = Saglik;
+        liste[12] = Spor;
+        liste[13] = Tasarım;
+
+        int ilk = 0;
+        int ikinci = 0;
+        int ucuncu = 0;
+
+        ilkGrupId = 0;
+        ikinciGrupId = 0;
+        ucuncuGrupId = 0;
+
+        for(int i=0; i<liste.length; i++ ){
+            if (liste[i]>ilk){
+                ilk = liste[i];
+                ilkGrupId = i+1;
+            }
+            else if (liste[i]> ikinci && liste[i]<ilk) {
+                ikinci = liste[i];
+                ikinciGrupId = (i+1);
+                int yam = 1;
+            }
+            else if (liste[i]> ucuncu && liste[i]<ikinci){
+                ucuncu=liste[i];
+                ucuncuGrupId = i+1;
+            }
+        }
+
+        ilkYuzde = ilk*100 / (ilk + ikinci + ucuncu);
+        ikinciYuzde = ikinci*100 / (ilk + ikinci + ucuncu);
+        ucuncuYuzde = 100 - (ilkYuzde + ikinciYuzde);
+
+        int dembaba = 0;
+
+
+
+    }
 
 }

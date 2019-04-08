@@ -42,10 +42,10 @@ public class QuizDbHelper {
         List<Question> questionList = new ArrayList<>();
 
         openDB();
-        String sql = "SELECT * FROM mt_soru";
+        String sqlQuestion = "SELECT * FROM mt_soru";
         Question question;
 
-        Cursor c = database.rawQuery(sql, null);
+        Cursor c = database.rawQuery(sqlQuestion, null);
         if (c!=null && c.getCount()!=0)
         {
             // c.moveToFirst();
@@ -73,6 +73,7 @@ public class QuizDbHelper {
     }
 
     public void katsayiHesapDB (int soruId){
+
         String sql = "SELECT * FROM mt_sorumeslek WHERE soru_id = " + soruId;
 
         Hesapla hesapla;
@@ -99,53 +100,9 @@ public class QuizDbHelper {
                 //activity.hesap(hesapla.getKatsayi(),hesapla.getGrupId());
             }
         }
-
-
-
-
         closeDB();
     }
 
 
-/*
-    public void deneme(int soru_id) {
-        //QuizDbHelper.getHesap();
-
-
-
-        String query = "SELECT * FROM mt_sorumeslek where soru_id="+ soru_id ;
-        //answerNr
-    }
-*/
-/*
-    public static List<Hesapla> getHesap(){                //TODO
-        List<Hesapla> hesaplaList = new ArrayList<>();
-        openDB();
-
-        String query = "SELECT * FROM mt_sorumeslek where soru_id="+ deneme ;
-
-        Hesapla hesapla;
-
-        Cursor cb = database.rawQuery(query, null);
-        if (cb!=null && cb.getCount()!=0)
-        {
-            // c.moveToFirst();
-            while (cb.moveToNext())
-            {
-                hesapla = new Hesapla();
-                hesapla.setKatsayi(cb.getInt(cb.getColumnIndex("katsayi")));
-                hesapla.setSoruId(cb.getInt(cb.getColumnIndex("soru_id")));
-                hesapla.setGrupId(cb.getInt(cb.getColumnIndex("grup_id")));
-
-                hesaplaList.add(hesapla);                        //cekilen verileri arrayliste koy
-            }
-        }
-
-
-        closeDB();
-
-        return hesaplaList;
-    }
-*/
 
 }

@@ -6,7 +6,9 @@ public class Hesapla {
     private int soruId;
     private int grupId;
 
-    public Hesapla() {
+    public Hesapla(){}
+
+    public Hesapla(int katsayi, int soruId, int grupId) {
         this.katsayi = katsayi;
         this.soruId = soruId;
         this.grupId = grupId;

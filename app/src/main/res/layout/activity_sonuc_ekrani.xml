@@ -40,13 +40,17 @@
             android:text="TextView"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="278dp" />
+        <ExpandableListView
+            android:id="@+id/lvExp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+        </ExpandableListView>
+
+
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="76dp"></LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

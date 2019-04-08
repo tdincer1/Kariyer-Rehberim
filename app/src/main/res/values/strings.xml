@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestDeneme</string>
+    <string name="deneme">buton_adı</string>
 </resources>

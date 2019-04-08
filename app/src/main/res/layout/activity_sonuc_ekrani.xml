@@ -40,6 +40,12 @@
             android:text="TextView"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="278dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

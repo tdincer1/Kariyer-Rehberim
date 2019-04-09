@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
-
 public class SonucEkrani extends AppCompatActivity {
 
     TextView tv1;
@@ -36,6 +34,8 @@ public class SonucEkrani extends AppCompatActivity {
     private HashMap<String, List<String>> listHash;
 
     private long backPressedTime;
+
+    String secilen;
 
 
     @Override
@@ -73,13 +73,12 @@ public class SonucEkrani extends AppCompatActivity {
 
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                final String selected = (String) listAdapter.getChild(
-                        groupPosition, childPosition);
+                final String selected = (String) listAdapter.getChild(groupPosition, childPosition);
+                secilen = selected;
                 //gonder(selected);
                 Intent i= new Intent(listView.getContext(), TercihRobotu.class);
                 startActivity(i);
-                Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
-                        .show();
+                //Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG).show();
 
                 return true;
             }

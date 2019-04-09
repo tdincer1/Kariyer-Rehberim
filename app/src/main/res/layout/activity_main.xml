@@ -21,8 +21,19 @@
         android:id="@+id/button_start_quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="211dp"
+        android:text="Meslek Testi" />
+
+    <Button
+        android:id="@+id/button_tercih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_start_quiz"
         android:layout_centerInParent="true"
-        android:text="Teste başla" />
+        android:layout_marginTop="52dp"
+        android:text="Tercih Robotu" />
 
 
 </RelativeLayout>

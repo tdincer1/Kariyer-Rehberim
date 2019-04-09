@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.squad.testdeneme.Meslek_Testi.QuizActivity;
+
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;
 

@@ -1,4 +1,4 @@
-package com.squad.testdeneme;
+package com.squad.testdeneme.Meslek_Testi;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squad.testdeneme.Question;
+import com.squad.testdeneme.QuizDbHelper;
+import com.squad.testdeneme.R;
 
 import java.util.Collections;
 import java.util.List;

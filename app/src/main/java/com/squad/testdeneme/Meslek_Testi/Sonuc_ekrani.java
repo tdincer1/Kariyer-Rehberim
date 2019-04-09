@@ -1,5 +1,6 @@
-package com.squad.testdeneme;
+package com.squad.testdeneme.Meslek_Testi;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,12 +8,16 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squad.testdeneme.ExpandableListAdapter;
+import com.squad.testdeneme.MainActivity;
+import com.squad.testdeneme.QuizDbHelper;
+import com.squad.testdeneme.R;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import java.util.HashMap;
-import java.util.List;
+
 
 public class Sonuc_ekrani extends AppCompatActivity {
 
@@ -28,6 +33,8 @@ public class Sonuc_ekrani extends AppCompatActivity {
     private ExpandableListAdapter listAdapter;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listHash;
+
+    private long backPressedTime;
 
 
     @Override
@@ -92,5 +99,17 @@ public class Sonuc_ekrani extends AppCompatActivity {
         listHash.put(listDataHeader.get(2), pc2);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()){
+            Intent intent = new Intent(Sonuc_ekrani.this, MainActivity.class);
+            startActivity(intent);
+        }else {
+            Toast.makeText(this, "Ana ekrana donmek icin tekrar geriye basin", Toast.LENGTH_SHORT).show();
+        }
+
+        backPressedTime = System.currentTimeMillis();
     }
 }

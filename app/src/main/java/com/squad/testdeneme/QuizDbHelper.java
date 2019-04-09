@@ -4,11 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
+import com.squad.testdeneme.Meslek_Testi.Hesapla;
+import com.squad.testdeneme.Meslek_Testi.Meslek;
+import com.squad.testdeneme.Meslek_Testi.QuizActivity;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class QuizDbHelper {
         database.close();
     }
 
-    public List<Question> getAllQuestions(){
+    public List<Question> getAllQuestions(){    //Tablo ismini String olarak alarak iki test icin de calisir
         List<Question> questionList = new ArrayList<>();
 
         openDB();
@@ -72,7 +72,7 @@ public class QuizDbHelper {
         return questionList;
     }
 
-    public void katsayiHesapDB (int soruId){
+    public void katsayiHesapDB (int soruId){ //grup_id, kisilik_id farkı ortak kullanımda sıkıntı
 
         String sql = "SELECT * FROM mt_sorumeslek WHERE soru_id = " + soruId;
         Hesapla hesapla;
@@ -185,8 +185,6 @@ public class QuizDbHelper {
         closeDB();
         return meslekList;
     }
-
-
 
 
 }

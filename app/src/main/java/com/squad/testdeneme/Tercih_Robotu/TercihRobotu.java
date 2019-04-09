@@ -24,6 +24,10 @@ public class TercihRobotu extends AppCompatActivity {
         actionBar.hide();
 
 
+        //deneme amaclı testten gelen meslegi toastta bas
+        String deneme = SonucEkrani.secilen;
+        if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen meslek: " + SonucEkrani.secilen, Toast.LENGTH_SHORT).show();
+
 
         rangeSeekBar.setSelectedMaxValue(500);
         rangeSeekBar.setSelectedMinValue(0);

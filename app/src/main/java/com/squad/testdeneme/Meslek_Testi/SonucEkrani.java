@@ -35,7 +35,7 @@ public class SonucEkrani extends AppCompatActivity {
 
     private long backPressedTime;
 
-    String secilen;
+    public static String secilen;
 
 
     @Override

@@ -65,6 +65,24 @@ public class Sonuc_ekrani extends AppCompatActivity {
         listDataHeader.add(ikinci_grup + " %" + QuizActivity.ikinciYuzde);
         listDataHeader.add(ucuncu_grup + " %" + QuizActivity.ucuncuYuzde);
 
+        //List<String> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek();
+        List<String> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ilkGrupId);
+        List<String> pc1 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ikinciGrupId);
+        List<String> pc2 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ucuncuGrupId);
+/*
+        ArrayList<Meslek> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ilkGrupId);
+
+        for(int i=0; i<pc.size(); i++){
+            pc.get(i);
+        }
+        pc.get(0);
+        pc.add("15");
+        pc.add("i7 7700HQ İşlemci");
+        pc.add("16 GB DDR4 Ram");
+        pc.add("GTX1050 Ekran Kartı");
+        pc.add("512 GB SSD");
+        pc.add("10.319 TL");
+
 
         List<String> pc = new ArrayList<>();
         pc.add("15");
@@ -88,10 +106,11 @@ public class Sonuc_ekrani extends AppCompatActivity {
         pc2.add("GTX1060 Ekran Kartı");
         pc2.add("1TB HDD + 512 GB SSD");
 
-
+*/
         listHash.put(listDataHeader.get(0), pc);
         listHash.put(listDataHeader.get(1), pc1);
         listHash.put(listDataHeader.get(2), pc2);
+
 
 
     }

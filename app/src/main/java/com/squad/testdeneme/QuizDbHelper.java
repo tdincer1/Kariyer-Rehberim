@@ -72,8 +72,6 @@ public class QuizDbHelper {
         return questionList;
     }
 
-
-
     public void katsayiHesapDB (int soruId){
 
         String sql = "SELECT * FROM mt_sorumeslek WHERE soru_id = " + soruId;
@@ -121,6 +119,74 @@ public class QuizDbHelper {
         closeDB();
         return grupAdi;
     }
+
+    public List<String> getMeslek(int grupId){
+        List<String> meslekList = new ArrayList<>();
+
+        openDB();
+        String meslekSorgu = "SELECT * FROM mt_meslek WHERE grup_id = " + grupId;
+
+
+        Cursor cc = database.rawQuery(meslekSorgu, null);
+
+        if(cc != null && cc.getCount()!=0){
+            while (cc.moveToNext())
+            {
+                meslekList.add(cc.getString(cc.getColumnIndex("meslek_adi")));
+            }
+        }
+
+        closeDB();
+        return meslekList;
+    }
+
+    public List<String> getMeslek2(){
+        List<String> meslekList = new ArrayList<>();
+
+        openDB();
+        String meslekSorgu = "SELECT * FROM mt_meslek";
+
+
+        Cursor cc = database.rawQuery(meslekSorgu, null);
+
+        if(cc != null && cc.getCount()!=0){
+            while (cc.moveToNext())
+            {
+                meslekList.add(cc.getString(cc.getColumnIndex("meslek_adi")));
+            }
+        }
+
+        closeDB();
+        return meslekList;
+    }
+
+    public ArrayList<Meslek> getMeslek1(int grupId){
+        ArrayList<Meslek> meslekList = new ArrayList<>();
+
+        openDB();
+        String meslekSorgu = "SELECT * FROM mt_meslek WHERE grup_id = " + grupId;
+        Meslek meslek;
+
+        Cursor cc = database.rawQuery(meslekSorgu, null);
+
+        if(cc != null && cc.getCount()!=0){
+            while (cc.moveToNext())
+            {
+                meslek = new Meslek();
+                meslek.setMeslek_id(cc.getInt(cc.getColumnIndex("meslek_id")));
+                meslek.setMeslek_adi(cc.getString(cc.getColumnIndex("meslek_adi")));
+                meslek.setMeslek_detay(cc.getString(cc.getColumnIndex("meslek_detay")));
+                meslek.setGrup_id(cc.getInt(cc.getColumnIndex("grup_id")));
+
+                meslekList.add(meslek);
+            }
+        }
+
+        closeDB();
+        return meslekList;
+    }
+
+
 
 
 }

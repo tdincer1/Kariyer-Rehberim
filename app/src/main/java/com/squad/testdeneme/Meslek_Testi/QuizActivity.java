@@ -248,7 +248,7 @@ public class QuizActivity extends AppCompatActivity {
     private void finishQuiz() { //TODO: finish metodu yerine intentle sonuc sayfasina gecis
                                 //ayrica gecisten once grup puanlarını karsılastıran metodu calıstır
         grupPuani();
-        Intent intent = new Intent(QuizActivity.this, Sonuc_ekrani.class);
+        Intent intent = new Intent(QuizActivity.this, SonucEkrani.class);
         startActivity(intent);
     }
 

@@ -19,7 +19,7 @@ import java.util.List;
 
 
 
-public class Sonuc_ekrani extends AppCompatActivity {
+public class SonucEkrani extends AppCompatActivity {
 
     List<String> pc, pc1, pc2;
     TextView tv1;
@@ -104,7 +104,7 @@ public class Sonuc_ekrani extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
-            Intent intent = new Intent(Sonuc_ekrani.this, MainActivity.class);
+            Intent intent = new Intent(SonucEkrani.this, MainActivity.class);
             startActivity(intent);
         }else {
             Toast.makeText(this, "Ana ekrana donmek icin tekrar geriye basin", Toast.LENGTH_SHORT).show();

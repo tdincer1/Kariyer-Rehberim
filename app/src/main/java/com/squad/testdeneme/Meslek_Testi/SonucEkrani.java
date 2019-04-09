@@ -12,6 +12,7 @@ import com.squad.testdeneme.ExpandableListAdapter;
 import com.squad.testdeneme.MainActivity;
 import com.squad.testdeneme.QuizDbHelper;
 import com.squad.testdeneme.R;
+import com.squad.testdeneme.Tercih_Robotu.TercihRobotu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +22,6 @@ import java.util.List;
 
 public class SonucEkrani extends AppCompatActivity {
 
-    List<String> pc, pc1, pc2;
     TextView tv1;
     TextView tv2;
     TextView tv3;
@@ -72,6 +72,9 @@ public class SonucEkrani extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 final String selected = (String) listAdapter.getChild(
                         groupPosition, childPosition);
+                //gonder(selected);
+                Intent i= new Intent(listView.getContext(), TercihRobotu.class);
+                startActivity(i);
                 Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
                         .show();
 
@@ -81,6 +84,12 @@ public class SonucEkrani extends AppCompatActivity {
 
     }
 
+    /*
+    private void gonder(String secilen){
+        database ' e seçilen gönderilecek
+    }
+    */
+
     private void initData() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
@@ -89,9 +98,9 @@ public class SonucEkrani extends AppCompatActivity {
         listDataHeader.add(ikinci_grup + " %" + QuizActivity.ikinciYuzde);
         listDataHeader.add(ucuncu_grup + " %" + QuizActivity.ucuncuYuzde);
 
-        pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ilkGrupId);
-        pc1 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ikinciGrupId);
-        pc2 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ucuncuGrupId);
+        List<String> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ilkGrupId);
+        List<String> pc1 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ikinciGrupId);
+        List<String> pc2 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ucuncuGrupId);
 
 
         listHash.put(listDataHeader.get(0), pc);

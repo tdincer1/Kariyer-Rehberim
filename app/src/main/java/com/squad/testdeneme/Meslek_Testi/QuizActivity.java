@@ -1,6 +1,7 @@
 package com.squad.testdeneme.Meslek_Testi;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -72,6 +73,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.hide();
 
         textViewQuestion = findViewById(R.id.text_view_question);
         textViewQuestionCount = findViewById(R.id.text_view_question_count);

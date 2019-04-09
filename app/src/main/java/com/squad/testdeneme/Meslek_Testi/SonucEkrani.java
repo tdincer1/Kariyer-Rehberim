@@ -1,6 +1,7 @@
 package com.squad.testdeneme.Meslek_Testi;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,8 @@ public class SonucEkrani extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sonuc_ekrani);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.hide();
 
         ilk_grup = QuizDbHelper.getInstance(getApplicationContext()).grupAdiCek(QuizActivity.ilkGrupId);
         ikinci_grup = QuizDbHelper.getInstance(getApplicationContext()).grupAdiCek(QuizActivity.ikinciGrupId);

@@ -2,8 +2,10 @@ package com.squad.testdeneme;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +16,7 @@ import java.util.List;
 
 public class Sonuc_ekrani extends AppCompatActivity {
 
+    List<String> pc, pc1, pc2;
     TextView tv1;
     TextView tv2;
     TextView tv3;
@@ -55,6 +58,20 @@ public class Sonuc_ekrani extends AppCompatActivity {
         tv4.setText("Hukuk puani: " + QuizActivity.Hukuk);
 
 
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                final String selected = (String) listAdapter.getChild(
+                        groupPosition, childPosition);
+                Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG)
+                        .show();
+
+                return true;
+            }
+        });
+
     }
 
     private void initData() {
@@ -65,52 +82,14 @@ public class Sonuc_ekrani extends AppCompatActivity {
         listDataHeader.add(ikinci_grup + " %" + QuizActivity.ikinciYuzde);
         listDataHeader.add(ucuncu_grup + " %" + QuizActivity.ucuncuYuzde);
 
-        //List<String> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek();
-        List<String> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ilkGrupId);
-        List<String> pc1 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ikinciGrupId);
-        List<String> pc2 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ucuncuGrupId);
-/*
-        ArrayList<Meslek> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ilkGrupId);
-
-        for(int i=0; i<pc.size(); i++){
-            pc.get(i);
-        }
-        pc.get(0);
-        pc.add("15");
-        pc.add("i7 7700HQ İşlemci");
-        pc.add("16 GB DDR4 Ram");
-        pc.add("GTX1050 Ekran Kartı");
-        pc.add("512 GB SSD");
-        pc.add("10.319 TL");
+        pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ilkGrupId);
+        pc1 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ikinciGrupId);
+        pc2 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(QuizActivity.ucuncuGrupId);
 
 
-        List<String> pc = new ArrayList<>();
-        pc.add("15");
-        pc.add("i7 7700HQ İşlemci");
-        pc.add("16 GB DDR4 Ram");
-        pc.add("GTX1050 Ekran Kartı");
-        pc.add("512 GB SSD");
-        pc.add("10.319 TL");
-
-        List<String> pc1 = new ArrayList<>();
-        pc1.add("15");
-        pc1.add("i7 7700HQ İşlemci");
-        pc1.add("16 GB DDR4 Ram");
-        pc1.add("GTX1060 Ekran Kartı");
-        pc1.add("1TB HDD + 512 GB SSD");
-
-        List<String> pc2 = new ArrayList<>();
-        pc2.add("15");
-        pc2.add("i7 7700HQ İşlemci");
-        pc2.add("16 GB DDR4 Ram");
-        pc2.add("GTX1060 Ekran Kartı");
-        pc2.add("1TB HDD + 512 GB SSD");
-
-*/
         listHash.put(listDataHeader.get(0), pc);
         listHash.put(listDataHeader.get(1), pc1);
         listHash.put(listDataHeader.get(2), pc2);
-
 
 
     }

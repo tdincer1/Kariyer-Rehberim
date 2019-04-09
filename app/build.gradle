@@ -29,5 +29,5 @@ dependencies {
     //SQLiteAssetHelper kutuphanesi
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     //Tercih Robotu SeekBar
-    implementation 'org.florescu.android.rangeseekbar:rangeseekbar-library:0.2.0'
+    implementation 'org.florescu.android.rangeseekbar:rangeseekbar-library:0.3.0'
 }

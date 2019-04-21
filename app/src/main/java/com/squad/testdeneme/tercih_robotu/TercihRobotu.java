@@ -1,11 +1,11 @@
-package com.squad.testdeneme.Tercih_Robotu;
+package com.squad.testdeneme.tercih_robotu;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.squad.testdeneme.Meslek_Testi.SonucEkrani;
+import com.squad.testdeneme.meslek_testi.SonucEkrani;
 import com.squad.testdeneme.R;
 
 import org.florescu.android.rangeseekbar.RangeSeekBar;
@@ -26,8 +26,10 @@ public class TercihRobotu extends AppCompatActivity {
 
         //deneme amaclı testten gelen meslegi toastta bas
         String deneme = SonucEkrani.secilen;
-        if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen meslek: " + SonucEkrani.secilen, Toast.LENGTH_SHORT).show();
+        //String secilen_meslek = getIntent().getStringExtra("secilen_meslek");
 
+        if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen meslek: " + SonucEkrani.secilen, Toast.LENGTH_SHORT).show();
+        //if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen_meslek_putExtra: " + secilen_meslek, Toast.LENGTH_SHORT).show();
 
         rangeSeekBar.setSelectedMaxValue(500);
         rangeSeekBar.setSelectedMinValue(0);
@@ -44,5 +46,7 @@ public class TercihRobotu extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Min= " + min + "\n"+ "Max=" + max,Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 }

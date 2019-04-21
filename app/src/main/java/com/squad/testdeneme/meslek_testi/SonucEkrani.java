@@ -1,4 +1,4 @@
-package com.squad.testdeneme.Meslek_Testi;
+package com.squad.testdeneme.meslek_testi;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squad.testdeneme.ExpandableListAdapter;
-import com.squad.testdeneme.MainActivity;
+import com.squad.testdeneme.AnaEkran;
 import com.squad.testdeneme.QuizDbHelper;
 import com.squad.testdeneme.R;
-import com.squad.testdeneme.Tercih_Robotu.TercihRobotu;
+import com.squad.testdeneme.tercih_robotu.TercihRobotu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +41,7 @@ public class SonucEkrani extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sonuc_ekrani);
+        setContentView(R.layout.activity_mt_sonuc_ekrani);
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
@@ -56,7 +56,7 @@ public class SonucEkrani extends AppCompatActivity {
         listView.setAdapter(listAdapter);
 
 
-        tv1 = findViewById(R.id.textView);
+        tv1 = findViewById(R.id.ktTV);
         tv2 = findViewById(R.id.textView2);
         tv3 = findViewById(R.id.textView3);
         tv4 = findViewById(R.id.textView4);
@@ -77,6 +77,7 @@ public class SonucEkrani extends AppCompatActivity {
                 secilen = selected;
                 //gonder(selected);
                 Intent i= new Intent(listView.getContext(), TercihRobotu.class);
+                //i.putExtra("secilen_meslek",selected);
                 startActivity(i);
                 //Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG).show();
 
@@ -115,7 +116,8 @@ public class SonucEkrani extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
-            Intent intent = new Intent(SonucEkrani.this, MainActivity.class);
+            Intent intent = new Intent(SonucEkrani.this, AnaEkran.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);    //hafızadaki(stack) activityleri temizle, geriye basildiginda gostrme
             startActivity(intent);
         }else {
             Toast.makeText(this, "Ana ekrana donmek icin tekrar geriye basin", Toast.LENGTH_SHORT).show();

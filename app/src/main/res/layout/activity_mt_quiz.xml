@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:padding="16dp"
+    tools:context=".meslek_testi.QuizActivity">
+
+    <TextView
+        android:id="@+id/kt_text_view_question_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soru 1/x"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/kt_text_view_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Soru buraya gelecek!!!!!!\nSoru buraya gelecek!!!!!!\nSoru buraya gelecek!!!!!!"
+        android:textSize="20sp"
+        android:layout_above="@id/kt_radio_group"
+        android:layout_marginBottom="16dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"/>
+
+    <RadioGroup
+        android:id="@+id/kt_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <RadioButton
+            android:id="@+id/kt_radio_button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kesinlikle Katılıyorum"/>
+
+        <RadioButton
+            android:id="@+id/kt_radio_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Katılıyorum"/>
+
+        <RadioButton
+            android:id="@+id/kt_radio_button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kararsızım"/>
+
+        <RadioButton
+            android:id="@+id/kt_radio_button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Katılmıyorum"/>
+
+        <RadioButton
+            android:id="@+id/kt_radio_button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kesinlikle Katılmıyorum"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/kt_button_confirm_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Onayla"
+        android:layout_below="@id/kt_radio_group"
+        android:layout_marginTop="16dp"
+        />
+</RelativeLayout>

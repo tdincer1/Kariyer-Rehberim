@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".AnaEkran">
 
     <TextView
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -18,22 +19,33 @@
         android:textSize="35sp" />
 
     <Button
-        android:id="@+id/button_start_quiz"
+        android:id="@+id/button_meslek_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="211dp"
+        android:layout_marginTop="170dp"
         android:text="Meslek Testi" />
 
     <Button
-        android:id="@+id/button_tercih"
+        android:id="@+id/button_kisilik_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/button_start_quiz"
+        android:layout_below="@id/button_meslek_start"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="52dp"
+        android:text="Kişilik Testi" />
+
+    <Button
+        android:id="@+id/button_tercih_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_kisilik_start"
         android:layout_centerInParent="true"
         android:layout_marginTop="52dp"
         android:text="Tercih Robotu" />
+
+
 
 
 </RelativeLayout>

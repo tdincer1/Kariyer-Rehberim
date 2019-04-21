@@ -1,11 +1,10 @@
-package com.squad.testdeneme.Tercih_Robotu;
+package com.squad.testdeneme.tercih_robotu;
 
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.squad.testdeneme.MySQLiteHelper;
-import com.squad.testdeneme.QuizDbHelper;
 
 public class TercihDb {
     private static TercihDb INSTANCE;

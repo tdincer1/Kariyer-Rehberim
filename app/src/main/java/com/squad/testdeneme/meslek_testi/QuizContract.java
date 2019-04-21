@@ -1,4 +1,4 @@
-package com.squad.testdeneme.Meslek_Testi;
+package com.squad.testdeneme.meslek_testi;
 
 import android.provider.BaseColumns;
 

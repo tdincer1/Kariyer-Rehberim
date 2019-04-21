@@ -5,9 +5,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.squad.testdeneme.Meslek_Testi.Hesapla;
-import com.squad.testdeneme.Meslek_Testi.Meslek;
-import com.squad.testdeneme.Meslek_Testi.QuizActivity;
+import com.squad.testdeneme.meslek_testi.Hesapla;
+import com.squad.testdeneme.meslek_testi.Meslek;
+import com.squad.testdeneme.meslek_testi.QuizActivity;
 
 import java.util.ArrayList;
 import java.util.List;

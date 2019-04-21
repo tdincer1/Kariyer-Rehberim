@@ -1,4 +1,4 @@
-package com.squad.testdeneme.Meslek_Testi;
+package com.squad.testdeneme.meslek_testi;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -60,7 +60,7 @@ public class QuizActivity extends AppCompatActivity {
 
     static Puan puan;
 
-    static int liste[] = new int[14];
+
     static int ilkGrupId;
     static int ikinciGrupId;
     static int ucuncuGrupId;
@@ -72,19 +72,19 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+        setContentView(R.layout.activity_mt_quiz);
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
-        textViewQuestion = findViewById(R.id.text_view_question);
-        textViewQuestionCount = findViewById(R.id.text_view_question_count);
-        rbGroup = findViewById(R.id.radio_group);
-        rb1 = findViewById(R.id.radio_button1);
-        rb2 = findViewById(R.id.radio_button2);
-        rb3 = findViewById(R.id.radio_button3);
-        rb4 = findViewById(R.id.radio_button4);
-        rb5 = findViewById(R.id.radio_button5);
-        buttonConfirmNext = findViewById(R.id.button_confirm_next);
+        textViewQuestion = findViewById(R.id.kt_text_view_question);
+        textViewQuestionCount = findViewById(R.id.kt_text_view_question_count);
+        rbGroup = findViewById(R.id.kt_radio_group);
+        rb1 = findViewById(R.id.kt_radio_button1);
+        rb2 = findViewById(R.id.kt_radio_button2);
+        rb3 = findViewById(R.id.kt_radio_button3);
+        rb4 = findViewById(R.id.kt_radio_button4);
+        rb5 = findViewById(R.id.kt_radio_button5);
+        buttonConfirmNext = findViewById(R.id.kt_button_confirm_next);
 
         questionList = QuizDbHelper.getInstance(getApplicationContext()).getAllQuestions();     //listeye yerlestirme
         questionCountTotal = questionList.size();           //toplam soru bulma
@@ -267,6 +267,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void grupPuani(){    //TODO: ilk 3 sec. Puan yüzde hesapla. DB'den o grupların meslegini cek.
+
+        int liste[] = new int[14];
 
         liste[0] = bilgisayar_puani;
         liste[1] = egitim_puani;

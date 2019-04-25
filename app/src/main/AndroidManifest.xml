@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".kisilik_testi.KtSonucEkrani"></activity>
+        <activity android:name=".tercih_robotu.TercihRobotu"></activity>
+        <activity android:name=".kisilik_testi.KtSonucEkrani" />
         <activity android:name=".kisilik_testi.KtTestActivity" />
-        <activity android:name=".tercih_robotu.TercihRobotu" />
+        <activity android:name=".tercih_robotu.TercihFiltre" />
         <activity android:name=".meslek_testi.SonucEkrani" />
         <activity android:name=".meslek_testi.QuizActivity" />
         <activity android:name=".AnaEkran">

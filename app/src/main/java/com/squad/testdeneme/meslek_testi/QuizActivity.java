@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squad.testdeneme.Question;
-import com.squad.testdeneme.QuizDbHelper;
 import com.squad.testdeneme.R;
 
 import java.util.Collections;
@@ -76,15 +75,15 @@ public class QuizActivity extends AppCompatActivity {
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
-        textViewQuestion = findViewById(R.id.kt_text_view_question);
-        textViewQuestionCount = findViewById(R.id.kt_text_view_question_count);
-        rbGroup = findViewById(R.id.kt_radio_group);
-        rb1 = findViewById(R.id.kt_radio_button1);
-        rb2 = findViewById(R.id.kt_radio_button2);
-        rb3 = findViewById(R.id.kt_radio_button3);
-        rb4 = findViewById(R.id.kt_radio_button4);
-        rb5 = findViewById(R.id.kt_radio_button5);
-        buttonConfirmNext = findViewById(R.id.kt_button_confirm_next);
+        textViewQuestion = findViewById(R.id.mt_text_view_question);
+        textViewQuestionCount = findViewById(R.id.mt_text_view_question_count);
+        rbGroup = findViewById(R.id.mt_radio_group);
+        rb1 = findViewById(R.id.mt_radio_button1);
+        rb2 = findViewById(R.id.mt_radio_button2);
+        rb3 = findViewById(R.id.mt_radio_button3);
+        rb4 = findViewById(R.id.mt_radio_button4);
+        rb5 = findViewById(R.id.mt_radio_button5);
+        buttonConfirmNext = findViewById(R.id.mt_button_confirm_next);
 
         questionList = QuizDbHelper.getInstance(getApplicationContext()).getAllQuestions();     //listeye yerlestirme
         questionCountTotal = questionList.size();           //toplam soru bulma

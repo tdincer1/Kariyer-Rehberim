@@ -1,13 +1,12 @@
-package com.squad.testdeneme;
+package com.squad.testdeneme.meslek_testi;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.squad.testdeneme.meslek_testi.Hesapla;
-import com.squad.testdeneme.meslek_testi.Meslek;
-import com.squad.testdeneme.meslek_testi.QuizActivity;
+import com.squad.testdeneme.MySQLiteHelper;
+import com.squad.testdeneme.Question;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,9 +11,8 @@ import android.widget.Toast;
 
 import com.squad.testdeneme.ExpandableListAdapter;
 import com.squad.testdeneme.AnaEkran;
-import com.squad.testdeneme.QuizDbHelper;
 import com.squad.testdeneme.R;
-import com.squad.testdeneme.tercih_robotu.TercihRobotu;
+import com.squad.testdeneme.tercih_robotu.TercihFiltre;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,7 +75,7 @@ public class SonucEkrani extends AppCompatActivity {
                 final String selected = (String) listAdapter.getChild(groupPosition, childPosition);
                 secilen = selected;
                 //gonder(selected);
-                Intent i= new Intent(listView.getContext(), TercihRobotu.class);
+                Intent i= new Intent(listView.getContext(), TercihFiltre.class);
                 //i.putExtra("secilen_meslek",selected);
                 startActivity(i);
                 //Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG).show();

@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.squad.testdeneme.kisilik_testi.KtTestActivity;
 import com.squad.testdeneme.meslek_testi.QuizActivity;
-import com.squad.testdeneme.tercih_robotu.TercihRobotu;
+import com.squad.testdeneme.tercih_robotu.TercihFiltre;
 
 public class AnaEkran extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;
@@ -45,7 +45,7 @@ public class AnaEkran extends AppCompatActivity {
         buttonTercihRobotu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AnaEkran.this, TercihRobotu.class);
+                Intent intent = new Intent(AnaEkran.this, TercihFiltre.class);
                 startActivity(intent);
             }
         });

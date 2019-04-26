@@ -11,5 +11,7 @@ public class MySQLiteHelper extends SQLiteAssetHelper {
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
+
 }

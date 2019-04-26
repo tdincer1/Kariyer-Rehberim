@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.squad.testdeneme.meslek_testi.SonucEkrani;
@@ -13,26 +13,42 @@ import com.squad.testdeneme.R;
 
 import org.florescu.android.rangeseekbar.RangeSeekBar;
 
-public class TercihFiltre extends AppCompatActivity {
+public class TercihFiltre extends AppCompatActivity{
 
     RangeSeekBar rangeSeekBar;
-    EditText bolumTuruEt;
-    AutoCompleteTextView aramaEt, bolumEt, sehirEt;
+    Spinner bolumTuruSp, puanTuruSp;
+    AutoCompleteTextView uniEt, bolumEt, sehirEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tercih_filtre);
-        rangeSeekBar = findViewById(R.id.rangeSeekbar);
-        aramaEt = findViewById(R.id.uniAramaTv);
-        bolumEt = findViewById(R.id.bolumAramaTv);
-        sehirEt = findViewById(R.id.sehirAramaTv);
-        bolumTuruEt = findViewById(R.id.bolumTuruEt);
-
-
-
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
+
+        rangeSeekBar = findViewById(R.id.rangeSeekbar);
+        uniEt = findViewById(R.id.uniAramaTv);
+        bolumEt = findViewById(R.id.bolumAramaTv);
+        sehirEt = findViewById(R.id.sehirAramaTv);
+        bolumTuruSp = findViewById(R.id.bolumTuruSpinner);
+        puanTuruSp = findViewById(R.id.puanTuruSpinner);
+
+        String[] uniListe = TercihDb.getInstance(getApplicationContext()).uniCek();
+        String[] bolumListe = TercihDb.getInstance(getApplicationContext()).bolumCek();
+        String[] sehirListe = TercihDb.getInstance(getApplicationContext()).sehirCek();
+
+        uniEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, uniListe));
+        bolumEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, bolumListe));
+        sehirEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, sehirListe));
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TercihFiltre.this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.puan_turu));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bolumTuruSp.setAdapter(myAdapter);
+
+        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(TercihFiltre.this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.bolum_turu));
+        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        puanTuruSp.setAdapter(myAdapter2);
 
 
         //deneme amaclı testten gelen meslegi toastta bas
@@ -58,13 +74,10 @@ public class TercihFiltre extends AppCompatActivity {
             }
         });
 
-        String[] uniListe = TercihDb.getInstance(getApplicationContext()).uniCek();
-        String[] bolumListe = TercihDb.getInstance(getApplicationContext()).bolumCek();
-        String[] sehirListe = TercihDb.getInstance(getApplicationContext()).sehirCek();
 
-        aramaEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, uniListe));
-        bolumEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, bolumListe));
-        sehirEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, sehirListe));
 
     }
+
+
+
 }

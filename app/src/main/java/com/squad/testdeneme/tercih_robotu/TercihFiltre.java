@@ -17,14 +17,14 @@ public class TercihFiltre extends AppCompatActivity {
 
     RangeSeekBar rangeSeekBar;
     EditText bolumTuruEt;
-    AutoCompleteTextView atv, bolumEt, sehirEt;
+    AutoCompleteTextView aramaEt, bolumEt, sehirEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tercih_filtre);
         rangeSeekBar = findViewById(R.id.rangeSeekbar);
-        atv = findViewById(R.id.uniAramaTv);
+        aramaEt = findViewById(R.id.uniAramaTv);
         bolumEt = findViewById(R.id.bolumAramaTv);
         sehirEt = findViewById(R.id.sehirAramaTv);
         bolumTuruEt = findViewById(R.id.bolumTuruEt);
@@ -59,7 +59,12 @@ public class TercihFiltre extends AppCompatActivity {
         });
 
         String[] uniListe = TercihDb.getInstance(getApplicationContext()).uniCek();
+        String[] bolumListe = TercihDb.getInstance(getApplicationContext()).bolumCek();
+        String[] sehirListe = TercihDb.getInstance(getApplicationContext()).sehirCek();
 
-        atv.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, uniListe));
+        aramaEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, uniListe));
+        bolumEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, bolumListe));
+        sehirEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, sehirListe));
+
     }
 }

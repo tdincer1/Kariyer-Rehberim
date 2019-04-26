@@ -75,9 +75,9 @@ public class TercihDb {
         return bilgiList;
     }
 
-    public String[] bolumleriCek(){
-        String sorguBolum = "SELECT * FROM tr_bolum";
-        int n = 0;
+    public String[] bolumCek(){
+        String sorguBolum = "SELECT DISTINCT bolum_adi FROM tr_bolum";
+        int b = 0;
         openDB();
 
         Cursor cc = database.rawQuery(sorguBolum, null);
@@ -86,8 +86,8 @@ public class TercihDb {
         {
             while (cc.moveToNext())
             {
-                bolum[n] = cc.getString(cc.getColumnIndex("bolum_adi"));
-                n++;
+                bolum[b] = cc.getString(cc.getColumnIndex("bolum_adi"));
+                b++;
             }
         }
 
@@ -96,7 +96,7 @@ public class TercihDb {
 
     public String[] uniCek(){
         String sorguUni = "SELECT * FROM tr_universite";
-        int z = 0;
+        int u = 0;
         openDB();
 
         Cursor cc = database.rawQuery(sorguUni, null);
@@ -106,13 +106,30 @@ public class TercihDb {
         {
             while (cc.moveToNext())
             {
-                universite[z] = cc.getString(cc.getColumnIndex("uni_adi"));
-                z++;
+                universite[u] = cc.getString(cc.getColumnIndex("uni_adi"));
+                u++;
             }
         }
-
         return universite;
     }
 
+    public String[] sehirCek(){
+        String sorguSehir = "SELECT DISTINCT il_adi FROM tr_universite";
+        int s = 0;
+        openDB();
+
+        Cursor cs = database.rawQuery(sorguSehir, null);
+        String[] sehir = new String[cs.getCount()];
+
+        if (cs!=null && cs.getCount()!=0)
+        {
+            while (cs.moveToNext())
+            {
+                sehir[s] = cs.getString(cs.getColumnIndex("il_adi"));
+                s++;
+            }
+        }
+        return sehir;
+    }
     
 }

@@ -3,6 +3,9 @@ package com.squad.testdeneme.tercih_robotu;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.squad.testdeneme.meslek_testi.SonucEkrani;
@@ -13,12 +16,19 @@ import org.florescu.android.rangeseekbar.RangeSeekBar;
 public class TercihFiltre extends AppCompatActivity {
 
     RangeSeekBar rangeSeekBar;
+    EditText bolumEt, bolumTuruEt, sehirEt;
+    AutoCompleteTextView atv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tercih_filtre);
         rangeSeekBar = findViewById(R.id.rangeSeekbar);
+        atv = findViewById(R.id.uniAramaTv);
+        bolumEt = findViewById(R.id.bolumAramaTv);
+        bolumTuruEt = findViewById(R.id.bolumTuruEt);
+        sehirEt = findViewById(R.id.sehirTv);
+
 
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
@@ -47,6 +57,8 @@ public class TercihFiltre extends AppCompatActivity {
             }
         });
 
+        String[] uniListe = TercihDb.getInstance(getApplicationContext()).uniCek();
 
+        atv.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, uniListe));
     }
 }

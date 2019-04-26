@@ -10,12 +10,14 @@ import android.widget.Button;
 import com.squad.testdeneme.kisilik_testi.KtTestActivity;
 import com.squad.testdeneme.meslek_testi.QuizActivity;
 import com.squad.testdeneme.tercih_robotu.TercihFiltre;
+import com.squad.testdeneme.tercih_robotu.TercihRobotu;
 
 public class AnaEkran extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;
     Button buttonMeslekTesti;
     Button buttonTercihRobotu;
     Button buttonKisilikTesti;
+    Button buttonTercih;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class AnaEkran extends AppCompatActivity {
         buttonMeslekTesti = findViewById(R.id.button_meslek_start);
         buttonTercihRobotu = findViewById(R.id.button_tercih_start);
         buttonKisilikTesti = findViewById(R.id.button_kisilik_start);
+        buttonTercih = findViewById(R.id.button_robot);
 
         buttonMeslekTesti.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +50,14 @@ public class AnaEkran extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AnaEkran.this, TercihFiltre.class);
                 startActivity(intent);
+            }
+        });
+
+        buttonTercih.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inte = new Intent(AnaEkran.this, TercihRobotu.class);
+                startActivity(inte);
             }
         });
     }

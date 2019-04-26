@@ -51,12 +51,15 @@ public class TercihDb {
         Bilgi bilgi;
 
         Cursor cTr = database.rawQuery(sorguTr, null);
+
+        //rawQuery yerine query kullanip filtreleme kolaylastırabilir
         if (cTr!=null && cTr.getCount()!=0)
         {
             while (cTr.moveToNext())
             {
                 bilgi = new Bilgi();
 
+                //TODO: taban puani string alinirsa sayiya gore siralama sikinti, sayi alinirsa "dolmadi"lar 0 geliyor.
                 bilgi.setPr_kodu(cTr.getInt(cTr.getColumnIndex("bolum_id")));
                 bilgi.setBolum(cTr.getString(cTr.getColumnIndex("bolum_adi")));
                 bilgi.setDil(cTr.getString(cTr.getColumnIndex("dil")));
@@ -70,6 +73,45 @@ public class TercihDb {
         }
         closeDB();
         return bilgiList;
+    }
+
+    public String[] bolumleriCek(){
+        String sorguBolum = "SELECT * FROM tr_bolum";
+        int n = 0;
+        openDB();
+
+        Cursor cc = database.rawQuery(sorguBolum, null);
+        String[] bolum = new String[cc.getCount()];
+        if (cc!=null && cc.getCount()!=0)
+        {
+            while (cc.moveToNext())
+            {
+                bolum[n] = cc.getString(cc.getColumnIndex("bolum_adi"));
+                n++;
+            }
+        }
+
+        return bolum;
+    }
+
+    public String[] uniCek(){
+        String sorguUni = "SELECT * FROM tr_universite";
+        int z = 0;
+        openDB();
+
+        Cursor cc = database.rawQuery(sorguUni, null);
+        String[] universite = new String[cc.getCount()];
+
+        if (cc!=null && cc.getCount()!=0)
+        {
+            while (cc.moveToNext())
+            {
+                universite[z] = cc.getString(cc.getColumnIndex("uni_adi"));
+                z++;
+            }
+        }
+
+        return universite;
     }
 
     

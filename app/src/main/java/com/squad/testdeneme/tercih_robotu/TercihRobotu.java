@@ -20,5 +20,7 @@ public class TercihRobotu extends AppCompatActivity {
         bilgiList = TercihDb.getInstance(getApplicationContext()).verileriCek();
         int listeBoyut = bilgiList.size();
 
+
+
     }
 }

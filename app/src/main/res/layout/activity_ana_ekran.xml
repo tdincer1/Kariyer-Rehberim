@@ -45,7 +45,14 @@
         android:layout_marginTop="52dp"
         android:text="Tercih Robotu" />
 
-
+    <Button
+        android:id="@+id/button_robot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_tercih_start"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="52dp"
+        android:text="robot" />
 
 
 </RelativeLayout>

@@ -16,8 +16,8 @@ import org.florescu.android.rangeseekbar.RangeSeekBar;
 public class TercihFiltre extends AppCompatActivity {
 
     RangeSeekBar rangeSeekBar;
-    EditText bolumEt, bolumTuruEt, sehirEt;
-    AutoCompleteTextView atv;
+    EditText bolumTuruEt;
+    AutoCompleteTextView atv, bolumEt, sehirEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,9 @@ public class TercihFiltre extends AppCompatActivity {
         rangeSeekBar = findViewById(R.id.rangeSeekbar);
         atv = findViewById(R.id.uniAramaTv);
         bolumEt = findViewById(R.id.bolumAramaTv);
+        sehirEt = findViewById(R.id.sehirAramaTv);
         bolumTuruEt = findViewById(R.id.bolumTuruEt);
-        sehirEt = findViewById(R.id.sehirTv);
+
 
 
         ActionBar actionBar=getSupportActionBar();

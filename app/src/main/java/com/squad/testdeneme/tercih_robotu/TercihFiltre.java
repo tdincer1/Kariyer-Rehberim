@@ -1,10 +1,14 @@
 package com.squad.testdeneme.tercih_robotu;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,6 +22,8 @@ public class TercihFiltre extends AppCompatActivity{
     RangeSeekBar rangeSeekBar;
     Spinner bolumTuruSp, puanTuruSp;
     AutoCompleteTextView uniEt, bolumEt, sehirEt;
+    Button gecisBtn;
+    EditText maxEt, minEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,10 @@ public class TercihFiltre extends AppCompatActivity{
         sehirEt = findViewById(R.id.sehirAramaTv);
         bolumTuruSp = findViewById(R.id.bolumTuruSpinner);
         puanTuruSp = findViewById(R.id.puanTuruSpinner);
+        gecisBtn = findViewById(R.id.btn_uygula);
+        maxEt = findViewById(R.id.maxPuanEt);
+        minEt = findViewById(R.id.minPuanEt);
+
 
         String[] uniListe = TercihDb.getInstance(getApplicationContext()).uniCek();
         String[] bolumListe = TercihDb.getInstance(getApplicationContext()).bolumCek();
@@ -74,10 +84,29 @@ public class TercihFiltre extends AppCompatActivity{
             }
         });
 
+        String uni = uniEt.getText().toString();
+        String bolum = bolumEt.getText().toString();
+        String sehir = sehirEt.getText().toString();
+        String maxPuan = maxEt.getText().toString();
+        String minPuan = minEt.getText().toString();
+//        final int maxP = Integer.parseInt(maxPuan);       //hata veriyo
+//        int minP = Integer.parseInt(minPuan);
 
+
+        gecisBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TercihFiltre.this, TercihRobotu.class);
+                //intent.putExtra("universite", uni);
+                //intent.putExtra("maximum puan", maxP);
+
+                /*  on receiving side
+                Intent intent = getIntent();
+                String var1 = intent.getStringExtra("key1");
+                int i = var2.getIntExtra("key2", 0);
+                */
+            }
+        });
 
     }
-
-
-
 }

@@ -47,7 +47,21 @@ public class TercihDb {
         List<Bilgi> bilgiList = new ArrayList<>();
 
         openDB();
-        String sorguTr = "SELECT * FROM tr_bolum";
+        String sorguTr = "SELECT  b.bolum_id , " +
+                "u.il_adi, " +
+                "u.uni_adi, " +
+                "f.fakulte_adi, " +
+                "b.bolum_adi, " +
+                "dil, " +
+                "burs, " +
+                "puan_turu, " +
+                "taban_puani, " +
+                "basari_sirasi, " +
+                "kontenjan " +
+                "FROM tr_bolum b " +
+                "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
+                "INNER JOIN tr_universite u ON f.uni_id = u.uni_id";
+        //String sorguTr = "SELECT * FROM tr_bolum";
         Bilgi bilgi;
 
         Cursor cTr = database.rawQuery(sorguTr, null);
@@ -64,9 +78,13 @@ public class TercihDb {
                 bilgi.setBolum(cTr.getString(cTr.getColumnIndex("bolum_adi")));
                 bilgi.setDil(cTr.getString(cTr.getColumnIndex("dil")));
                 bilgi.setBolum_turu(cTr.getString(cTr.getColumnIndex("burs")));
-                bilgi.setTaban_puani(cTr.getDouble(cTr.getColumnIndex("taban_puani")));
+                bilgi.setTaban_puani(cTr.getString(cTr.getColumnIndex("taban_puani")));
                 bilgi.setSiralama(cTr.getInt(cTr.getColumnIndex("basari_sirasi")));
                 bilgi.setKontenjan(cTr.getInt(cTr.getColumnIndex("kontenjan")));
+                bilgi.setUniversite(cTr.getString(cTr.getColumnIndex("uni_adi")));
+                bilgi.setSehir(cTr.getString(cTr.getColumnIndex("il_adi")));
+                bilgi.setFakulte(cTr.getString(cTr.getColumnIndex("fakulte_adi")));
+                bilgi.setPuan_turu(cTr.getString(cTr.getColumnIndex("puan_turu")));
 
                 bilgiList.add(bilgi);
             }

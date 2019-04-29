@@ -9,7 +9,7 @@ public class Bilgi {
     private String dil;
     private String bolum_turu;
     private String puan_turu;
-    private double taban_puani;
+    private String taban_puani;
     private int siralama;
     private int kontenjan;
 
@@ -79,11 +79,11 @@ public class Bilgi {
         this.puan_turu = puan_turu;
     }
 
-    public double getTaban_puani() {
+    public String getTaban_puani() {
         return taban_puani;
     }
 
-    public void setTaban_puani(double taban_puani) {
+    public void setTaban_puani(String taban_puani) {
         this.taban_puani = taban_puani;
     }
 

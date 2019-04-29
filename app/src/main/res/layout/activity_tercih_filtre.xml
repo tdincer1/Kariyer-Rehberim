@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:completionThreshold="1"
             android:drawableLeft="@drawable/search_medium"
-            android:editable="false"
             android:hint="Universite" />
 
 

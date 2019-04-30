@@ -25,6 +25,17 @@ public class TercihFiltre extends AppCompatActivity{
     Button gecisBtn;
     EditText maxEt, minEt;
 
+    String uni;
+    String bolum;
+    String sehir;
+    String maxSiralama;
+    String minSiralama;
+    String bolumTuru;
+    String puanTuru;
+
+    int minPuan;
+    int maxPuan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +79,7 @@ public class TercihFiltre extends AppCompatActivity{
         if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen meslek: " + SonucEkrani.secilen, Toast.LENGTH_SHORT).show();
         //if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen_meslek_putExtra: " + secilen_meslek, Toast.LENGTH_SHORT).show();
 
-        rangeSeekBar.setSelectedMaxValue(500);
+        rangeSeekBar.setSelectedMaxValue(600);
         rangeSeekBar.setSelectedMinValue(0);
 
         rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
@@ -77,28 +88,26 @@ public class TercihFiltre extends AppCompatActivity{
                 Number min_value = bar.getSelectedMinValue();
                 Number max_value = bar.getSelectedMaxValue();
 
-                int min = (int) min_value;
-                int max = (int) max_value;
+                minPuan = (int) min_value;
+                maxPuan = (int) max_value;
 
-                Toast.makeText(getApplicationContext(),"Min= " + min + "\n"+ "Max=" + max,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Min= " + minPuan + "\n"+ "Max=" + maxPuan,Toast.LENGTH_SHORT).show();
             }
         });
 
-        String uni = uniEt.getText().toString();
-        String bolum = bolumEt.getText().toString();
-        String sehir = sehirEt.getText().toString();
-        String maxPuan = maxEt.getText().toString();
-        String minPuan = minEt.getText().toString();
-//        final int maxP = Integer.parseInt(maxPuan);       //hata veriyo
-//        int minP = Integer.parseInt(minPuan);
+
+
+
+//        final int maxP = Integer.parseInt(maxSiralama);       //hata veriyo
+//        int minP = Integer.parseInt(minSiralama);
 
 
         gecisBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TercihFiltre.this, TercihRobotu.class);
-                //intent.putExtra("universite", uni);
-                //intent.putExtra("maximum puan", maxP);
+
+                baslatRobot();
+
 
                 /*  on receiving side
                 Intent intent = getIntent();
@@ -108,5 +117,27 @@ public class TercihFiltre extends AppCompatActivity{
             }
         });
 
+    }
+
+    public void baslatRobot(){
+        uni = uniEt.getText().toString();
+        bolum = bolumEt.getText().toString();
+        sehir = sehirEt.getText().toString();
+        maxSiralama = maxEt.getText().toString();
+        minSiralama = minEt.getText().toString();
+        bolumTuru = bolumTuruSp.getSelectedItem().toString();
+        puanTuru = puanTuruSp.getSelectedItem().toString();
+
+        Intent intent = new Intent(TercihFiltre.this, TercihRobotu.class);
+        intent.putExtra("universite", uni);
+        intent.putExtra("bolum", bolum);
+        intent.putExtra("sehir", sehir);
+        intent.putExtra("siralamaMax", maxSiralama);
+        intent.putExtra("siralamaMin", minSiralama);
+        intent.putExtra("maximum_puan", maxPuan);
+        intent.putExtra("minimum_puan", minPuan);
+        intent.putExtra("bolum_turu", bolumTuru);
+        intent.putExtra("puan_turu", puanTuru);
+        startActivity(intent);
     }
 }

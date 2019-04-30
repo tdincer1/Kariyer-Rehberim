@@ -93,6 +93,63 @@ public class TercihDb {
         return bilgiList;
     }
 
+    public List<Bilgi> filtreCek(){
+        List<Bilgi> filtreList = new ArrayList<>();
+
+        String universite = null;
+        String bolum = null;
+        String sehir = null;
+        String siralamaMax = null;
+        String siralamaMin = null;
+        int maximumPuan = 0;
+        int minimumPuan = 0;
+        String bolumTuru = null;
+        String puanTuru = null;
+
+        String secim = null;
+        String queryy = "SELECT  b.bolum_id , " +
+                "u.il_adi, " +
+                "u.uni_adi, " +
+                "f.fakulte_adi, " +
+                "b.bolum_adi, " +
+                "dil, " +
+                "burs, " +
+                "puan_turu, " +
+                "taban_puani, " +
+                "basari_sirasi, " +
+                "kontenjan " +
+                "FROM tr_bolum b " +
+                "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
+                "INNER JOIN tr_universite u ON f.uni_id = u.uni_id ";
+        String[] secimArguman = {};
+
+        if (maximumPuan!=0 && minimumPuan!=0) queryy += "WHERE taban_puani BETWEEN " + minimumPuan + " AND " + maximumPuan;
+        else queryy += "WHERE";
+        
+        if(universite != null) {
+            queryy += " AND uni_adi = " + universite;
+            //secimArguman += universite;
+        }
+        if(sehir != null) {
+            queryy += " AND il_adi = " + sehir;
+        }
+        if(bolumTuru != null) {
+            queryy += " AND burs = " + bolumTuru;
+        }
+        if(puanTuru != null) {
+            queryy += " AND puan_turu = " + puanTuru;
+        }
+        if (siralamaMax!=null && siralamaMin!=null) queryy += "AND basari_sirasi BETWEEN " + siralamaMin + " AND " + siralamaMax;
+        else if (siralamaMax==null && siralamaMin!=null) queryy += "AND basari_sirasi = " + siralamaMin;
+        else if (siralamaMax!=null && siralamaMin==null) queryy += "AND basari_sirasi = " + siralamaMax;
+
+
+
+        
+
+        return filtreList;
+    }
+
     public String[] bolumCek(){
         String sorguBolum = "SELECT DISTINCT bolum_adi FROM tr_bolum";
         int b = 0;

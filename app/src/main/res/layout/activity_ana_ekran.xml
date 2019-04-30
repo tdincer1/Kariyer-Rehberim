@@ -54,5 +54,19 @@
         android:layout_marginTop="52dp"
         android:text="robot" />
 
+    <Button
+        android:id="@+id/sonucid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="116dp"
+        android:text="Sonuc" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="msonuc" />
+
 
 </RelativeLayout>

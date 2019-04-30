@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.squad.testdeneme.kisilik_testi.KtSonucEkrani;
 import com.squad.testdeneme.kisilik_testi.KtTestActivity;
 import com.squad.testdeneme.meslek_testi.QuizActivity;
+import com.squad.testdeneme.meslek_testi.SonucEkrani;
 import com.squad.testdeneme.tercih_robotu.TercihFiltre;
 import com.squad.testdeneme.tercih_robotu.TercihRobotu;
 
@@ -17,8 +19,8 @@ public class AnaEkran extends AppCompatActivity {
     Button buttonMeslekTesti;
     Button buttonTercihRobotu;
     Button buttonKisilikTesti;
-    Button buttonTercih;
-
+    Button buttonTercih,meslek_btn;
+    Button buttonSonuc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +31,29 @@ public class AnaEkran extends AppCompatActivity {
         buttonTercihRobotu = findViewById(R.id.button_tercih_start);
         buttonKisilikTesti = findViewById(R.id.button_kisilik_start);
         buttonTercih = findViewById(R.id.button_robot);
-
+        meslek_btn=findViewById(R.id.button2);
+        buttonSonuc= findViewById(R.id.sonucid);
+        buttonSonuc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AnaEkran.this, KtSonucEkrani.class);
+                startActivity(i);
+            }
+        });
         buttonMeslekTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startMT();
             }
         });
+        meslek_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ktm = new Intent(AnaEkran.this, SonucEkrani.class);
+                startActivity(ktm);
 
+            }
+        });
         buttonKisilikTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

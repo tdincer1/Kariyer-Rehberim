@@ -57,7 +57,7 @@ public class QuizDbHelper {
         Cursor c = database.rawQuery(sqlQuestion, null);
         if (c!=null && c.getCount()!=0)
         {
-            // c.moveToFirst();
+            // baslikIdUc.moveToFirst();
             while (c.moveToNext())
             {
                 question = new Question();
@@ -80,7 +80,7 @@ public class QuizDbHelper {
         Cursor cb = database.rawQuery(sql, null);
         if (cb!=null && cb.getCount()!=0)
         {
-            // c.moveToFirst();
+            // baslikIdUc.moveToFirst();
             while (cb.moveToNext())
             {
                 hesapla = new Hesapla();
@@ -91,9 +91,9 @@ public class QuizDbHelper {
                 //int katsayi = cb.getInt(cb.getColumnIndex("katsayi"));
                 //int grupId = cb.getInt(cb.getColumnIndex("grup_id"));
 
-                QuizActivity.hesap(hesapla.getKatsayi(),hesapla.getGrupId());
+                MtTestActivity.hesap(hesapla.getKatsayi(),hesapla.getGrupId());
 
-                //QuizActivity activity = new QuizActivity();
+                //MtTestActivity activity = new MtTestActivity();
                 //activity.hesap(hesapla.getKatsayi(),hesapla.getGrupId());
             }
         }

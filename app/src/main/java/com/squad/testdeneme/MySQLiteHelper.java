@@ -14,4 +14,15 @@ public class MySQLiteHelper extends SQLiteAssetHelper {
 
     }
 
+    @Override
+    public void setForcedUpgrade() {
+        super.setForcedUpgrade();
+    }
+
+    /*
+    @Override
+    public void setForcedUpgrade(int version) {
+        super.setForcedUpgrade(version);
+    }
+    */
 }

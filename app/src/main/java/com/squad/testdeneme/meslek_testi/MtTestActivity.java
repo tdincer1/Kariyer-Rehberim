@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class QuizActivity extends AppCompatActivity {
+public class MtTestActivity extends AppCompatActivity {
 
     private TextView textViewQuestion;
     private TextView textViewQuestionCount;
@@ -71,7 +71,7 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mt_quiz);
+        setContentView(R.layout.activity_mt_test);
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
@@ -103,7 +103,7 @@ public class QuizActivity extends AppCompatActivity {
                         //answered = true; yapmak lazım
                         //katsayiHesapDB(currentQuestion.getSoru_id());                TODO: Buraya da konulabilir
                     }else{
-                        Toast.makeText(QuizActivity.this, "Lutfen secim yapin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MtTestActivity.this, "Lutfen secim yapin", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     QuizDbHelper.getInstance(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());   // TODO: Veya buraya da konulabilir. Soru cevaplandiktan sonra
@@ -213,7 +213,6 @@ public class QuizActivity extends AppCompatActivity {
 
         switch(gId){
             case 1: bilgisayar_puani = bilgisayar_puani + (ks * cevap_katsayisi);
-
                 break;
             case 2: egitim_puani += ks * cevap_katsayisi;
                 break;
@@ -250,7 +249,7 @@ public class QuizActivity extends AppCompatActivity {
     private void finishQuiz() { //TODO: finish metodu yerine intentle sonuc sayfasina gecis
                                 //ayrica gecisten once grup puanlarını karsılastıran metodu calıstır
         grupPuani();
-        Intent intent = new Intent(QuizActivity.this, SonucEkrani.class);
+        Intent intent = new Intent(MtTestActivity.this, MtSonucEkrani.class);
         startActivity(intent);
     }
 

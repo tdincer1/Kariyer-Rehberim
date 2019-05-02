@@ -46,24 +46,13 @@ public class TercihDb {
     public List<Bilgi> verileriCek(){           //Veritabanından
         List<Bilgi> bilgiList = new ArrayList<>();
 
-        openDB();
-        String sorguTr = "SELECT  b.bolum_id , " +
-                "u.il_adi, " +
-                "u.uni_adi, " +
-                "f.fakulte_adi, " +
-                "b.bolum_adi, " +
-                "dil, " +
-                "burs, " +
-                "puan_turu, " +
-                "taban_puani, " +
-                "basari_sirasi, " +
-                "kontenjan " +
-                "FROM tr_bolum b " +
+
+        String sorguTr = "SELECT * FROM tr_bolum b " +
                 "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
                 "INNER JOIN tr_universite u ON f.uni_id = u.uni_id";
         //String sorguTr = "SELECT * FROM tr_bolum";
         Bilgi bilgi;
-
+        openDB();
         Cursor cTr = database.rawQuery(sorguTr, null);
 
         //rawQuery yerine query kullanip filtreleme kolaylastırabilir
@@ -93,61 +82,140 @@ public class TercihDb {
         return bilgiList;
     }
 
-    public List<Bilgi> filtreCek(){
+    public List<Bilgi> filtreCek(String[] deneme, int MaxPuan, int MinPuan){
         List<Bilgi> filtreList = new ArrayList<>();
 
-        String universite = null;
-        String bolum = null;
-        String sehir = null;
-        String siralamaMax = null;
-        String siralamaMin = null;
-        int maximumPuan = 0;
-        int minimumPuan = 0;
-        String bolumTuru = null;
-        String puanTuru = null;
+        String universite = deneme[0];
+        String bolum = deneme[1];
+        String sehir = deneme[2];
+        String siralamaMax = deneme[3];
+        String siralamaMin = deneme[4];
+        String bolumTuru = deneme[5];
+        String puanTuru = deneme[6];
+        String uni ="";
 
-        String secim = null;
-        String queryy = "SELECT  b.bolum_id , " +
-                "u.il_adi, " +
-                "u.uni_adi, " +
-                "f.fakulte_adi, " +
-                "b.bolum_adi, " +
-                "dil, " +
-                "burs, " +
-                "puan_turu, " +
-                "taban_puani, " +
-                "basari_sirasi, " +
-                "kontenjan " +
-                "FROM tr_bolum b " +
+        String queryy = "SELECT * FROM tr_bolum b " +
                 "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
                 "INNER JOIN tr_universite u ON f.uni_id = u.uni_id ";
-        String[] secimArguman = {};
 
-        if (maximumPuan!=0 && minimumPuan!=0) queryy += "WHERE taban_puani BETWEEN " + minimumPuan + " AND " + maximumPuan;
-        else queryy += "WHERE";
+        String[] secimArguman = {};     //.query() icin
+
+        if (MaxPuan!=0 && MinPuan!=0) queryy += "WHERE taban_puani BETWEEN " + MinPuan + " AND " + MaxPuan;
+        else queryy += "WHERE bolum_id > 0";
         
-        if(universite != null) {
-            queryy += " AND uni_adi = " + universite;
+        if(universite.length()!=0) {          //null yerine "" koyduk. Bos text oyle geliyo
+            queryy += " AND uni_adi = '" + universite + "'";
             //secimArguman += universite;
         }
-        if(sehir != null) {
-            queryy += " AND il_adi = " + sehir;
+        if(bolum.length()!=0) {
+            queryy += " AND bolum_adi = '" + bolum + "'";
         }
-        if(bolumTuru != null) {
-            queryy += " AND burs = " + bolumTuru;
+        if(sehir.length()!=0) {
+            queryy += " AND il_adi = '" + sehir + "'";
         }
-        if(puanTuru != null) {
-            queryy += " AND puan_turu = " + puanTuru;
+        if(bolumTuru.length()!=0 && bolumTuru.length()!=5) {    //length=5 cunku spinnerdan hepsi 5 uzunlugunda geliyo
+            queryy += " AND burs = '" + bolumTuru + "'";
         }
-        if (siralamaMax!=null && siralamaMin!=null) queryy += "AND basari_sirasi BETWEEN " + siralamaMin + " AND " + siralamaMax;
-        else if (siralamaMax==null && siralamaMin!=null) queryy += "AND basari_sirasi = " + siralamaMin;
-        else if (siralamaMax!=null && siralamaMin==null) queryy += "AND basari_sirasi = " + siralamaMax;
+        if(puanTuru.length()!=0 && puanTuru.length()!=5) {
+            queryy += " AND puan_turu = '" + puanTuru + "'";
+        }
+        if ((siralamaMax.length()!=0) && (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi BETWEEN " + siralamaMin + " AND " + siralamaMax;
+        else if ( (siralamaMax.length()!=0)&& (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi = " + siralamaMin;
+        else if ( (siralamaMax.length()!=0) && (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi = " + siralamaMax;
+
+        // queryy += " ORDER BY taban_puani DESC"
+
+        String qq = "SELECT * FROM tr_bolum b INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id INNER JOIN tr_universite u ON f.uni_id = u.uni_id WHERE taban_puani BETWEEN 500 AND 600";
+        openDB();
+        Bilgi bilgi;
+
+        Cursor crs = database.rawQuery(queryy, null);
+
+        //rawQuery yerine query kullanip filtreleme kolaylastırabilir
 
 
+        if (crs!=null && crs.getCount()!=0)
+        {
+            while (crs.moveToNext())
+            {
+                bilgi = new Bilgi();
 
+                //TODO: taban puani string alinirsa sayiya gore siralama sikinti, sayi alinirsa "dolmadi"lar 0 geliyor.
+                bilgi.setPr_kodu(crs.getInt(crs.getColumnIndex("bolum_id")));
+                bilgi.setBolum(crs.getString(crs.getColumnIndex("bolum_adi")));
+                bilgi.setDil(crs.getString(crs.getColumnIndex("dil")));
+                bilgi.setBolum_turu(crs.getString(crs.getColumnIndex("burs")));
+                bilgi.setTaban_puani(crs.getString(crs.getColumnIndex("taban_puani")));
+                bilgi.setSiralama(crs.getInt(crs.getColumnIndex("basari_sirasi")));
+                bilgi.setKontenjan(crs.getInt(crs.getColumnIndex("kontenjan")));
+                bilgi.setUniversite(crs.getString(crs.getColumnIndex("uni_adi")));
+                bilgi.setSehir(crs.getString(crs.getColumnIndex("il_adi")));
+                bilgi.setFakulte(crs.getString(crs.getColumnIndex("fakulte_adi")));
+                bilgi.setPuan_turu(crs.getString(crs.getColumnIndex("puan_turu")));
+
+                filtreList.add(bilgi);
+            }
+            //if(filtreList.size(0)==) return hata kodu??
+        }
+        closeDB();
         
 
         return filtreList;
+    }
+
+    public List<Bilgi> meslekListeCek(String meslek){
+        List<Bilgi> meslekListe = new ArrayList<>();
+
+        String sorguSade = "SELECT * FROM tr_bolum b " +
+                "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
+                "INNER JOIN tr_universite u ON f.uni_id = u.uni_id " +
+                "WHERE bolum_adi" ;
+
+        String meslekSorgu = "SELECT * FROM tr_bolum b " +
+                "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
+                "INNER JOIN tr_universite u ON f.uni_id = u.uni_id " +
+                "WHERE bolum_adi = '" + meslek + "'";
+
+        if (meslek == "Eğitim Fakültesi"){
+            meslek = " LIKE '%Öğretmenliği%'";
+            meslekSorgu = sorguSade + meslek;
+        }else if (meslek == "Temel Bilimler"){
+            meslek = " IN ('Fizik','Kimya','Matematik')";
+            meslekSorgu = sorguSade + meslek;
+        }else if (meslek == "Dil ve Edebiyat Bölümleri"){
+            meslek = " LIKE '%Dili ve Edebiyatı%'";
+            meslekSorgu = sorguSade + meslek;
+        }
+
+
+        Bilgi bilgi;
+        openDB();
+        Cursor ccc = database.rawQuery(meslekSorgu, null);
+        if (ccc!=null && ccc.getCount()!=0)
+        {
+            while (ccc.moveToNext())
+            {
+                bilgi = new Bilgi();
+
+                //TODO: taban puani string alinirsa sayiya gore siralama sikinti, sayi alinirsa "dolmadi"lar 0 geliyor.
+                bilgi.setPr_kodu(ccc.getInt(ccc.getColumnIndex("bolum_id")));
+                bilgi.setBolum(ccc.getString(ccc.getColumnIndex("bolum_adi")));
+                bilgi.setDil(ccc.getString(ccc.getColumnIndex("dil")));
+                bilgi.setBolum_turu(ccc.getString(ccc.getColumnIndex("burs")));
+                bilgi.setTaban_puani(ccc.getString(ccc.getColumnIndex("taban_puani")));
+                bilgi.setSiralama(ccc.getInt(ccc.getColumnIndex("basari_sirasi")));
+                bilgi.setKontenjan(ccc.getInt(ccc.getColumnIndex("kontenjan")));
+                bilgi.setUniversite(ccc.getString(ccc.getColumnIndex("uni_adi")));
+                bilgi.setSehir(ccc.getString(ccc.getColumnIndex("il_adi")));
+                bilgi.setFakulte(ccc.getString(ccc.getColumnIndex("fakulte_adi")));
+                bilgi.setPuan_turu(ccc.getString(ccc.getColumnIndex("puan_turu")));
+
+                meslekListe.add(bilgi);
+            }
+        }
+        closeDB();
+
+        return meslekListe;
     }
 
     public String[] bolumCek(){

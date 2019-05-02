@@ -10,19 +10,18 @@ import android.widget.Toast;
 
 import com.squad.testdeneme.AnaEkran;
 import com.squad.testdeneme.R;
-import com.squad.testdeneme.meslek_testi.SonucEkrani;
 
 public class KtSonucEkrani extends AppCompatActivity {
 
     private long backPressedTime;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    private String TV_KEY ="com.squad.testdeneme.kisilik_testi.ISIM";
-    private String  TVDETAY_KEY="com.squad.testdeneme.kisilik_testi.ISIM";
+    private String TV_KEY ="com.squad.testdeneme.kisilik_testi.TV";
+    private String  TVDETAY_KEY="com.squad.testdeneme.kisilik_testi.TVDETAY";
     private String MAIN_KEY="com.squad.testdeneme.kisilik_testi.MAIN_DATA";
-    String a,b;
-    TextView tv;
+
     TextView tvId;
+    TextView tvAdi;
     TextView tvDetay;
 
     int kisilikId;
@@ -32,15 +31,11 @@ public class KtSonucEkrani extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kt_sonuc_ekrani);
 
-        sharedPreferences=getSharedPreferences(MAIN_KEY,MODE_PRIVATE);
-        editor=sharedPreferences.edit();
-
-
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
-        tv = findViewById(R.id.ktTV);
         tvId = findViewById(R.id.tvKisilikId);
+        tvAdi = findViewById(R.id.tvKisilikAdi);
         tvDetay = findViewById(R.id.tvKisilikDetay);
 
         kisilikId = KtTestActivity.ilkKisilikId;
@@ -48,17 +43,17 @@ public class KtSonucEkrani extends AppCompatActivity {
         String kisilikAdi = KisilikDB.getINSTANCE(getApplicationContext()).kisilikAdiCek(kisilikId);
         String kisilikDetay = KisilikDB.getINSTANCE(getApplicationContext()).kisilikDetayCek(kisilikId);
 
-        editor.putString(TV_KEY,tv.getText().toString());
-        editor.putString(TVDETAY_KEY,tvDetay.getText().toString());
-        editor.commit();
 
-        tv.setText("Kisilik Id'niz: " + kisilikId);
-        tvId.setText("Kisilik AdÄ±: " + kisilikAdi);
+        tvId.setText("Kisilik Id'niz: " + kisilikId);
+        tvAdi.setText("Kisilik Adi: " + kisilikAdi);
         tvDetay.setText("Kisilik Detay: " + kisilikDetay);
 
-        a=getSharedPreferences(MAIN_KEY,MODE_PRIVATE).getString(TV_KEY,"");
-        b=getSharedPreferences(MAIN_KEY,MODE_PRIVATE).getString(TVDETAY_KEY,"");
+        sharedPreferences=getSharedPreferences(MAIN_KEY,MODE_PRIVATE);
+        editor=sharedPreferences.edit();
 
+        editor.putString(TV_KEY, tvAdi.getText().toString());
+        editor.putString(TVDETAY_KEY,tvDetay.getText().toString());
+        editor.commit();
 
     }
 

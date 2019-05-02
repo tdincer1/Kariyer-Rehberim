@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.squad.testdeneme.meslek_testi.SonucEkrani;
+import com.squad.testdeneme.meslek_testi.MtSonucEkrani;
 import com.squad.testdeneme.R;
 
 import org.florescu.android.rangeseekbar.RangeSeekBar;
@@ -62,21 +62,21 @@ public class TercihFiltre extends AppCompatActivity{
         bolumEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, bolumListe));
         sehirEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, sehirListe));
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TercihFiltre.this, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.puan_turu));
+                getResources().getStringArray(R.array.bolum_turu));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bolumTuruSp.setAdapter(myAdapter);
 
         ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(TercihFiltre.this, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.bolum_turu));
+                getResources().getStringArray(R.array.puan_turu));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         puanTuruSp.setAdapter(myAdapter2);
 
 
         //deneme amaclı testten gelen meslegi toastta bas
-        String deneme = SonucEkrani.secilen;
+        String deneme = MtSonucEkrani.secilen;
         //String secilen_meslek = getIntent().getStringExtra("secilen_meslek");
 
-        if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen meslek: " + SonucEkrani.secilen, Toast.LENGTH_SHORT).show();
+        if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen meslek: " + MtSonucEkrani.secilen, Toast.LENGTH_SHORT).show();
         //if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen_meslek_putExtra: " + secilen_meslek, Toast.LENGTH_SHORT).show();
 
         rangeSeekBar.setSelectedMaxValue(600);
@@ -105,15 +105,7 @@ public class TercihFiltre extends AppCompatActivity{
         gecisBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 baslatRobot();
-
-
-                /*  on receiving side
-                Intent intent = getIntent();
-                String var1 = intent.getStringExtra("key1");
-                int i = var2.getIntExtra("key2", 0);
-                */
             }
         });
 
@@ -128,6 +120,7 @@ public class TercihFiltre extends AppCompatActivity{
         bolumTuru = bolumTuruSp.getSelectedItem().toString();
         puanTuru = puanTuruSp.getSelectedItem().toString();
 
+
         Intent intent = new Intent(TercihFiltre.this, TercihRobotu.class);
         intent.putExtra("universite", uni);
         intent.putExtra("bolum", bolum);
@@ -138,6 +131,7 @@ public class TercihFiltre extends AppCompatActivity{
         intent.putExtra("minimum_puan", minPuan);
         intent.putExtra("bolum_turu", bolumTuru);
         intent.putExtra("puan_turu", puanTuru);
+        intent.putExtra("filtrele","filtrelemeYap");
         startActivity(intent);
     }
 }

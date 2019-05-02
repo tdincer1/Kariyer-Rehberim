@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.squad.testdeneme.kisilik_testi.KtSonucEkrani;
+import com.squad.testdeneme.kisilik_testi.KtSonucKaydedilen;
 import com.squad.testdeneme.kisilik_testi.KtTestActivity;
-import com.squad.testdeneme.meslek_testi.QuizActivity;
-import com.squad.testdeneme.meslek_testi.SonucEkrani;
+import com.squad.testdeneme.meslek_testi.MtSonucKaydedilen;
+import com.squad.testdeneme.meslek_testi.MtTestActivity;
+import com.squad.testdeneme.meslek_testi.MtSonucEkrani;
 import com.squad.testdeneme.tercih_robotu.TercihFiltre;
 import com.squad.testdeneme.tercih_robotu.TercihRobotu;
 
@@ -33,10 +34,12 @@ public class AnaEkran extends AppCompatActivity {
         buttonTercih = findViewById(R.id.button_robot);
         meslek_btn=findViewById(R.id.button2);
         buttonSonuc= findViewById(R.id.sonucid);
+
+
         buttonSonuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AnaEkran.this, KtSonucEkrani.class);
+                Intent i = new Intent(AnaEkran.this, KtSonucKaydedilen.class);
                 startActivity(i);
             }
         });
@@ -46,10 +49,11 @@ public class AnaEkran extends AppCompatActivity {
                 startMT();
             }
         });
+
         meslek_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ktm = new Intent(AnaEkran.this, SonucEkrani.class);
+                Intent ktm = new Intent(AnaEkran.this, MtSonucKaydedilen.class);
                 startActivity(ktm);
 
             }
@@ -80,7 +84,7 @@ public class AnaEkran extends AppCompatActivity {
     }
 
     private void startMT() {
-        Intent intent = new Intent(AnaEkran.this, QuizActivity.class);
+        Intent intent = new Intent(AnaEkran.this, MtTestActivity.class);
         startActivity(intent);
         //startActivityForResult(intent, REQUEST_CODE_QUIZ);
     }

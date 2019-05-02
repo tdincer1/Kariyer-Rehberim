@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:padding="16dp"
-    tools:context=".meslek_testi.QuizActivity">
+    tools:context=".meslek_testi.MtTestActivity">
 
     <TextView
         android:id="@+id/mt_text_view_question_count"

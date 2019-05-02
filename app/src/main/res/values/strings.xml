@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">TestDeneme</string>
     <string name="deneme">buton_adı</string>
-    
+
     <string-array name="puan_turu">
         <item>Hepsi</item>
         <item>say</item>
         <item>ea</item>
+        <item>söz</item>
         <item>dil</item>
     </string-array>
-    
+
     <string-array name="bolum_turu">
         <item>Hepsi</item>
         <item>Devlet</item>

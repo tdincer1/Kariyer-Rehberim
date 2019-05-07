@@ -53,6 +53,9 @@ public class TercihDb {
         //String sorguTr = "SELECT * FROM tr_bolum";
         Bilgi bilgi;
         openDB();
+
+        //TODO: ORDER KONTROL ET
+        sorguTr = "SELECT * FROM (" + sorguTr + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
         Cursor cTr = database.rawQuery(sorguTr, null);
 
         //rawQuery yerine query kullanip filtreleme kolaylastırabilir
@@ -123,7 +126,8 @@ public class TercihDb {
         else if ( (siralamaMax.length()!=0)&& (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi = " + siralamaMin;
         else if ( (siralamaMax.length()!=0) && (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi = " + siralamaMax;
 
-        // queryy += " ORDER BY taban_puani DESC"
+        queryy = "SELECT * FROM (" + queryy + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+        // querry += " ORDER BY taban_puani DESC"
 
         String qq = "SELECT * FROM tr_bolum b INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id INNER JOIN tr_universite u ON f.uni_id = u.uni_id WHERE taban_puani BETWEEN 500 AND 600";
         openDB();
@@ -176,13 +180,13 @@ public class TercihDb {
                 "INNER JOIN tr_universite u ON f.uni_id = u.uni_id " +
                 "WHERE bolum_adi = '" + meslek + "'";
 
-        if (meslek == "Eğitim Fakültesi"){
+        if ("Eğitim Fakültesi".equalsIgnoreCase(meslek)){          //"Eğitim Fakültesi" == meslek
             meslek = " LIKE '%Öğretmenliği%'";
             meslekSorgu = sorguSade + meslek;
-        }else if (meslek == "Temel Bilimler"){
+        }else if ("Temel Bilimler".equalsIgnoreCase(meslek)){
             meslek = " IN ('Fizik','Kimya','Matematik')";
             meslekSorgu = sorguSade + meslek;
-        }else if (meslek == "Dil ve Edebiyat Bölümleri"){
+        }else if ("Dil ve Edebiyat Bölümleri".equalsIgnoreCase(meslek)){
             meslek = " LIKE '%Dili ve Edebiyatı%'";
             meslekSorgu = sorguSade + meslek;
         }

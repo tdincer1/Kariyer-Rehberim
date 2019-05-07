@@ -11,9 +11,9 @@ import com.squad.testdeneme.Question;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizDbHelper {
+public class MeslekDB {
 
-    private static QuizDbHelper INSTANCE;
+    private static MeslekDB INSTANCE;
     private static Context context;
 
     private static SQLiteDatabase database;
@@ -21,18 +21,18 @@ public class QuizDbHelper {
 
     private static int deneme = 1;
 
-    public QuizDbHelper() {
+    public MeslekDB() {
 
         myhelper = new MySQLiteHelper(context);
     }
 
-    public static QuizDbHelper getInstance(Context context) {
+    public static MeslekDB getInstance(Context context) {
 
-        QuizDbHelper.context = context;
+        MeslekDB.context = context;
 
         if(INSTANCE == null)
         {
-            INSTANCE = new QuizDbHelper();
+            INSTANCE = new MeslekDB();
         }
         return INSTANCE;
     }
@@ -74,7 +74,7 @@ public class QuizDbHelper {
     public void katsayiHesapDB (int soruId){ //grup_id, kisilik_id farkı ortak kullanımda sıkıntı
 
         String sql = "SELECT * FROM mt_sorumeslek WHERE soru_id = " + soruId;
-        Hesapla hesapla;
+        HesaplaMt hesaplaMt;
         openDB();
 
         Cursor cb = database.rawQuery(sql, null);
@@ -83,18 +83,18 @@ public class QuizDbHelper {
             // baslikIdUc.moveToFirst();
             while (cb.moveToNext())
             {
-                hesapla = new Hesapla();
-                hesapla.setKatsayi(cb.getInt(cb.getColumnIndex("katsayi")));
-                hesapla.setSoruId(cb.getInt(cb.getColumnIndex("soru_id")));
-                hesapla.setGrupId(cb.getInt(cb.getColumnIndex("grup_id")));
+                hesaplaMt = new HesaplaMt();
+                hesaplaMt.setKatsayi(cb.getInt(cb.getColumnIndex("katsayi")));
+                hesaplaMt.setSoruId(cb.getInt(cb.getColumnIndex("soru_id")));
+                hesaplaMt.setGrupId(cb.getInt(cb.getColumnIndex("grup_id")));
 
                 //int katsayi = cb.getInt(cb.getColumnIndex("katsayi"));
                 //int grupId = cb.getInt(cb.getColumnIndex("grup_id"));
 
-                MtTestActivity.hesap(hesapla.getKatsayi(),hesapla.getGrupId());
+                MtTestActivity.hesap(hesaplaMt.getKatsayi(), hesaplaMt.getGrupId());
 
                 //MtTestActivity activity = new MtTestActivity();
-                //activity.hesap(hesapla.getKatsayi(),hesapla.getGrupId());
+                //activity.hesap(hesaplaMt.getKatsayi(),hesaplaMt.getGrupId());
             }
         }
         closeDB();

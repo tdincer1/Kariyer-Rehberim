@@ -1,4 +1,4 @@
-package com.squad.testdeneme;
+package com.squad.testdeneme.meslek_testi;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+
+import com.squad.testdeneme.R;
 
 import java.util.HashMap;
 import java.util.List;

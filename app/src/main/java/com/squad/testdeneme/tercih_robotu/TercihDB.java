@@ -10,25 +10,25 @@ import com.squad.testdeneme.MySQLiteHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TercihDb {
-    private static TercihDb INSTANCE;
+public class TercihDB {
+    private static TercihDB INSTANCE;
     private static Context context;
 
     private static SQLiteDatabase database;
     private static MySQLiteHelper myhelper; //Veritabanina erisim icin MySQLiteHelper objesi olusturduk
 
-    public TercihDb() {
+    public TercihDB() {
 
         myhelper = new MySQLiteHelper(context);
     }
 
-    public static TercihDb getInstance(Context context) {
+    public static TercihDB getInstance(Context context) {
 
-        TercihDb.context = context;
+        TercihDB.context = context;
 
         if(INSTANCE == null)
         {
-            INSTANCE = new TercihDb();
+            INSTANCE = new TercihDB();
         }
         return INSTANCE;
     }

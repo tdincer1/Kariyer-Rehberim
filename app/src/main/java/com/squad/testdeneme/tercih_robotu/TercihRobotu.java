@@ -32,7 +32,7 @@ public class TercihRobotu extends AppCompatActivity {
             if (extras == null)
             {
                 //Extra bundle is null
-                bilgiList = TercihDb.getInstance(getApplicationContext()).verileriCek();
+                bilgiList = TercihDB.getInstance(getApplicationContext()).verileriCek();
                 int listeBoyut = bilgiList.size();
 
                 adapter = new TrAdapter(this, bilgiList);
@@ -62,7 +62,7 @@ public class TercihRobotu extends AppCompatActivity {
                     String[] yolla = {uni, bolum, sehir, siralamaMax, siralamaMin, bolumTuru, puanTuru};
 
 
-                    denemeList = TercihDb.getInstance(getApplicationContext()).filtreCek(yolla, maximumPuan, minimumPuan);
+                    denemeList = TercihDB.getInstance(getApplicationContext()).filtreCek(yolla, maximumPuan, minimumPuan);
                     int listeBoyut = denemeList.size();
 
                     adapter = new TrAdapter(this, denemeList);
@@ -76,7 +76,7 @@ public class TercihRobotu extends AppCompatActivity {
 
                     //String secilenMeslek = MtSonucEkrani.secilen;
 
-                    meslekList = TercihDb.getInstance(getApplicationContext()).meslekListeCek(secilenMeslek);
+                    meslekList = TercihDB.getInstance(getApplicationContext()).meslekListeCek(secilenMeslek);
                     int meslekListBoyut = meslekList.size();
 
                     adapter = new TrAdapter(this, meslekList);

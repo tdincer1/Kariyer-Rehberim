@@ -1,14 +1,14 @@
 package com.squad.testdeneme.meslek_testi;
 
-public class Hesapla {
+public class HesaplaMt {
 
     private int katsayi;
     private int soruId;
     private int grupId;
 
-    public Hesapla(){}
+    public HesaplaMt(){}
 
-    public Hesapla(int katsayi, int soruId, int grupId) {
+    public HesaplaMt(int katsayi, int soruId, int grupId) {
         this.katsayi = katsayi;
         this.soruId = soruId;
         this.grupId = grupId;

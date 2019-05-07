@@ -40,25 +40,23 @@ public class MtTestActivity extends AppCompatActivity {
 
     private long backPressedTime;
 
-    static int bilgisayar_puani;
-    static int egitim_puani;
-    static int elektronik_puani;
-    static int Harita;
-    static int Uzay;
-    static int Hukuk;
-    static int Toplum;
-    static int Isletme;
-    static int Konser;
-    static int Makine;
-    static int Gastronomi;
-    static int Saglik;
-    static int Spor;
-    static int Tasarim;
+    static int bilgisayar;
+    static int egitim;
+    static int elektronik;
+    static int harita;
+    static int havacilik;
+    static int hukuk;
+    static int toplum;
+    static int isletme;
+    static int konser;
+    static int makine;
+    static int mimarlik;
+    static int gastronomi;
+    static int saglik;
+    static int spor;
+    static int ziraat;
 
     static int answerNr;
-
-    static Puan puan;
-
 
     static int ilkGrupId;
     static int ikinciGrupId;
@@ -85,7 +83,7 @@ public class MtTestActivity extends AppCompatActivity {
         rb5 = findViewById(R.id.mt_radio_button5);
         buttonConfirmNext = findViewById(R.id.mt_button_confirm_next);
 
-        questionList = QuizDbHelper.getInstance(getApplicationContext()).getAllQuestions();     //listeye yerlestirme
+        questionList = MeslekDB.getInstance(getApplicationContext()).getAllQuestions();     //listeye yerlestirme
         questionCountTotal = questionList.size();           //toplam soru bulma
         Collections.shuffle(questionList);                  //soru listesini karisik listeleme
 
@@ -106,7 +104,7 @@ public class MtTestActivity extends AppCompatActivity {
                         Toast.makeText(MtTestActivity.this, "Lutfen secim yapin", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    QuizDbHelper.getInstance(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());   // TODO: Veya buraya da konulabilir. Soru cevaplandiktan sonra
+                    MeslekDB.getInstance(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());   // TODO: Veya buraya da konulabilir. Soru cevaplandiktan sonra
                     showNextQuestion();
                 }
 
@@ -166,44 +164,6 @@ public class MtTestActivity extends AppCompatActivity {
         return cvp_katsayi;
     }
 
-    public static void hesap1(int ks, int gId){
-        int cevap_katsayisi = cvp();
-        puan = new Puan();          //yukarida tanımladım gerekirse burada tanımla
-
-        switch (gId){
-            case 1: puan.setBilgisayar_puani(puan.getBilgisayar_puani() + (ks * cevap_katsayisi));
-                break;
-            case 2: puan.setEgitim_puani(puan.getEgitim_puani() + (ks * cevap_katsayisi));
-                    egitim_puani += ks * cevap_katsayisi;
-                break;
-            case 3: puan.setElektronik_puani(puan.getElektronik_puani() + (ks * cevap_katsayisi));
-                break;
-            case 4: puan.setHarita(puan.getHarita() + (ks * cevap_katsayisi));
-                break;
-            case 5: puan.setUzay(puan.getUzay() + (ks * cevap_katsayisi));
-                break;
-            case 6: puan.setHukuk(puan.getHukuk() + (ks * cevap_katsayisi));
-                break;
-            case 7: puan.setToplum(puan.getToplum() + (ks * cevap_katsayisi));
-                break;
-            case 8: puan.setIsletme(puan.getIsletme() + (ks * cevap_katsayisi));
-                break;
-            case 9: puan.setKonser(puan.getKonser() + (ks * cevap_katsayisi));
-                break;
-            case 10: puan.setMakine(puan.getMakine() + (ks * cevap_katsayisi));
-                break;
-            case 11: puan.setGastronomi(puan.getGastronomi() + (ks * cevap_katsayisi));
-                break;
-            case 12: puan.setSaglik(puan.getSaglik() + (ks * cevap_katsayisi));
-                break;
-            case 13: puan.setSpor(puan.getSpor() + (ks * cevap_katsayisi));
-                break;
-            case 14: puan.setTasarım(puan.getTasarım() + (ks * cevap_katsayisi));
-                break;
-        }
-
-        int deneme1 = 22;
-    }
 
     public static void hesap(int ks, int gId){
 
@@ -212,33 +172,35 @@ public class MtTestActivity extends AppCompatActivity {
         //int cevap_katsayisi = secim();
 
         switch(gId){
-            case 1: bilgisayar_puani = bilgisayar_puani + (ks * cevap_katsayisi);
+            case 1: bilgisayar = bilgisayar + (ks * cevap_katsayisi);
                 break;
-            case 2: egitim_puani += ks * cevap_katsayisi;
+            case 2: egitim += ks * cevap_katsayisi;
                 break;
-            case 3: elektronik_puani += ks * cevap_katsayisi;
+            case 3: elektronik += ks * cevap_katsayisi;
                 break;
-            case 4: Harita += ks * cevap_katsayisi;
+            case 4: harita += ks * cevap_katsayisi;
                 break;
-            case 5: Uzay += ks * cevap_katsayisi;
+            case 5: havacilik += ks * cevap_katsayisi;
                 break;
-            case 6: Hukuk += ks * cevap_katsayisi;
+            case 6: hukuk += ks * cevap_katsayisi;
                 break;
-            case 7: Toplum += ks * cevap_katsayisi;
+            case 7: toplum += ks * cevap_katsayisi;
                 break;
-            case 8: Isletme += ks * cevap_katsayisi;
+            case 8: isletme += ks * cevap_katsayisi;
                 break;
-            case 9: Konser += ks * cevap_katsayisi;
+            case 9: konser += ks * cevap_katsayisi;
                 break;
-            case 10: Makine += ks * cevap_katsayisi;
+            case 10: makine += ks * cevap_katsayisi;
                 break;
-            case 11: Gastronomi += ks * cevap_katsayisi;
+            case 11: mimarlik += ks * cevap_katsayisi;
                 break;
-            case 12: Saglik += ks * cevap_katsayisi;
+            case 12: gastronomi += ks * cevap_katsayisi;
                 break;
-            case 13: Spor += ks * cevap_katsayisi;
+            case 13: saglik += ks * cevap_katsayisi;
                 break;
-            case 14: Tasarim += ks * cevap_katsayisi;
+            case 14: spor += ks * cevap_katsayisi;
+                break;
+            case 15: ziraat += ks * cevap_katsayisi;
                 break;
         }
 
@@ -266,22 +228,23 @@ public class MtTestActivity extends AppCompatActivity {
 
     public void grupPuani(){    //TODO: ilk 3 sec. Puan yüzde hesapla. DB'den o grupların meslegini cek.
 
-        int liste[] = new int[14];
+        int liste[] = new int[15];
 
-        liste[0] = bilgisayar_puani;
-        liste[1] = egitim_puani;
-        liste[2] = elektronik_puani;
-        liste[3] = Harita;
-        liste[4] = Uzay;
-        liste[5] = Hukuk;
-        liste[6] = Toplum;
-        liste[7] = Isletme;
-        liste[8] = Konser;
-        liste[9] = Makine;
-        liste[10] = Gastronomi;
-        liste[11] = Saglik;
-        liste[12] = Spor;
-        liste[13] = Tasarim;
+        liste[0] = bilgisayar;
+        liste[1] = egitim;
+        liste[2] = elektronik;
+        liste[3] = harita;
+        liste[4] = havacilik;
+        liste[5] = hukuk;
+        liste[6] = toplum;
+        liste[7] = isletme;
+        liste[8] = konser;
+        liste[9] = makine;
+        liste[10] = mimarlik;
+        liste[11] = gastronomi;
+        liste[12] = saglik;
+        liste[13] = spor;
+        liste[14] = ziraat;
 
         int ilk = 0;
         int ikinci = 0;

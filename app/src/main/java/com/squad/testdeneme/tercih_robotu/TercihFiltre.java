@@ -54,9 +54,9 @@ public class TercihFiltre extends AppCompatActivity{
         minEt = findViewById(R.id.minPuanEt);
 
 
-        String[] uniListe = TercihDb.getInstance(getApplicationContext()).uniCek();
-        String[] bolumListe = TercihDb.getInstance(getApplicationContext()).bolumCek();
-        String[] sehirListe = TercihDb.getInstance(getApplicationContext()).sehirCek();
+        String[] uniListe = TercihDB.getInstance(getApplicationContext()).uniCek();
+        String[] bolumListe = TercihDB.getInstance(getApplicationContext()).bolumCek();
+        String[] sehirListe = TercihDB.getInstance(getApplicationContext()).sehirCek();
 
         uniEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, uniListe));
         bolumEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, bolumListe));

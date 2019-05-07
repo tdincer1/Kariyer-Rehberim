@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
-import com.squad.testdeneme.ExpandableListAdapter;
 import com.squad.testdeneme.R;
-import com.squad.testdeneme.tercih_robotu.TercihFiltre;
 import com.squad.testdeneme.tercih_robotu.TercihRobotu;
 
 import java.util.ArrayList;
@@ -58,9 +56,9 @@ public class MtSonucKaydedilen extends AppCompatActivity {
         ikinciGrupYuzde = getSharedPreferences(MAIN_KEY, MODE_PRIVATE).getInt(grup2Yuzde, 2);
         ucuncuGrupYuzde = getSharedPreferences(MAIN_KEY, MODE_PRIVATE).getInt(grup3Yuzde, 3);
 
-        ilk_grup = QuizDbHelper.getInstance(getApplicationContext()).grupAdiCek(baslikId);
-        ikinci_grup = QuizDbHelper.getInstance(getApplicationContext()).grupAdiCek(baslikIdIki);
-        ucuncu_grup = QuizDbHelper.getInstance(getApplicationContext()).grupAdiCek(baslikIdUc);
+        ilk_grup = MeslekDB.getInstance(getApplicationContext()).grupAdiCek(baslikId);
+        ikinci_grup = MeslekDB.getInstance(getApplicationContext()).grupAdiCek(baslikIdIki);
+        ucuncu_grup = MeslekDB.getInstance(getApplicationContext()).grupAdiCek(baslikIdUc);
 
         listView = findViewById(R.id.lvExp);
         tvUyari = findViewById(R.id.uyariId);
@@ -108,9 +106,9 @@ public class MtSonucKaydedilen extends AppCompatActivity {
         listDataHeader.add(ikinci_grup + " %" + ikinciGrupYuzde);
         listDataHeader.add(ucuncu_grup + " %" + ucuncuGrupYuzde);
 
-        List<String> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(baslikId);
-        List<String> pc1 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(baslikIdIki);
-        List<String> pc2 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(baslikIdUc);
+        List<String> pc = MeslekDB.getInstance(getApplicationContext()).getMeslek(baslikId);
+        List<String> pc1 = MeslekDB.getInstance(getApplicationContext()).getMeslek(baslikIdIki);
+        List<String> pc2 = MeslekDB.getInstance(getApplicationContext()).getMeslek(baslikIdUc);
 
         listHash.put(listDataHeader.get(0), pc);
         listHash.put(listDataHeader.get(1), pc1);

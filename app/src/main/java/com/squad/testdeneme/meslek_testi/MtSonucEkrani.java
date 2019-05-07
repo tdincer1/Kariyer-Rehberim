@@ -7,10 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squad.testdeneme.ExpandableListAdapter;
 import com.squad.testdeneme.AnaEkran;
 import com.squad.testdeneme.R;
 import com.squad.testdeneme.tercih_robotu.TercihRobotu;
@@ -55,9 +53,9 @@ public class MtSonucEkrani extends AppCompatActivity {
         sharedPreferences=getSharedPreferences(MAIN_KEY,MODE_PRIVATE);
         editor=sharedPreferences.edit();
 
-        ilk_grup = QuizDbHelper.getInstance(getApplicationContext()).grupAdiCek(MtTestActivity.ilkGrupId);
-        ikinci_grup = QuizDbHelper.getInstance(getApplicationContext()).grupAdiCek(MtTestActivity.ikinciGrupId);
-        ucuncu_grup = QuizDbHelper.getInstance(getApplicationContext()).grupAdiCek(MtTestActivity.ucuncuGrupId);
+        ilk_grup = MeslekDB.getInstance(getApplicationContext()).grupAdiCek(MtTestActivity.ilkGrupId);
+        ikinci_grup = MeslekDB.getInstance(getApplicationContext()).grupAdiCek(MtTestActivity.ikinciGrupId);
+        ucuncu_grup = MeslekDB.getInstance(getApplicationContext()).grupAdiCek(MtTestActivity.ucuncuGrupId);
 
 
         listView = findViewById(R.id.lvExp);
@@ -117,9 +115,9 @@ public class MtSonucEkrani extends AppCompatActivity {
         listDataHeader.add(ikinci_grup + " %" + MtTestActivity.ikinciYuzde);
         listDataHeader.add(ucuncu_grup + " %" + MtTestActivity.ucuncuYuzde);
 
-        List<String> pc = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(MtTestActivity.ilkGrupId);
-        List<String> pc1 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(MtTestActivity.ikinciGrupId);
-        List<String> pc2 = QuizDbHelper.getInstance(getApplicationContext()).getMeslek(MtTestActivity.ucuncuGrupId);
+        List<String> pc = MeslekDB.getInstance(getApplicationContext()).getMeslek(MtTestActivity.ilkGrupId);
+        List<String> pc1 = MeslekDB.getInstance(getApplicationContext()).getMeslek(MtTestActivity.ikinciGrupId);
+        List<String> pc2 = MeslekDB.getInstance(getApplicationContext()).getMeslek(MtTestActivity.ucuncuGrupId);
 
 
         listHash.put(listDataHeader.get(0), pc);

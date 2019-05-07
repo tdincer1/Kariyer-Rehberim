@@ -7,15 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.squad.testdeneme.kisilik_testi.KtAnasayfa;
-import com.squad.testdeneme.kisilik_testi.KtSonucKaydedilen;
-import com.squad.testdeneme.kisilik_testi.KtTestActivity;
-import com.squad.testdeneme.meslek_testi.MtAnasayfa;
-import com.squad.testdeneme.meslek_testi.MtSonucKaydedilen;
-import com.squad.testdeneme.meslek_testi.MtTestActivity;
-import com.squad.testdeneme.meslek_testi.MtSonucEkrani;
+import com.squad.testdeneme.kisilik_testi.KtAnaSayfa;
+import com.squad.testdeneme.meslek_testi.MtAnaSayfa;
 import com.squad.testdeneme.tercih_robotu.TercihFiltre;
-import com.squad.testdeneme.tercih_robotu.TercihRobotu;
+
 
 public class AnaEkran extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;
@@ -44,7 +39,7 @@ public class AnaEkran extends AppCompatActivity {
         buttonKisilikTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent kti = new Intent(AnaEkran.this, KtAnasayfa.class);
+                Intent kti = new Intent(AnaEkran.this, KtAnaSayfa.class);
                 startActivity(kti);
             }
         });
@@ -61,7 +56,7 @@ public class AnaEkran extends AppCompatActivity {
     }
 
     private void startMT() {
-        Intent intent = new Intent(AnaEkran.this, MtAnasayfa.class);
+        Intent intent = new Intent(AnaEkran.this, MtAnaSayfa.class);
         startActivity(intent);
         //startActivityForResult(intent, REQUEST_CODE_QUIZ);
     }

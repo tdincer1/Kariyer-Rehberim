@@ -3,20 +3,20 @@
     <string name="deneme">buton_adı</string>
 
     <string-array name="puan_turu">
-        <item>Hepsi</item>
-        <item>say</item>
-        <item>ea</item>
-        <item>söz</item>
-        <item>dil</item>
+        <item>Tümü</item>
+        <item>Sayısal</item>
+        <item>Eşit ağırlık</item>
+        <item>Sözel</item>
+        <item>Dil</item>
     </string-array>
 
     <string-array name="bolum_turu">
-        <item>Hepsi</item>
+        <item>Tümü</item>
         <item>Devlet</item>
-        <item>100%</item>
-        <item>75%</item>
-        <item>50%</item>
-        <item>25%</item>
+        <item>%100 Burslu</item>
+        <item>%75 Burslu</item>
+        <item>%50 Burslu</item>
+        <item>%25 Burslu</item>
         <item>Ücretli</item>
     </string-array>
 </resources>

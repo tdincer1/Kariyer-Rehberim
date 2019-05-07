@@ -27,7 +27,6 @@ public class AnaEkran extends AppCompatActivity {
         buttonTercihRobotu = findViewById(R.id.button_tercih_start);
         buttonKisilikTesti = findViewById(R.id.button_kisilik_start);
 
-        int deneme = 0;
 
 
 

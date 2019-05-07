@@ -21,10 +21,7 @@ import java.util.List;
 
 public class MtSonucEkrani extends AppCompatActivity {
 
-    TextView tv1;
-    TextView tv2;
-    TextView tv3;
-    TextView tv4;
+
     String ilk_grup;
     String ikinci_grup;
     String ucuncu_grup;
@@ -69,16 +66,12 @@ public class MtSonucEkrani extends AppCompatActivity {
         listView.setAdapter(listAdapter);
 
 
-        tv1 = findViewById(R.id.tvKisilikId);
-        tv2 = findViewById(R.id.textView2);
-        tv3 = findViewById(R.id.textView3);
-        tv4 = findViewById(R.id.textView4);
 
 
-        tv1.setText("Birinci Grup: " + ilk_grup + " %" + MtTestActivity.ilkYuzde);
-        tv2.setText("İkinci Grup: " + ikinci_grup + " %" + MtTestActivity.ikinciYuzde);
-        tv3.setText("Ucuncu Grup: " + ucuncu_grup + " %" + MtTestActivity.ucuncuYuzde);
-        tv4.setText("Hukuk puani: " + MtTestActivity.Hukuk);
+        listView.expandGroup(0);
+        listView.expandGroup(1);
+        listView.expandGroup(2);
+
 
         editor.putInt(grup1, MtTestActivity.ilkGrupId);
         editor.putInt(grup2,  MtTestActivity.ikinciGrupId);

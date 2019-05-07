@@ -100,7 +100,7 @@ public class TercihDb {
 
         String[] secimArguman = {};     //.query() icin
 
-        if (MaxPuan!=0 && MinPuan!=0) queryy += "WHERE taban_puani BETWEEN " + MinPuan + " AND " + MaxPuan;
+        if (MaxPuan!=0) queryy += "WHERE taban_puani BETWEEN " + MinPuan + " AND " + MaxPuan;
         else queryy += "WHERE bolum_id > 0";
         
         if(universite.length()!=0) {          //null yerine "" koyduk. Bos text oyle geliyo

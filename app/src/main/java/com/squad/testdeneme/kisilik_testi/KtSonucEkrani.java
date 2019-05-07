@@ -20,7 +20,6 @@ public class KtSonucEkrani extends AppCompatActivity {
     private String  TVDETAY_KEY="com.squad.testdeneme.kisilik_testi.TVDETAY";
     private String MAIN_KEY="com.squad.testdeneme.kisilik_testi.MAIN_DATA";
 
-    TextView tvId;
     TextView tvAdi;
     TextView tvDetay;
 
@@ -34,7 +33,6 @@ public class KtSonucEkrani extends AppCompatActivity {
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
 
-        tvId = findViewById(R.id.tvKisilikId);
         tvAdi = findViewById(R.id.tvKisilikAdi);
         tvDetay = findViewById(R.id.tvKisilikDetay);
 
@@ -44,7 +42,6 @@ public class KtSonucEkrani extends AppCompatActivity {
         String kisilikDetay = KisilikDB.getINSTANCE(getApplicationContext()).kisilikDetayCek(kisilikId);
 
 
-        tvId.setText("Kisilik Id'niz: " + kisilikId);
         tvAdi.setText("Kisilik Adi: " + kisilikAdi);
         tvDetay.setText("Kisilik Detay: " + kisilikDetay);
 

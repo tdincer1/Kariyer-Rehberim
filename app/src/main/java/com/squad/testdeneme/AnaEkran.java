@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.squad.testdeneme.kisilik_testi.KtAnasayfa;
 import com.squad.testdeneme.kisilik_testi.KtSonucKaydedilen;
 import com.squad.testdeneme.kisilik_testi.KtTestActivity;
+import com.squad.testdeneme.meslek_testi.MtAnasayfa;
 import com.squad.testdeneme.meslek_testi.MtSonucKaydedilen;
 import com.squad.testdeneme.meslek_testi.MtTestActivity;
 import com.squad.testdeneme.meslek_testi.MtSonucEkrani;
@@ -20,8 +22,6 @@ public class AnaEkran extends AppCompatActivity {
     Button buttonMeslekTesti;
     Button buttonTercihRobotu;
     Button buttonKisilikTesti;
-    Button buttonTercih,meslek_btn;
-    Button buttonSonuc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,18 +31,9 @@ public class AnaEkran extends AppCompatActivity {
         buttonMeslekTesti = findViewById(R.id.button_meslek_start);
         buttonTercihRobotu = findViewById(R.id.button_tercih_start);
         buttonKisilikTesti = findViewById(R.id.button_kisilik_start);
-        buttonTercih = findViewById(R.id.button_robot);
-        meslek_btn=findViewById(R.id.button2);
-        buttonSonuc= findViewById(R.id.sonucid);
 
 
-        buttonSonuc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(AnaEkran.this, KtSonucKaydedilen.class);
-                startActivity(i);
-            }
-        });
+
         buttonMeslekTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,18 +41,10 @@ public class AnaEkran extends AppCompatActivity {
             }
         });
 
-        meslek_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ktm = new Intent(AnaEkran.this, MtSonucKaydedilen.class);
-                startActivity(ktm);
-
-            }
-        });
         buttonKisilikTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent kti = new Intent(AnaEkran.this, KtTestActivity.class);
+                Intent kti = new Intent(AnaEkran.this, KtAnasayfa.class);
                 startActivity(kti);
             }
         });
@@ -74,17 +57,11 @@ public class AnaEkran extends AppCompatActivity {
             }
         });
 
-        buttonTercih.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent inte = new Intent(AnaEkran.this, TercihRobotu.class);
-                startActivity(inte);
-            }
-        });
+
     }
 
     private void startMT() {
-        Intent intent = new Intent(AnaEkran.this, MtTestActivity.class);
+        Intent intent = new Intent(AnaEkran.this, MtAnasayfa.class);
         startActivity(intent);
         //startActivityForResult(intent, REQUEST_CODE_QUIZ);
     }

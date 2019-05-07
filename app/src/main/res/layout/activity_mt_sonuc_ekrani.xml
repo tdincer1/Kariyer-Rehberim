@@ -12,42 +12,22 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvKisilikId"
+            android:id="@+id/tvBaslik"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:text="MESLEK GRUPLARINA OLAN YATKINLIKLARINIZ"
+            android:textColor="@color/colorAccent"
+            android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="101dp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="220dp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="278dp" />
         <ExpandableListView
             android:id="@+id/lvExp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="100dp">
 
         </ExpandableListView>
-
 
 
     </LinearLayout>

@@ -19,12 +19,12 @@
         android:id="@+id/mt_text_view_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Soru buraya gelecek!!!!!!\nSoru buraya gelecek!!!!!!\nSoru buraya gelecek!!!!!!"
-        android:textSize="20sp"
         android:layout_above="@id/mt_radio_group"
         android:layout_marginBottom="16dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"/>
+        android:text="Soru buraya gelecek!!!!!!\nSoru buraya gelecek!!!!!!\nSoru buraya gelecek!!!!!!"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
     <RadioGroup
         android:id="@+id/mt_radio_group"

@@ -35,7 +35,7 @@ public class MtSonucKaydedilen extends AppCompatActivity {
     private ExpandableListAdapter listAdapter;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listHash;
-    private TextView tvUyari;
+    private TextView tvUyari,tv1;
 
     private long backPressedTime;
 
@@ -64,10 +64,13 @@ public class MtSonucKaydedilen extends AppCompatActivity {
 
         listView = findViewById(R.id.lvExp);
         tvUyari = findViewById(R.id.uyariId);
-
+        tv1 = findViewById(R.id.tvBaslik);
         initData();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
         listView.setAdapter(listAdapter);
+        listView.expandGroup(0);
+        listView.expandGroup(1);
+        listView.expandGroup(2);
 
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
@@ -91,6 +94,8 @@ public class MtSonucKaydedilen extends AppCompatActivity {
         if (baslikId == 0){
             tvUyari.setVisibility(View.VISIBLE);
             listView.setVisibility(View.INVISIBLE);
+            tv1.setVisibility(View.INVISIBLE);
+
         }else tvUyari.setVisibility(View.INVISIBLE);
 
     }

@@ -15,8 +15,8 @@
         <activity android:name=".kisilik_testi.KtSonucEkrani" android:screenOrientation="portrait"/>
         <activity android:name=".kisilik_testi.KtTestActivity" android:screenOrientation="portrait"/>
         <activity android:name=".tercih_robotu.TercihFiltre" android:screenOrientation="portrait"/>
-        <activity android:name=".kisilik_testi.KtAnasayfa" android:screenOrientation="portrait"/>
-        <activity android:name=".meslek_testi.MtAnasayfa" android:screenOrientation="portrait"/>
+        <activity android:name=".kisilik_testi.KtAnaSayfa" android:screenOrientation="portrait"/>
+        <activity android:name=".meslek_testi.MtAnaSayfa" android:screenOrientation="portrait"/>
         <activity android:name=".meslek_testi.MtSonucEkrani" android:screenOrientation="portrait"/>
         <activity android:name=".meslek_testi.MtTestActivity" android:screenOrientation="portrait"/>
         <activity android:name=".AnaEkran">

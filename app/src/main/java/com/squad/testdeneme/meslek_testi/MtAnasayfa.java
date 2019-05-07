@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.squad.testdeneme.R;
-import com.squad.testdeneme.kisilik_testi.KtAnasayfa;
+import com.squad.testdeneme.kisilik_testi.KtAnaSayfa;
 import com.squad.testdeneme.kisilik_testi.KtTestActivity;
 
-public class MtAnasayfa extends AppCompatActivity {
+public class MtAnaSayfa extends AppCompatActivity {
     Button btn1,btn2;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,14 +25,14 @@ public class MtAnasayfa extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MtAnasayfa.this, MtTestActivity.class);
+                Intent i = new Intent(MtAnaSayfa.this, MtTestActivity.class);
                 startActivity(i);
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MtAnasayfa.this,MtSonucKaydedilen.class);
+                Intent i = new Intent(MtAnaSayfa.this,MtSonucKaydedilen.class);
                 startActivity(i);
             }
         });

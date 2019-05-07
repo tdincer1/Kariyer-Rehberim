@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.squad.testdeneme.R;
 
-public class KtAnasayfa extends AppCompatActivity {
+public class KtAnaSayfa extends AppCompatActivity {
     Button btn1,btn2;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,14 +23,14 @@ public class KtAnasayfa extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent i = new Intent(KtAnasayfa.this,KtTestActivity.class);
+            Intent i = new Intent(KtAnaSayfa.this,KtTestActivity.class);
             startActivity(i);
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent c = new Intent(KtAnasayfa.this,KtSonucKaydedilen.class);
+                Intent c = new Intent(KtAnaSayfa.this,KtSonucKaydedilen.class);
                 startActivity(c);
             }
         });

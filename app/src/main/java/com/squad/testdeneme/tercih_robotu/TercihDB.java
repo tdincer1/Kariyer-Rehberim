@@ -189,7 +189,21 @@ public class TercihDB {
         }else if ("Dil ve Edebiyat Bölümleri".equalsIgnoreCase(meslek)){
             meslek = " LIKE '%Dili ve Edebiyatı%'";
             meslekSorgu = sorguSade + meslek;
+        }else if ("Finans, Bankacılık ve Sigortacılık".equalsIgnoreCase(meslek)){
+            meslek = " IN ('Uluslararası Finans','Ekonomi ve Finans','Bankacılık ve Sigortacılık')";
+            meslekSorgu = sorguSade + meslek;
+        }else if ("Lojistik".equalsIgnoreCase(meslek)){
+            meslek = " LIKE '%Lojistik%'";
+            meslekSorgu = sorguSade + meslek;
+        }else if ("Otel, Lokanta ve İkram Hizmetleri".equalsIgnoreCase(meslek)){
+            meslek = " IN ('Aşçılık','Ikram hizmetleri')";
+            meslekSorgu = sorguSade + meslek;
+        }else if ("Ziraat Mühendisliği".equalsIgnoreCase(meslek)){
+            meslek = " IN ('Bitki Koruma','Bahçe Bitkileri','Tarım Makineleri ve Teknolojileri Mühendisliği')";
+            meslekSorgu = sorguSade + meslek;
         }
+
+        meslekSorgu = "SELECT * FROM (" + meslekSorgu + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
 
 
         Bilgi bilgi;

@@ -8,6 +8,7 @@
         <item>Eşit ağırlık</item>
         <item>Sözel</item>
         <item>Dil</item>
+        <item>TYT</item>
     </string-array>
 
     <string-array name="bolum_turu">

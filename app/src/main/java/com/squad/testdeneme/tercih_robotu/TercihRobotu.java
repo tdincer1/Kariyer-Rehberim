@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.squad.testdeneme.R;
 
@@ -17,12 +19,15 @@ public class TercihRobotu extends AppCompatActivity {
     List<Bilgi> meslekList;
     RecyclerView recyclerView;
     TrAdapter adapter;
+    TextView uyariTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tercih_robotu);
         recyclerView = findViewById(R.id.recylerView);
+        uyariTv = findViewById(R.id.robotUyarıTv);
+        uyariTv.setVisibility(View.INVISIBLE);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -65,8 +70,17 @@ public class TercihRobotu extends AppCompatActivity {
                     denemeList = TercihDB.getInstance(getApplicationContext()).filtreCek(yolla, maximumPuan, minimumPuan);
                     int listeBoyut = denemeList.size();
 
-                    adapter = new TrAdapter(this, denemeList);
-                    recyclerView.setAdapter(adapter);
+                    if (listeBoyut==0){     //Liste boşsa sonuc bulunamadı bas, doluysa listeyi yükle
+                        uyariTv.setText("Aranan kriterlere uygun sonuç bulunamadı");
+                        uyariTv.getLayoutParams().height = RecyclerView.LayoutParams.WRAP_CONTENT;
+                        uyariTv.setVisibility(View.VISIBLE);
+
+                    }else{
+                        adapter = new TrAdapter(this, denemeList);
+                        recyclerView.setAdapter(adapter);
+                    }
+
+
                 }
                 else if ("meslekSecimi".equals(meslekMethod))   // once oncreate'e koy gerekirse
                 {
@@ -79,8 +93,16 @@ public class TercihRobotu extends AppCompatActivity {
                     meslekList = TercihDB.getInstance(getApplicationContext()).meslekListeCek(secilenMeslek);
                     int meslekListBoyut = meslekList.size();
 
-                    adapter = new TrAdapter(this, meslekList);
-                    recyclerView.setAdapter(adapter);
+                    if (meslekListBoyut==0){    //Liste boşsa sonuc bulunamadı bas, doluysa listeyi yükle
+                        uyariTv.setText("Aranan kriterlere uygun sonuç bulunamadı");
+                        uyariTv.getLayoutParams().height = RecyclerView.LayoutParams.WRAP_CONTENT;
+                        uyariTv.setVisibility(View.VISIBLE);
+                        uyariTv.requestLayout();
+                    }else{      //arayuz hata verirse if'in icine de else'in icindekileri koy
+                        adapter = new TrAdapter(this, meslekList);
+                        recyclerView.setAdapter(adapter);
+                    }
+
                 }
             }
         }

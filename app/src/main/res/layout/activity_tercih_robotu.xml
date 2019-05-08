@@ -6,9 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".tercih_robotu.TercihRobotu">
 
+    <TextView
+        android:id="@+id/robotUyarıTv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:textSize="36sp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recylerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/robotUyarıTv"/>
 
 </RelativeLayout>

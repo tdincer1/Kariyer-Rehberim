@@ -2,6 +2,7 @@ package com.squad.testdeneme.kisilik_testi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,6 +34,8 @@ public class KtSonucKaydedilen extends AppCompatActivity {
         tvDetay.setText(cekilenDetay);
 
         if (cekilenAd.length() == 0){
+            tvUyari.setText("Daha önceden test sonucunuz bulunmamaktadır!");
+            tvUyari.getLayoutParams().height = RecyclerView.LayoutParams.WRAP_CONTENT;
             tvUyari.setVisibility(View.VISIBLE);
             tvAdi.setVisibility(View.INVISIBLE);
             tvDetay.setVisibility(View.INVISIBLE);

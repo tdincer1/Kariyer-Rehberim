@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -90,9 +91,18 @@ public class MtSonucKaydedilen extends AppCompatActivity {
         });
 
         if (baslikId == 0){
+            /*
             tvUyari.setVisibility(View.VISIBLE);
             listView.setVisibility(View.INVISIBLE);
             tv1.setVisibility(View.INVISIBLE);
+            */
+
+            tvUyari.setText("Daha önceden test sonucunuz bulunmamaktadır!");
+            tvUyari.getLayoutParams().height = RecyclerView.LayoutParams.WRAP_CONTENT;
+            tvUyari.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.INVISIBLE);
+            tv1.setVisibility(View.INVISIBLE);
+
 
         }else tvUyari.setVisibility(View.INVISIBLE);
 

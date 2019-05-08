@@ -178,7 +178,7 @@
 
         <org.florescu.android.rangeseekbar.RangeSeekBar
             android:id="@+id/rangeSeekbar"
-            android:layout_width="329dp"
+            android:layout_width="309dp"
             android:layout_height="wrap_content"
 
             android:layout_marginLeft="10dp"

@@ -87,6 +87,9 @@ public class MtSonucEkrani extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 final String selected = (String) listAdapter.getChild(groupPosition, childPosition);
                 secilen = selected;
+                //TODO: if(secilen=="Konservatuvar") baska bi sayfa baslat
+                //else meslek secimi baslat
+                //kaydedilene de eklemek lazim
 
                 Intent i= new Intent(listView.getContext(), TercihRobotu.class);
                 i.putExtra("secilen_meslek",secilen);

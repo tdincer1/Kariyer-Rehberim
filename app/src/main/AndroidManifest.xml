@@ -19,6 +19,8 @@
         <activity android:name=".meslek_testi.MtAnaSayfa" android:screenOrientation="portrait"/>
         <activity android:name=".meslek_testi.MtSonucEkrani" android:screenOrientation="portrait"/>
         <activity android:name=".meslek_testi.MtTestActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".meslek_testi.KonservatuarEkran" android:screenOrientation="portrait"/>
+
         <activity android:name=".AnaEkran">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

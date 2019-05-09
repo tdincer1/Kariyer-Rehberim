@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.squad.testdeneme.kisilik_testi.KtAnaSayfa;
+import com.squad.testdeneme.meslek_testi.KonservatuarEkran;
 import com.squad.testdeneme.meslek_testi.MtAnaSayfa;
 import com.squad.testdeneme.tercih_robotu.TercihFiltre;
 
@@ -17,6 +18,7 @@ public class AnaEkran extends AppCompatActivity {
     Button buttonMeslekTesti;
     Button buttonTercihRobotu;
     Button buttonKisilikTesti;
+    Button konser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +28,17 @@ public class AnaEkran extends AppCompatActivity {
         buttonMeslekTesti = findViewById(R.id.button_meslek_start);
         buttonTercihRobotu = findViewById(R.id.button_tercih_start);
         buttonKisilikTesti = findViewById(R.id.button_kisilik_start);
+        konser = findViewById(R.id.btn_konser);
 
 
 
-
+        konser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ktia = new Intent(AnaEkran.this, KonservatuarEkran.class);
+                startActivity(ktia);
+            }
+        });
         buttonMeslekTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

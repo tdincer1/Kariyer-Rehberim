@@ -8,10 +8,10 @@
 Db'den katsayi ve gruplari alabiliyoruz.
 Cevaba göre gruba puan(katsayi*cvp_katsayisi) ekleniyor
 
--db eski
+Veritabanı tamamlandı.
 
-Kisilik Testi eklendi.
+Geri sayım eklenndi.
 
-Test sonuc sayfalari tamamlandi.
+Tercih Robot büyükten küçüğe çalışıyor.
 
-Tercih Robotu db baglantisi henuz yok.
+Konservatuvar dahil meslek sonuç da çalışıyor.

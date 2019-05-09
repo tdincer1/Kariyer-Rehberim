@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="Teste hoşgeldiniz!"
+        android:text="Kariyer Rehberim"
         android:textColor="@android:color/black"
         android:textSize="35sp"
 
@@ -26,62 +26,71 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button_tercih_start"
-        android:layout_width="206dp"
-        android:layout_height="53dp"
-        android:layout_below="@id/button_kisilik_start"
-
-        android:layout_centerInParent="true"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/robotbutton"
-        android:paddingRight="10dp"
-        android:text="Tercih Robotu"
-        android:textAlignment="textEnd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528" />
-
-    <Button
         android:id="@+id/button_kisilik_start"
         android:layout_width="206dp"
         android:layout_height="53dp"
-        android:layout_below="@id/button_meslek_start"
+        android:layout_below="@id/tvWelcome"
 
         android:layout_centerInParent="true"
-        android:layout_marginTop="52dp"
         android:background="@drawable/ksilikbutton"
         android:paddingRight="30dp"
         android:text="Kişilik Testi"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/button_meslek_start"
         android:layout_width="206dp"
         android:layout_height="53dp"
+        android:layout_below="@id/button_kisilik_start"
         android:layout_alignParentTop="true"
 
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
+
         android:background="@drawable/meslekbutton"
 
         android:paddingRight="20dp"
         android:text="Meslek Testi"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.40" />
+
+
+    <Button
+        android:id="@+id/button_tercih_start"
+        android:layout_width="206dp"
+        android:layout_height="53dp"
+        android:layout_below="@id/button_meslek_start"
+
+        android:layout_centerInParent="true"
+        android:background="@drawable/robotbutton"
+        android:paddingRight="10dp"
+        android:text="Tercih Robotu"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
+
+
+
 
     <RelativeLayout
 
@@ -260,8 +269,8 @@
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-246dp"
-        android:text="2019 YKS ye Kalan Süre "
+        android:text="2019 YKS'ye Kalan Süre "
+        android:textAlignment="center"
         android:textColor="#ffeeee"
         android:textSize="30sp"
         android:textStyle="bold"

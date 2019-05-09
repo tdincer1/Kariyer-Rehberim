@@ -91,12 +91,16 @@ public class MtSonucEkrani extends AppCompatActivity {
                 //else meslek secimi baslat
                 //kaydedilene de eklemek lazim
 
-                Intent i= new Intent(listView.getContext(), TercihRobotu.class);
-                i.putExtra("secilen_meslek",secilen);
-                i.putExtra("meslekSec","meslekSecimi");
+                if ("Konservatuvar".equalsIgnoreCase(secilen)){
+                    Intent intent = new Intent(MtSonucEkrani.this, KonservatuarEkran.class);
+                    startActivity(intent);
+                }else {
+                    Intent i= new Intent(listView.getContext(), TercihRobotu.class);
+                    i.putExtra("secilen_meslek",secilen);
+                    i.putExtra("meslekSec","meslekSecimi");
 
-                startActivity(i);
-
+                    startActivity(i);
+                }
 
                 return true;
             }
@@ -104,11 +108,6 @@ public class MtSonucEkrani extends AppCompatActivity {
 
     }
 
-    /*
-    private void gonder(String secilen){
-        database ' ikinciGrupYuzde seçilen gönderilecek
-    }
-    */
 
     private void initData() {
         listDataHeader = new ArrayList<>();

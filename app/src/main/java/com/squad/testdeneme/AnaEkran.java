@@ -23,7 +23,6 @@ public class AnaEkran extends AppCompatActivity {
     Button buttonMeslekTesti;
     Button buttonTercihRobotu;
     Button buttonKisilikTesti;
-    Button konser;
     private TextView txtTimerDay, txtTimerHour, txtTimerMinute, txtTimerSecond;
     private TextView tvEvent;
     private Handler handler;
@@ -37,23 +36,16 @@ public class AnaEkran extends AppCompatActivity {
         buttonMeslekTesti = findViewById(R.id.button_meslek_start);
         buttonTercihRobotu = findViewById(R.id.button_tercih_start);
         buttonKisilikTesti = findViewById(R.id.button_kisilik_start);
-        konser = findViewById(R.id.btn_konser);
 
-        txtTimerDay = (TextView) findViewById(R.id.txtTimerDay);
-        txtTimerHour = (TextView) findViewById(R.id.txtTimerHour);
-        txtTimerMinute = (TextView) findViewById(R.id.txtTimerMinute);
-        txtTimerSecond = (TextView) findViewById(R.id.txtTimerSecond);
-        tvEvent = (TextView) findViewById(R.id.tvhappyevent);
+        txtTimerDay = findViewById(R.id.txtTimerDay);
+        txtTimerHour = findViewById(R.id.txtTimerHour);
+        txtTimerMinute = findViewById(R.id.txtTimerMinute);
+        txtTimerSecond = findViewById(R.id.txtTimerSecond);
+        tvEvent = findViewById(R.id.tvhappyevent);
 
         countDownStart();
 
-        konser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ktia = new Intent(AnaEkran.this, KonservatuarEkran.class);
-                startActivity(ktia);
-            }
-        });
+
         buttonMeslekTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

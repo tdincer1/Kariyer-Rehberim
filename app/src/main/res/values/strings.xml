@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">TestDeneme</string>
-    <string name="deneme">buton_adı</string>
+    <string name="app_name">Kariyer Rehberim</string>
 
     <string-array name="puan_turu">
         <item>Tümü</item>

@@ -1,6 +1,7 @@
 package com.squad.testdeneme;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -10,18 +11,9 @@ public class MySQLiteHelper extends SQLiteAssetHelper {
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        //setForcedUpgrade(DATABASE_VERSION);
+        //TODO: Son halinde kaldır!!!!! Versiyon no arttırıldığında, db'yi otomatik overwrite edecek.
 
     }
 
-    @Override
-    public void setForcedUpgrade() {
-        super.setForcedUpgrade();
-    }
-
-    /*
-    @Override
-    public void setForcedUpgrade(int version) {
-        super.setForcedUpgrade(version);
-    }
-    */
 }

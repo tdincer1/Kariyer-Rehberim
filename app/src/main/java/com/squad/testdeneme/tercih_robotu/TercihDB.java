@@ -96,37 +96,36 @@ public class TercihDB {
         String siralamaMin = deneme[4];
         String bolumTuru = deneme[5];
         String puanTuru = deneme[6];
-        String uni ="";
+
 
         String queryy = "SELECT * FROM tr_bolum b " +
                 "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
                 "INNER JOIN tr_universite u ON f.uni_id = u.uni_id";
 
-        String[] secimArguman = {};     //.query() icin
+
 
         if (MaxPuan!=0 && MinPuan!=0) queryy += " WHERE taban_puani BETWEEN " + MinPuan + " AND " + MaxPuan;
         else if (MaxPuan!=0 && MinPuan==0) queryy += " WHERE taban_puani NOT BETWEEN " + MaxPuan + " AND 600" ;
         else queryy += " WHERE bolum_id > 0";
-        
-        if(universite.length()!=0) {          //null yerine "" koyduk. Bos text oyle geliyo
-            queryy += " AND uni_adi = '" + universite + "'";
-            //secimArguman += universite;
+
+        if(universite.length()!=0) {
+            queryy += " AND uni_adi LIKE '%" + universite + "%'";
         }
         if(bolum.length()!=0) {
-            queryy += " AND bolum_adi = '" + bolum + "'";
+            queryy += " AND bolum_adi LIKE '%" + bolum + "%'";
         }
         if(sehir.length()!=0) {
-            queryy += " AND il_adi = '" + sehir + "'";
+            queryy += " AND il_adi LIKE '%" + sehir + "%'";
         }
-        if(bolumTuru.length()!=0 && bolumTuru.length()!=4) {    //length=5 cunku spinnerdan hepsi 5 uzunlugunda geliyo
+        if(bolumTuru.length()!=0 && bolumTuru.length()!=4) {    //length=4 cunku spinnerdan tumu 4 uzunlugunda geliyo
             queryy += " AND bolum_turu = '" + bolumTuru + "'";
         }
         if(puanTuru.length()!=0 && puanTuru.length()!=4) {
             queryy += " AND puan_turu = '" + puanTuru + "'";
         }
         if ((siralamaMax.length()!=0) && (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi BETWEEN " + siralamaMin + " AND " + siralamaMax;
-        else if ( (siralamaMax.length()!=0)&& (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi = " + siralamaMin;
-        else if ( (siralamaMax.length()!=0) && (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi = " + siralamaMax;
+        else if ( (siralamaMax.length()==0)&& (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi > " + siralamaMin;
+        else if ( (siralamaMax.length()!=0) && (siralamaMin.length()==0) ) queryy += " AND basari_sirasi < " + siralamaMax;
 
         //queryy = "SELECT * FROM (" + queryy + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
         queryy = queryy + " ORDER BY CAST(taban_puani AS INTEGER) DESC";
@@ -199,7 +198,7 @@ public class TercihDB {
             meslek = " LIKE '%Lojistik%'";
             meslekSorgu = sorguSade + meslek;
         }else if ("Otel, Lokanta ve İkram Hizmetleri".equalsIgnoreCase(meslek)){
-            meslek = " IN ('Aşçılık','Ikram hizmetleri')";
+            meslek = " IN ('Aşçılık','İkram Hizmetleri')";
             meslekSorgu = sorguSade + meslek;
         }else if ("Ziraat Mühendisliği".equalsIgnoreCase(meslek)){
             meslek = " IN ('Bitki Koruma','Bahçe Bitkileri','Tarım Makineleri ve Teknolojileri Mühendisliği')";

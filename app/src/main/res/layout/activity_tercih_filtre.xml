@@ -67,7 +67,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="380dp"
-            android:layout_height="218dp"
+            android:layout_height="150dp"
             android:orientation="horizontal">
 
             <TextView
@@ -75,11 +75,10 @@
                 android:layout_width="177dp"
                 android:layout_height="wrap_content"
                 android:text="Puan Aralığı"
-                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintLeft_toLeftOf="parent"
 
+                app:layout_constraintHorizontal_bias="0.187"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
@@ -93,11 +92,11 @@
                 android:hint="Min"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.609"
+                app:layout_constraintHorizontal_bias="0.543"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.63" />
+                app:layout_constraintVertical_bias="0.619" />
 
             <EditText
                 android:id="@+id/maxPuanEt"
@@ -107,17 +106,17 @@
                 android:hint="Max"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.246"
+                app:layout_constraintHorizontal_bias="0.317"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.63" />
+                app:layout_constraintVertical_bias="0.619" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="120dp"
+                android:layout_marginStart="124dp"
                 android:text="Başarı sıralaması"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.098"
@@ -125,7 +124,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.452" />
+                app:layout_constraintVertical_bias="0.351" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -133,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:text="Puan Türü"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.705"
+                app:layout_constraintHorizontal_bias="0.822"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -153,26 +152,56 @@
                 app:layout_constraintVertical_bias="0.08" />
 
             <Spinner
-                android:id="@+id/bolumTuruSpinner"
-                android:layout_width="75dp"
+                android:id="@+id/puanTuruSpinner"
+                android:layout_width="37dp"
                 android:layout_height="35dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.052"
+                app:layout_constraintHorizontal_bias="0.932"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.191" />
+                app:layout_constraintVertical_bias="0.036" />
+
+            <TextView
+                android:id="@+id/tv_bolumturu"
+                android:layout_width="90dp"
+                android:layout_height="25dp"
+                android:text="TextView BölümTürü"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.055"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.229" />
+
+            <TextView
+                android:id="@+id/tv_puanturu"
+                android:layout_width="90dp"
+                android:layout_height="25dp"
+                android:text="TextView PuanTürü"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.858"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.229" />
 
             <Spinner
-                android:id="@+id/puanTuruSpinner"
-                android:layout_width="75dp"
+                android:id="@+id/bolumTuruSpinner"
+                android:layout_width="45dp"
                 android:layout_height="35dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.704"
+                app:layout_constraintHorizontal_bias="0.235"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.191" />
+                app:layout_constraintVertical_bias="0.034" />
         </android.support.constraint.ConstraintLayout>
 
 

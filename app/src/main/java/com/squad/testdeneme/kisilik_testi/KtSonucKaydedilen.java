@@ -1,5 +1,6 @@
 package com.squad.testdeneme.kisilik_testi;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,8 @@ public class KtSonucKaydedilen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kt_sonuc_kaydedilen);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.hide();
 
         tvAdi = findViewById(R.id.tvKisilikAdi);
         tvDetay = findViewById(R.id.tvKisilikDetay);

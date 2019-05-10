@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.squad.testdeneme.kisilik_testi.KtAnaSayfa;
-import com.squad.testdeneme.meslek_testi.KonservatuarEkran;
 import com.squad.testdeneme.meslek_testi.MtAnaSayfa;
 import com.squad.testdeneme.tercih_robotu.TercihFiltre;
 
@@ -19,7 +18,6 @@ import java.util.Date;
 
 
 public class AnaEkran extends AppCompatActivity {
-    private static final int REQUEST_CODE_QUIZ = 1;
     Button buttonMeslekTesti;
     Button buttonTercihRobotu;
     Button buttonKisilikTesti;
@@ -27,6 +25,8 @@ public class AnaEkran extends AppCompatActivity {
     private TextView tvEvent;
     private Handler handler;
     private Runnable runnable;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,8 @@ public class AnaEkran extends AppCompatActivity {
         buttonMeslekTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startMT();
+                Intent mt = new Intent(AnaEkran.this, MtAnaSayfa.class);
+                startActivity(mt);
             }
         });
 
@@ -64,19 +65,14 @@ public class AnaEkran extends AppCompatActivity {
         buttonTercihRobotu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AnaEkran.this, TercihFiltre.class);
-                startActivity(intent);
+                Intent tr = new Intent(AnaEkran.this, TercihFiltre.class);
+                startActivity(tr);
             }
         });
 
 
     }
 
-    private void startMT() {
-        Intent intent = new Intent(AnaEkran.this, MtAnaSayfa.class);
-        startActivity(intent);
-        //startActivityForResult(intent, REQUEST_CODE_QUIZ);
-    }
     public void countDownStart() {
         handler = new Handler();
         runnable = new Runnable() {

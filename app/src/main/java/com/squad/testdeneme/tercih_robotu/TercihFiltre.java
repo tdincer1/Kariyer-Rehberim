@@ -24,7 +24,6 @@ import java.util.List;
 public class TercihFiltre extends AppCompatActivity  {
     RangeSeekBar rangeSeekBar;
     Spinner bolumTuruSp, puanTuruSp;
-    TextView tvbolum,tvpuan;
     AutoCompleteTextView uniEt, bolumEt, sehirEt;
     Button gecisBtn;
     EditText maxEt, minEt;
@@ -56,51 +55,15 @@ public class TercihFiltre extends AppCompatActivity  {
         gecisBtn = findViewById(R.id.btn_uygula);
         maxEt = findViewById(R.id.maxPuanEt);
         minEt = findViewById(R.id.minPuanEt);
-        tvbolum=findViewById(R.id.tv_bolumturu);
-        tvpuan=findViewById(R.id.tv_puanturu);
+
 
         String[] uniListe = TercihDB.getInstance(getApplicationContext()).uniCek();
         String[] bolumListe = TercihDB.getInstance(getApplicationContext()).bolumCek();
         String[] sehirListe = TercihDB.getInstance(getApplicationContext()).sehirCek();
+
         uniEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, uniListe));
         bolumEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, bolumListe));
         sehirEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, sehirListe));
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TercihFiltre.this, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.bolum_turu));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bolumTuruSp.setAdapter(myAdapter);
-        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(TercihFiltre.this, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.puan_turu));
-        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        puanTuruSp.setAdapter(myAdapter2);
-        bolumTuruSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tvbolum.setText(bolumTuruSp.getSelectedItem().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        puanTuruSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tvpuan.setText(puanTuruSp.getSelectedItem().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-
-        //deneme amaclı testten gelen meslegi toastta bas
-        String deneme = MtSonucEkrani.secilen;
-        //String secilen_meslek = getIntent().getStringExtra("secilen_meslek");
-
-        if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen meslek: " + MtSonucEkrani.secilen, Toast.LENGTH_SHORT).show();
-        //if (deneme!=null) Toast.makeText(getApplicationContext(),"Secilen_meslek_putExtra: " + secilen_meslek, Toast.LENGTH_SHORT).show();
 
         rangeSeekBar.setSelectedMaxValue(600);
         rangeSeekBar.setSelectedMinValue(0);
@@ -117,12 +80,6 @@ public class TercihFiltre extends AppCompatActivity  {
                 Toast.makeText(getApplicationContext(),"Min= " + minPuan + "\n"+ "Max=" + maxPuan,Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-
-//        final int maxP = Integer.parseInt(maxSiralama);       //hata veriyo
-//        int minP = Integer.parseInt(minSiralama);
 
 
         gecisBtn.setOnClickListener(new View.OnClickListener() {

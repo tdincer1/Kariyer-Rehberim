@@ -84,7 +84,7 @@ public class KtTestActivity extends AppCompatActivity {
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked() || rb5.isChecked()){
                         checkAnswer();
                     }else{
-                        Toast.makeText(KtTestActivity.this, "Lutfen secim yapin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(KtTestActivity.this, "Lütfen seçim yapın", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     KisilikDB.getINSTANCE(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());
@@ -108,7 +108,7 @@ public class KtTestActivity extends AppCompatActivity {
             questionCounter++;
             textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
             answered = false;
-            buttonConfirmNext.setText("Cevabi Onayla");
+            buttonConfirmNext.setText("Cevabı Onayla");
         }else {     //Bu noktada kisilikler karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
             finishQuiz();
         }
@@ -122,7 +122,7 @@ public class KtTestActivity extends AppCompatActivity {
         //youtube dk 9.30 link:(tlgrX3HF6AI)
 
         if (questionCounter < questionCountTotal){
-            buttonConfirmNext.setText("Siradaki soru");
+            buttonConfirmNext.setText("Sıradaki soru");
         }else {
             buttonConfirmNext.setText("Testi bitir");
         }
@@ -212,7 +212,7 @@ public class KtTestActivity extends AppCompatActivity {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
             finish();
         }else {
-            Toast.makeText(this, "Cikmak icin tekrar geriye basin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Çıkmak için tekrar geriye basın", Toast.LENGTH_SHORT).show();
         }
 
         backPressedTime = System.currentTimeMillis();

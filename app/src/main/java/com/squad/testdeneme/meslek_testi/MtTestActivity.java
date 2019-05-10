@@ -101,7 +101,7 @@ public class MtTestActivity extends AppCompatActivity {
                         //answered = true; yapmak lazım
                         //katsayiHesapDB(currentQuestion.getSoru_id());                TODO: Buraya da konulabilir
                     }else{
-                        Toast.makeText(MtTestActivity.this, "Lutfen secim yapin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MtTestActivity.this, "Lütfen seçim yapın", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     MeslekDB.getInstance(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());   // TODO: Veya buraya da konulabilir. Soru cevaplandiktan sonra
@@ -124,7 +124,7 @@ public class MtTestActivity extends AppCompatActivity {
             questionCounter++;
             textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
             answered = false;
-            buttonConfirmNext.setText("Cevabi Onayla");
+            buttonConfirmNext.setText("Cevabı Onayla");
         }else {     //TODO: Bu noktada gruplar karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
             finishQuiz();
         }
@@ -138,7 +138,7 @@ public class MtTestActivity extends AppCompatActivity {
         //youtube dk 9.30 link:(tlgrX3HF6AI)
 
         if (questionCounter < questionCountTotal){
-            buttonConfirmNext.setText("Siradaki soru");
+            buttonConfirmNext.setText("Sıradaki soru");
         }else {
             buttonConfirmNext.setText("Testi bitir");
         }
@@ -220,7 +220,7 @@ public class MtTestActivity extends AppCompatActivity {
         if (backPressedTime + 2000 > System.currentTimeMillis()){
             finish();   //TODO: sonuc sayfasina gecis tamamlandiginda, bunu finish metoduna dondur
         }else {
-            Toast.makeText(this, "Cikmak icin tekrar geriye basin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Çıkmak için tekrar geriye basın", Toast.LENGTH_SHORT).show();
         }
 
         backPressedTime = System.currentTimeMillis();

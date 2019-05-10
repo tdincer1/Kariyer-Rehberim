@@ -28,8 +28,6 @@ public class KtSonucKaydedilen extends AppCompatActivity {
         tvAdi = findViewById(R.id.tvKisilikAdi);
         tvDetay = findViewById(R.id.tvKisilikDetay);
         tvUyari = findViewById(R.id.uyariId);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
 
 
         cekilenAd = getSharedPreferences(MAIN_KEY, MODE_PRIVATE).getString(TV_KEY, "");

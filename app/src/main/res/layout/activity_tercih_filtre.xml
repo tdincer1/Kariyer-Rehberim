@@ -30,11 +30,13 @@
         android:completionThreshold="1"
         android:drawableLeft="@drawable/search_medium"
         android:hint="Üniversite"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintVertical_bias="0.13" />
 
     <AutoCompleteTextView
@@ -44,12 +46,14 @@
         android:completionThreshold="1"
         android:drawableLeft="@drawable/search_medium"
         android:hint="Bölüm"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintVertical_bias="0.22"/>
+        app:layout_constraintVertical_bias="0.22" />
 
     <AutoCompleteTextView
         android:id="@+id/sehirAramaTv"
@@ -58,12 +62,14 @@
         android:completionThreshold="1"
         android:drawableLeft="@drawable/search_medium"
         android:hint="Şehir"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintVertical_bias="0.31"/>
+        app:layout_constraintVertical_bias="0.31" />
 
     <TextView
         android:id="@+id/textView3"
@@ -132,12 +138,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Max"
+        android:imeOptions="actionNext"
         android:inputType="number"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintVertical_bias="0.6" />
 
     <EditText
@@ -145,12 +153,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Min"
+        android:imeOptions="actionDone"
         android:inputType="number"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintVertical_bias="0.6" />
 
     <TextView

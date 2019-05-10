@@ -79,23 +79,22 @@ public class MtSonucKaydedilen extends AppCompatActivity {
                 final String selected = (String) listAdapter.getChild(groupPosition, childPosition);
                 secilen = selected;
 
-                Intent i = new Intent(listView.getContext(), TercihRobotu.class);
-                i.putExtra("secilen_meslek",secilen);
-                i.putExtra("meslekSec","meslekSecimi");
+                if ("Konservatuvar".equalsIgnoreCase(secilen)){
+                    Intent intent = new Intent(MtSonucKaydedilen.this, KonservatuarEkran.class);
+                    startActivity(intent);
+                }else {
+                    Intent i= new Intent(listView.getContext(), TercihRobotu.class);
+                    i.putExtra("secilen_meslek",secilen);
+                    i.putExtra("meslekSec","meslekSecimi");
 
-                startActivity(i);
-
+                    startActivity(i);
+                }
 
                 return true;
             }
         });
 
         if (baslikId == 0){
-            /*
-            tvUyari.setVisibility(View.VISIBLE);
-            listView.setVisibility(View.INVISIBLE);
-            tv1.setVisibility(View.INVISIBLE);
-            */
 
             tvUyari.setText("Daha önceden test sonucunuz bulunmamaktadır!");
             tvUyari.getLayoutParams().height = RecyclerView.LayoutParams.WRAP_CONTENT;

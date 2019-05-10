@@ -10,7 +10,7 @@ public class Bilgi {
     private String bolum_turu;
     private String puan_turu;
     private String taban_puani;
-    private int siralama;
+    private String siralama;
     private int kontenjan;
 
     public Bilgi(){}
@@ -87,11 +87,11 @@ public class Bilgi {
         this.taban_puani = taban_puani;
     }
 
-    public int getSiralama() {
+    public String getSiralama() {
         return siralama;
     }
 
-    public void setSiralama(int siralama) {
+    public void setSiralama(String siralama) {
         this.siralama = siralama;
     }
 

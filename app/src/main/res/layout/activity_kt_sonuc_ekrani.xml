@@ -6,26 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".kisilik_testi.KtSonucEkrani">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvKisilikAdi"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kisilik Adi Gelecek!!!!"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="3dp">
 
-        <TextView
-            android:id="@+id/tvKisilikDetay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kisilik Detay Gelecek!!!!"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            <TextView
+                android:id="@+id/tvKisilikAdi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kisilik Adi Gelecek!!!!"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvKisilikDetay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Kisilik Detay Gelecek!!!!"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

@@ -42,8 +42,8 @@ public class KtSonucEkrani extends AppCompatActivity {
         String kisilikDetay = KisilikDB.getINSTANCE(getApplicationContext()).kisilikDetayCek(kisilikId);
 
 
-        tvAdi.setText("Kisilik Adi: " + kisilikAdi);
-        tvDetay.setText("Kisilik Detay: " + kisilikDetay);
+        tvAdi.setText("Kişilik Adı: " + kisilikAdi);
+        tvDetay.setText(kisilikDetay);
 
         sharedPreferences=getSharedPreferences(MAIN_KEY,MODE_PRIVATE);
         editor=sharedPreferences.edit();

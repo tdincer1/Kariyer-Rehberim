@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@drawable/arkaplan"
     android:padding="16dp"
     tools:context=".kisilik_testi.KtTestActivity">
 
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Soru 1/x"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/kt_text_view_question"
@@ -36,40 +36,39 @@
             android:id="@+id/kt_radio_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kesinlikle Katılıyorum"/>
+            android:text="Kesinlikle Katılıyorum" />
 
         <RadioButton
             android:id="@+id/kt_radio_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Katılıyorum"/>
+            android:text="Katılıyorum" />
 
         <RadioButton
             android:id="@+id/kt_radio_button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kararsızım"/>
+            android:text="Kararsızım" />
 
         <RadioButton
             android:id="@+id/kt_radio_button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Katılmıyorum"/>
+            android:text="Katılmıyorum" />
 
         <RadioButton
             android:id="@+id/kt_radio_button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kesinlikle Katılmıyorum"/>
+            android:text="Kesinlikle Katılmıyorum" />
     </RadioGroup>
 
     <Button
         android:id="@+id/kt_button_confirm_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Onayla"
         android:layout_below="@id/kt_radio_group"
         android:layout_marginTop="16dp"
-        />
+        android:text="Onayla" />
 
 </RelativeLayout>

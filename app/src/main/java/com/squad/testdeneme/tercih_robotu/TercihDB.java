@@ -55,7 +55,8 @@ public class TercihDB {
         openDB();
 
         //TODO: ORDER KONTROL ET
-        sorguTr = "SELECT * FROM (" + sorguTr + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+        sorguTr = sorguTr + " ORDER BY CAST(taban_puani AS INTEGER) DESC";
+        //sorguTr = "SELECT * FROM (" + sorguTr + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
         Cursor cTr = database.rawQuery(sorguTr, null);
 
         //rawQuery yerine query kullanip filtreleme kolaylastırabilir
@@ -71,7 +72,7 @@ public class TercihDB {
                 bilgi.setDil(cTr.getString(cTr.getColumnIndex("dil")));
                 bilgi.setBolum_turu(cTr.getString(cTr.getColumnIndex("bolum_turu")));
                 bilgi.setTaban_puani(cTr.getString(cTr.getColumnIndex("taban_puani")));
-                bilgi.setSiralama(cTr.getInt(cTr.getColumnIndex("basari_sirasi")));
+                bilgi.setSiralama(cTr.getString(cTr.getColumnIndex("basari_sirasi")));
                 bilgi.setKontenjan(cTr.getInt(cTr.getColumnIndex("kontenjan")));
                 bilgi.setUniversite(cTr.getString(cTr.getColumnIndex("uni_adi")));
                 bilgi.setSehir(cTr.getString(cTr.getColumnIndex("il_adi")));
@@ -99,12 +100,13 @@ public class TercihDB {
 
         String queryy = "SELECT * FROM tr_bolum b " +
                 "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
-                "INNER JOIN tr_universite u ON f.uni_id = u.uni_id ";
+                "INNER JOIN tr_universite u ON f.uni_id = u.uni_id";
 
         String[] secimArguman = {};     //.query() icin
 
-        if (MaxPuan!=0) queryy += "WHERE taban_puani BETWEEN " + MinPuan + " AND " + MaxPuan;
-        else queryy += "WHERE bolum_id > 0";
+        if (MaxPuan!=0 && MinPuan!=0) queryy += " WHERE taban_puani BETWEEN " + MinPuan + " AND " + MaxPuan;
+        else if (MaxPuan!=0 && MinPuan==0) queryy += " WHERE taban_puani NOT BETWEEN " + MaxPuan + " AND 600" ;
+        else queryy += " WHERE bolum_id > 0";
         
         if(universite.length()!=0) {          //null yerine "" koyduk. Bos text oyle geliyo
             queryy += " AND uni_adi = '" + universite + "'";
@@ -126,7 +128,8 @@ public class TercihDB {
         else if ( (siralamaMax.length()!=0)&& (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi = " + siralamaMin;
         else if ( (siralamaMax.length()!=0) && (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi = " + siralamaMax;
 
-        queryy = "SELECT * FROM (" + queryy + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+        //queryy = "SELECT * FROM (" + queryy + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+        queryy = queryy + " ORDER BY CAST(taban_puani AS INTEGER) DESC";
         // querry += " ORDER BY taban_puani DESC"
 
         String qq = "SELECT * FROM tr_bolum b INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id INNER JOIN tr_universite u ON f.uni_id = u.uni_id WHERE taban_puani BETWEEN 500 AND 600";
@@ -150,7 +153,7 @@ public class TercihDB {
                 bilgi.setDil(crs.getString(crs.getColumnIndex("dil")));
                 bilgi.setBolum_turu(crs.getString(crs.getColumnIndex("bolum_turu")));
                 bilgi.setTaban_puani(crs.getString(crs.getColumnIndex("taban_puani")));
-                bilgi.setSiralama(crs.getInt(crs.getColumnIndex("basari_sirasi")));
+                bilgi.setSiralama(crs.getString(crs.getColumnIndex("basari_sirasi")));
                 bilgi.setKontenjan(crs.getInt(crs.getColumnIndex("kontenjan")));
                 bilgi.setUniversite(crs.getString(crs.getColumnIndex("uni_adi")));
                 bilgi.setSehir(crs.getString(crs.getColumnIndex("il_adi")));
@@ -203,7 +206,8 @@ public class TercihDB {
             meslekSorgu = sorguSade + meslek;
         }
 
-        meslekSorgu = "SELECT * FROM (" + meslekSorgu + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+        //meslekSorgu = "SELECT * FROM (" + meslekSorgu + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+        meslekSorgu = meslekSorgu + " ORDER BY CAST(taban_puani AS INTEGER) DESC";
 
 
         Bilgi bilgi;
@@ -221,7 +225,7 @@ public class TercihDB {
                 bilgi.setDil(ccc.getString(ccc.getColumnIndex("dil")));
                 bilgi.setBolum_turu(ccc.getString(ccc.getColumnIndex("bolum_turu")));
                 bilgi.setTaban_puani(ccc.getString(ccc.getColumnIndex("taban_puani")));
-                bilgi.setSiralama(ccc.getInt(ccc.getColumnIndex("basari_sirasi")));
+                bilgi.setSiralama(ccc.getString(ccc.getColumnIndex("basari_sirasi")));
                 bilgi.setKontenjan(ccc.getInt(ccc.getColumnIndex("kontenjan")));
                 bilgi.setUniversite(ccc.getString(ccc.getColumnIndex("uni_adi")));
                 bilgi.setSehir(ccc.getString(ccc.getColumnIndex("il_adi")));
@@ -237,7 +241,7 @@ public class TercihDB {
     }
 
     public String[] bolumCek(){
-        String sorguBolum = "SELECT DISTINCT bolum_adi FROM tr_bolum";
+        String sorguBolum = "SELECT DISTINCT bolum_adi FROM tr_bolum ORDER BY bolum_adi ASC";
         int b = 0;
         openDB();
 
@@ -256,7 +260,7 @@ public class TercihDB {
     }
 
     public String[] uniCek(){
-        String sorguUni = "SELECT * FROM tr_universite";
+        String sorguUni = "SELECT * FROM tr_universite ORDER BY uni_adi ASC";
         int u = 0;
         openDB();
 
@@ -275,7 +279,7 @@ public class TercihDB {
     }
 
     public String[] sehirCek(){
-        String sorguSehir = "SELECT DISTINCT il_adi FROM tr_universite";
+        String sorguSehir = "SELECT DISTINCT il_adi FROM tr_universite ORDER BY il_adi ASC";
         int s = 0;
         openDB();
 

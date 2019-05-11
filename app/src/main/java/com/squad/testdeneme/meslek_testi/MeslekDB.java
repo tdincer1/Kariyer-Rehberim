@@ -174,7 +174,6 @@ public class MeslekDB {
                 meslek = new Meslek();
                 meslek.setMeslek_id(cc.getInt(cc.getColumnIndex("meslek_id")));
                 meslek.setMeslek_adi(cc.getString(cc.getColumnIndex("meslek_adi")));
-                meslek.setMeslek_detay(cc.getString(cc.getColumnIndex("meslek_detay")));
                 meslek.setGrup_id(cc.getInt(cc.getColumnIndex("grup_id")));
 
                 meslekList.add(meslek);

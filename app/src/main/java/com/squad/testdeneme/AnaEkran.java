@@ -122,5 +122,18 @@ public class AnaEkran extends AppCompatActivity {
         findViewById(R.id.textView1).setVisibility(View.GONE);
         findViewById(R.id.textView2).setVisibility(View.GONE);
     }
+
+
+    /* TODO: geri tusuna dialog ekranıyla cikis secenegi ekle
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+    }
+     */
+
+
 }
 

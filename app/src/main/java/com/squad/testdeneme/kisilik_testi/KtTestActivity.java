@@ -181,7 +181,7 @@ public class KtTestActivity extends AppCompatActivity {
     }
 
     public void kisilikPuani(){
-        int liste[] = new int[9];
+        int[] liste = new int[9];
 
         liste[0] = Arastirmaci;
         liste[1] = Barisci;

@@ -94,18 +94,13 @@ public class MtTestActivity extends AppCompatActivity {
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!answered)
-                {
-                    if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked() || rb5.isChecked()){
-                        checkAnswer();          //opsiyonel ama secilen_sık * katsayida kullanabiliriz. Bunu kaldırırsan
-                        //answered = true; yapmak lazım
-                        //katsayiHesapDB(currentQuestion.getSoru_id());                TODO: Buraya da konulabilir
-                    }else{
-                        Toast.makeText(MtTestActivity.this, "Lütfen seçim yapın", Toast.LENGTH_SHORT).show();
-                    }
+
+                if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked() || rb5.isChecked()){
+                    checkAnswer();          //opsiyonel ama secilen_sık * katsayida kullanabiliriz. Bunu kaldırırsan
+                    //answered = true; yapmak lazım
+                    //katsayiHesapDB(currentQuestion.getSoru_id());                TODO: Buraya da konulabilir
                 }else{
-                    MeslekDB.getInstance(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());   // TODO: Veya buraya da konulabilir. Soru cevaplandiktan sonra
-                    showNextQuestion();
+                    Toast.makeText(MtTestActivity.this, "Lütfen seçim yapın", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -114,15 +109,7 @@ public class MtTestActivity extends AppCompatActivity {
 
     public void showNextQuestion() {                       //siradaki soruya gec
         rbGroup.clearCheck();                               //şık secimini temizle
-        /*
-        for(int i = 0; i < rbGroup.getChildCount(); i++){
-            (rbGroup.getChildAt(i)).setEnabled(true);
-        }
 
-        for(int i = 0; i < rbGroup.getChildCount(); i++){
-            (rbGroup.getChildAt(i)).setClickable(true);
-        }
-        */
 
         if (questionCounter < questionCountTotal)
         {
@@ -132,34 +119,24 @@ public class MtTestActivity extends AppCompatActivity {
 
             questionCounter++;
             textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
-            answered = false;
-            buttonConfirmNext.setText("Cevabı Onayla");
+
+            if (questionCounter < questionCountTotal){
+                buttonConfirmNext.setText("Sıradaki soru");
+            }else {
+                buttonConfirmNext.setText("Testi bitir");
+            }
         }else {     //TODO: Bu noktada gruplar karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
             finishQuiz();
         }
     }
 
     public void  checkAnswer(){                         //Secilen sikkin katsayiyla carpimi burada mı olacak?
-        answered = true;
-        /*
-        for(int i = 0; i < rbGroup.getChildCount(); i++){
-            (rbGroup.getChildAt(i)).setEnabled(false);
-        }
-
-        for(int i = 0; i < rbGroup.getChildCount(); i++){
-            (rbGroup.getChildAt(i)).setClickable(false);
-        }
-        */
 
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //secilenin id'yi al
         answerNr = rbGroup.indexOfChild(rbSelected);        //secilen id'yi answerNr'de tut
-        //youtube dk 9.30 link:(tlgrX3HF6AI)
 
-        if (questionCounter < questionCountTotal){
-            buttonConfirmNext.setText("Sıradaki soru");
-        }else {
-            buttonConfirmNext.setText("Testi bitir");
-        }
+        MeslekDB.getInstance(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());
+        showNextQuestion();
 
     }
 
@@ -247,7 +224,7 @@ public class MtTestActivity extends AppCompatActivity {
 
     public void grupPuani(){    //TODO: ilk 3 sec. Puan yüzde hesapla. DB'den o grupların meslegini cek.
 
-        int liste[] = new int[15];
+        int[] liste = new int[15];
 
         liste[0] = bilgisayar;
         liste[1] = egitim;
@@ -273,26 +250,31 @@ public class MtTestActivity extends AppCompatActivity {
         ikinciGrupId = 0;
         ucuncuGrupId = 0;
 
+
         for(int i=0; i<liste.length; i++ ){
             if (liste[i]>ilk){
+                ucuncu = ikinci;
+                ucuncuGrupId = ikinciGrupId;
+                ikinci = ilk;
+                ikinciGrupId = ilkGrupId;
                 ilk = liste[i];
                 ilkGrupId = i+1;
             }
-            else if (liste[i]> ikinci && liste[i]<ilk) {
+            else if (liste[i]> ikinci && liste[i] <= ilk) {
+                ucuncu = ikinci;
+                ucuncuGrupId = ikinciGrupId;
                 ikinci = liste[i];
                 ikinciGrupId = (i+1);
-                int yam = 1;
             }
-            else if (liste[i]> ucuncu && liste[i]<ikinci){
+            else if (liste[i]> ucuncu && liste[i] <= ikinci){
                 ucuncu=liste[i];
                 ucuncuGrupId = i+1;
             }
         }
 
-        ilkYuzde = ilk*100 / (ilk + ikinci + ucuncu);
         ikinciYuzde = ikinci*100 / (ilk + ikinci + ucuncu);
-        ucuncuYuzde = 100 - (ilkYuzde + ikinciYuzde);
-
+        ucuncuYuzde = ucuncu*100 / (ilk + ikinci + ucuncu);
+        ilkYuzde = 100 - (ikinciYuzde + ucuncuYuzde);
         int dembaba = 0;
 
 

@@ -163,6 +163,7 @@ public class MtTestActivity extends AppCompatActivity {
 
     }
 
+
     public static int cvp(){
 
         int cvp_katsayi = 0;

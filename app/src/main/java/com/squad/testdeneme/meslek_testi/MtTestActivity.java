@@ -114,6 +114,15 @@ public class MtTestActivity extends AppCompatActivity {
 
     public void showNextQuestion() {                       //siradaki soruya gec
         rbGroup.clearCheck();                               //şık secimini temizle
+        /*
+        for(int i = 0; i < rbGroup.getChildCount(); i++){
+            (rbGroup.getChildAt(i)).setEnabled(true);
+        }
+
+        for(int i = 0; i < rbGroup.getChildCount(); i++){
+            (rbGroup.getChildAt(i)).setClickable(true);
+        }
+        */
 
         if (questionCounter < questionCountTotal)
         {
@@ -132,6 +141,15 @@ public class MtTestActivity extends AppCompatActivity {
 
     public void  checkAnswer(){                         //Secilen sikkin katsayiyla carpimi burada mı olacak?
         answered = true;
+        /*
+        for(int i = 0; i < rbGroup.getChildCount(); i++){
+            (rbGroup.getChildAt(i)).setEnabled(false);
+        }
+
+        for(int i = 0; i < rbGroup.getChildCount(); i++){
+            (rbGroup.getChildAt(i)).setClickable(false);
+        }
+        */
 
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //secilenin id'yi al
         answerNr = rbGroup.indexOfChild(rbSelected);        //secilen id'yi answerNr'de tut
@@ -149,13 +167,13 @@ public class MtTestActivity extends AppCompatActivity {
 
         int cvp_katsayi = 0;
         switch (answerNr){
-            case 0: cvp_katsayi = 4;
+            case 0: cvp_katsayi = 8;
             break;
-            case 1: cvp_katsayi = 3;
+            case 1: cvp_katsayi = 6;
             break;
-            case 2: cvp_katsayi = 2;
+            case 2: cvp_katsayi = 4;
             break;
-            case 3: cvp_katsayi = 1;
+            case 3: cvp_katsayi = 2;
             break;
             case 4: cvp_katsayi = 0;
             break;

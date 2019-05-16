@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/arkaplan"
-    android:padding="16dp"
     tools:context=".kisilik_testi.KtTestActivity">
 
     <TextView
@@ -13,24 +12,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Soru 1/x"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
 
     <TextView
         android:id="@+id/kt_text_view_question"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_above="@id/kt_radio_group"
-        android:layout_marginBottom="16dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="Soru buraya gelecek!!!!!!\nSoru buraya gelecek!!!!!!\nSoru buraya gelecek!!!!!!"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.24" />
+
 
     <RadioGroup
         android:id="@+id/kt_radio_group"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.61">
 
         <RadioButton
             android:id="@+id/kt_radio_button1"
@@ -63,12 +80,19 @@
             android:text="Kesinlikle Katılmıyorum" />
     </RadioGroup>
 
+
     <Button
         android:id="@+id/kt_button_confirm_next"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/kt_radio_group"
-        android:layout_marginTop="16dp"
-        android:text="Onayla" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Onayla"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

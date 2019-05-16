@@ -16,8 +16,7 @@ public class MtAnaSayfa extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mt_ana_sayfa);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
         btn1=findViewById(R.id.mt_anasayfa_btn1);
         btn2=findViewById(R.id.mt_anasayfa_btn2);
         btn1.setOnClickListener(new View.OnClickListener() {

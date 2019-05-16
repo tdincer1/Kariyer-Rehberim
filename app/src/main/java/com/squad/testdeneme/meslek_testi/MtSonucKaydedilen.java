@@ -47,8 +47,7 @@ public class MtSonucKaydedilen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mt_sonuc_kaydedilen);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
 
         baslikId = getSharedPreferences(MAIN_KEY, MODE_PRIVATE).getInt(grup1, 0);
         baslikIdIki = getSharedPreferences(MAIN_KEY, MODE_PRIVATE).getInt(grup2, 0);

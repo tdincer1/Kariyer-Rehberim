@@ -12,7 +12,6 @@ public class KonservatuarEkran extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_konservatuar_ekran);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
     }
 }

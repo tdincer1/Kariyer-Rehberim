@@ -9,15 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".meslek_testi.MtSonucKaydedilen" android:screenOrientation="portrait"></activity>
+        <activity android:name=".meslek_testi.MtSonucKaydedilen"
+            android:screenOrientation="portrait"
+            android:theme="@style/SonucSayfaTemasi"></activity>
         <activity android:name=".kisilik_testi.KtSonucKaydedilen" android:screenOrientation="portrait"/>
-        <activity android:name=".tercih_robotu.TercihRobotu" android:screenOrientation="portrait"/>
+        <activity android:name=".tercih_robotu.TercihRobotu" android:screenOrientation="portrait"
+            android:theme="@style/ActionBarTheme"
+            android:label="Tercih Robotu"/>
         <activity android:name=".kisilik_testi.KtSonucEkrani" android:screenOrientation="portrait"/>
         <activity android:name=".kisilik_testi.KtTestActivity" android:screenOrientation="portrait"/>
         <activity android:name=".tercih_robotu.TercihFiltre" android:screenOrientation="portrait"/>
         <activity android:name=".kisilik_testi.KtAnaSayfa" android:screenOrientation="portrait"/>
         <activity android:name=".meslek_testi.MtAnaSayfa" android:screenOrientation="portrait"/>
-        <activity android:name=".meslek_testi.MtSonucEkrani" android:screenOrientation="portrait"/>
+        <activity android:name=".meslek_testi.MtSonucEkrani"
+            android:screenOrientation="portrait"
+            android:theme="@style/SonucSayfaTemasi"/>
         <activity android:name=".meslek_testi.MtTestActivity" android:screenOrientation="portrait"/>
         <activity android:name=".meslek_testi.KonservatuarEkran" android:screenOrientation="portrait"/>
         <activity android:name=".AnaEkran"  android:screenOrientation="portrait">

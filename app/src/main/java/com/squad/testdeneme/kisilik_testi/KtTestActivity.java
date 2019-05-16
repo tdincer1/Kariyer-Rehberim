@@ -46,7 +46,7 @@ public class KtTestActivity extends AppCompatActivity {
     static int BasariOdakli;
     static int Maceraci;
     static int MeydanOkuyan;
-    static int Mukemmelmeliyetci;
+    static int Mukemmeliyetci;
     static int Ozgun;
     static int Sorgulayici;
     static int Yardimsever;
@@ -57,8 +57,7 @@ public class KtTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kt_test);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
 
         textViewQuestion = findViewById(R.id.kt_text_view_question);
         textViewQuestionCount = findViewById(R.id.kt_text_view_question_count);
@@ -161,7 +160,7 @@ public class KtTestActivity extends AppCompatActivity {
                 break;
             case 5: MeydanOkuyan += ks * cevap_katsayisi;
                 break;
-            case 6: Mukemmelmeliyetci += ks * cevap_katsayisi;
+            case 6: Mukemmeliyetci += ks * cevap_katsayisi;
                 break;
             case 7: Ozgun += ks * cevap_katsayisi;
                 break;
@@ -188,7 +187,7 @@ public class KtTestActivity extends AppCompatActivity {
         liste[2] = BasariOdakli;
         liste[3] = Maceraci;
         liste[4] = MeydanOkuyan;
-        liste[5] = Mukemmelmeliyetci;
+        liste[5] = Mukemmeliyetci;
         liste[6] = Ozgun;
         liste[7] = Sorgulayici;
         liste[8] = Yardimsever;

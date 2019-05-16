@@ -70,8 +70,7 @@ public class MtTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mt_test);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
 
         textViewQuestion = findViewById(R.id.mt_text_view_question);
         textViewQuestionCount = findViewById(R.id.mt_text_view_question_count);

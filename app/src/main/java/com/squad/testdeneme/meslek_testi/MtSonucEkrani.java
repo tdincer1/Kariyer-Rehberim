@@ -47,8 +47,7 @@ public class MtSonucEkrani extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mt_sonuc_ekrani);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
 
         sharedPreferences=getSharedPreferences(MAIN_KEY,MODE_PRIVATE);
         editor=sharedPreferences.edit();

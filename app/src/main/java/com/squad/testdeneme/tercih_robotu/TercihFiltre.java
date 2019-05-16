@@ -43,8 +43,7 @@ public class TercihFiltre extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tercih_filtre);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
 
         rangeSeekBar = findViewById(R.id.rangeSeekbar);
         uniEt = findViewById(R.id.uniAramaTv);

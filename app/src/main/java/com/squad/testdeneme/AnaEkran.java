@@ -31,8 +31,7 @@ public class AnaEkran extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ana_ekran);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
         buttonMeslekTesti = findViewById(R.id.button_meslek_start);
         buttonTercihRobotu = findViewById(R.id.button_tercih_start);
         buttonKisilikTesti = findViewById(R.id.button_kisilik_start);

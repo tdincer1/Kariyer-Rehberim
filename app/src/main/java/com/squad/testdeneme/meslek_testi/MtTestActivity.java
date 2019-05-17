@@ -1,7 +1,6 @@
 package com.squad.testdeneme.meslek_testi;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,13 +35,12 @@ public class MtTestActivity extends AppCompatActivity {
     private int questionCountTotal;
     private Question currentQuestion;
 
-    private boolean answered;
-
     private long backPressedTime;
 
     static int bilgisayar;
     static int egitim;
     static int elektronik;
+    static int gastronomi;
     static int harita;
     static int havacilik;
     static int hukuk;
@@ -51,7 +49,6 @@ public class MtTestActivity extends AppCompatActivity {
     static int konser;
     static int makine;
     static int mimarlik;
-    static int gastronomi;
     static int saglik;
     static int spor;
     static int ziraat;
@@ -162,9 +159,7 @@ public class MtTestActivity extends AppCompatActivity {
 
     public static void hesap(int ks, int gId){
 
-        //int denden = checkAnswer().answerNr;
         int cevap_katsayisi = cvp();
-        //int cevap_katsayisi = secim();
 
         switch(gId){
             case 1: bilgisayar = bilgisayar + (ks * cevap_katsayisi);
@@ -173,23 +168,23 @@ public class MtTestActivity extends AppCompatActivity {
                 break;
             case 3: elektronik += ks * cevap_katsayisi;
                 break;
-            case 4: harita += ks * cevap_katsayisi;
+            case 4: gastronomi += ks * cevap_katsayisi;
                 break;
-            case 5: havacilik += ks * cevap_katsayisi;
+            case 5: harita += ks * cevap_katsayisi;
                 break;
-            case 6: hukuk += ks * cevap_katsayisi;
+            case 6: havacilik += ks * cevap_katsayisi;
                 break;
-            case 7: toplum += ks * cevap_katsayisi;
+            case 7: hukuk += ks * cevap_katsayisi;
                 break;
-            case 8: isletme += ks * cevap_katsayisi;
+            case 8: toplum += ks * cevap_katsayisi;
                 break;
-            case 9: konser += ks * cevap_katsayisi;
+            case 9: isletme += ks * cevap_katsayisi;
                 break;
-            case 10: makine += ks * cevap_katsayisi;
+            case 10: konser += ks * cevap_katsayisi;
                 break;
-            case 11: mimarlik += ks * cevap_katsayisi;
+            case 11: makine += ks * cevap_katsayisi;
                 break;
-            case 12: gastronomi += ks * cevap_katsayisi;
+            case 12: mimarlik += ks * cevap_katsayisi;
                 break;
             case 13: saglik += ks * cevap_katsayisi;
                 break;
@@ -228,15 +223,15 @@ public class MtTestActivity extends AppCompatActivity {
         liste[0] = bilgisayar;
         liste[1] = egitim;
         liste[2] = elektronik;
-        liste[3] = harita;
-        liste[4] = havacilik;
-        liste[5] = hukuk;
-        liste[6] = toplum;
-        liste[7] = isletme;
-        liste[8] = konser;
-        liste[9] = makine;
-        liste[10] = mimarlik;
-        liste[11] = gastronomi;
+        liste[3] = gastronomi;
+        liste[4] = harita;
+        liste[5] = havacilik;
+        liste[6] = hukuk;
+        liste[7] = toplum;
+        liste[8] = isletme;
+        liste[9] = konser;
+        liste[10] = makine;
+        liste[11] = mimarlik;
         liste[12] = saglik;
         liste[13] = spor;
         liste[14] = ziraat;
@@ -275,8 +270,6 @@ public class MtTestActivity extends AppCompatActivity {
         ucuncuYuzde = ucuncu*100 / (ilk + ikinci + ucuncu);
         ilkYuzde = 100 - (ikinciYuzde + ucuncuYuzde);
         int dembaba = 0;
-
-
 
     }
 

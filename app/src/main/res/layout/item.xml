@@ -37,20 +37,21 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/konTv"
-                    android:layout_width="50dp"
+                    android:id="@+id/bolumId"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Kontenjan" />
+                    android:paddingTop="@dimen/cardview_compat_inset_shadow"
+                    android:text="bölüm!"
+                    android:paddingLeft="5dp"/>
 
                 <TextView
                     android:id="@+id/fakulteId"
-                    android:layout_width="70dp"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/lnr2"
                     android:layout_weight="1"
-                    android:text="fakulte!" />
-
+                    android:text="fakulte!"
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
@@ -60,29 +61,32 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lnr1"
                 android:orientation="horizontal"
-                android:paddingTop="5dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/bolumId"
+                    android:id="@+id/prTv"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingTop="@dimen/cardview_compat_inset_shadow"
-                    android:text="bölüm!" />
+                    android:text="Program Kodu" />
 
                 <TextView
-                    android:id="@+id/kontenjanId"
-                    android:layout_width="50dp"
+                    android:id="@+id/tabanTv"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="kontSayi!" />
+                    android:text="Taban Puanı"
+                    android:paddingLeft="5dp"/>
 
                 <TextView
-                    android:id="@+id/bolumTuruId"
-                    android:layout_width="70dp"
+                    android:id="@+id/sirTv"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="!bolumturu" />
+                    android:text="Sıralama"
+                    android:paddingLeft="5dp"/>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -90,30 +94,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lnr2"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:paddingTop="5dp">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tabanTv"
+                    android:id="@+id/progKoduId"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Taban Puanı" />
+                    android:text="program!" />
 
                 <TextView
-                    android:id="@+id/sirTv"
-                    android:layout_width="50dp"
+                    android:id="@+id/tabanId"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Sıralama" />
+                    android:text="taban Puani!"
+                    android:paddingLeft="5dp"/>
 
                 <TextView
-                    android:id="@+id/prTv"
-                    android:layout_width="70dp"
+                    android:id="@+id/siralamaId"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Program Kodu" />
+                    android:text="sıralama!"
+                    android:paddingLeft="5dp"/>
+
+
+
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -122,28 +131,31 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lnr3"
                 android:orientation="horizontal"
-                android:paddingTop="5dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/tabanId"
+                    android:id="@+id/bolumTuruId"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="taban Puani!" />
+                    android:text="!bolumturu" />
+
 
                 <TextView
-                    android:id="@+id/siralamaId"
-                    android:layout_width="50dp"
+                    android:id="@+id/dilID"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="sıralama!" />
+                    android:text="dil!"
+                    android:paddingLeft="5dp"/>
 
                 <TextView
-                    android:id="@+id/progKoduId"
-                    android:layout_width="70dp"
+                    android:id="@+id/konTv"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="program!" />
+                    android:text="Kontenjan"
+                    android:paddingLeft="5dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -163,17 +175,19 @@
 
                 <TextView
                     android:id="@+id/sehirId"
-                    android:layout_width="50dp"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="!sehir" />
+                    android:text="!sehir"
+                    android:paddingLeft="5dp"/>
 
                 <TextView
-                    android:id="@+id/dilID"
-                    android:layout_width="70dp"
+                    android:id="@+id/kontenjanId"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="dil!" />
+                    android:text="kontSayi!"
+                    android:paddingLeft="5dp"/>
             </LinearLayout>
         </RelativeLayout>
 

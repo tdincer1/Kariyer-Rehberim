@@ -35,7 +35,6 @@ public class KtTestActivity extends AppCompatActivity {
     private int questionCountTotal;
     private Question currentQuestion;
 
-    private boolean answered;
 
     private long backPressedTime;
 
@@ -78,16 +77,11 @@ public class KtTestActivity extends AppCompatActivity {
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!answered)
-                {
-                    if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked() || rb5.isChecked()){
-                        checkAnswer();
-                    }else{
-                        Toast.makeText(KtTestActivity.this, "Lütfen seçim yapın", Toast.LENGTH_SHORT).show();
-                    }
+
+                if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked() || rb5.isChecked()){
+                    checkAnswer();
                 }else{
-                    KisilikDB.getINSTANCE(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());
-                    showNextQuestion();
+                    Toast.makeText(KtTestActivity.this, "Lütfen seçim yapın", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -106,25 +100,26 @@ public class KtTestActivity extends AppCompatActivity {
 
             questionCounter++;
             textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
-            answered = false;
-            buttonConfirmNext.setText("Cevabı Onayla");
+
+            if (questionCounter < questionCountTotal){
+                buttonConfirmNext.setText("Sıradaki soru");
+            }else {
+                buttonConfirmNext.setText("Testi bitir");
+            }
         }else {     //Bu noktada kisilikler karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
             finishQuiz();
         }
     }
 
     public void  checkAnswer(){                         //Secilen sikkin katsayiyla carpimi burada mı olacak?
-        answered = true;
+
 
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //secilenin id'yi al
         cevapNo = rbGroup.indexOfChild(rbSelected);        //secilen id'yi cevapNo'de tut
-        //youtube dk 9.30 link:(tlgrX3HF6AI)
 
-        if (questionCounter < questionCountTotal){
-            buttonConfirmNext.setText("Sıradaki soru");
-        }else {
-            buttonConfirmNext.setText("Testi bitir");
-        }
+
+        KisilikDB.getINSTANCE(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());
+        showNextQuestion();
     }
 
     public static int cvp(){

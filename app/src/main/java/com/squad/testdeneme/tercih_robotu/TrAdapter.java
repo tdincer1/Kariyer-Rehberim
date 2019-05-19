@@ -15,6 +15,8 @@ import java.util.List;
 
 public class TrAdapter extends RecyclerView.Adapter<TrAdapter.TrViewHolder>{
 
+    //DB'den gelen verilerin adapter'e yerlestirildigi class
+
     private Context mCtx;
     private List<Bilgi> bilgiList;
 

@@ -1,9 +1,10 @@
 package com.squad.testdeneme;
 
 
-public class Question {
-    private String question;
+public class Question {     //Kisilik ve Meslek testimize, veritabanindan sorulari cekerken
+                            //bu nesnemizi kullanıyoruz.
 
+    private String question;
     private int soru_id;
 
     public Question (){}

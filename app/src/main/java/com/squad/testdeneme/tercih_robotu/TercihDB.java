@@ -10,7 +10,7 @@ import com.squad.testdeneme.MySQLiteHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TercihDB {
+public class TercihDB {                     //Tercih Robotumuzun veritabani erisim sayfasi
     private static TercihDB INSTANCE;
     private static Context context;
 
@@ -43,30 +43,30 @@ public class TercihDB {
         database.close();
     }
 
-    public List<Bilgi> verileriCek(){           //Veritabanından
+    public List<Bilgi> verileriCek(){           //Veritabanından tum verileri ceken metod
         List<Bilgi> bilgiList = new ArrayList<>();
 
-
+        //Sqlite sorgumuzu tanımladık.
         String sorguTr = "SELECT * FROM tr_bolum b " +
                 "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
                 "INNER JOIN tr_universite u ON f.uni_id = u.uni_id";
-        //String sorguTr = "SELECT * FROM tr_bolum";
         Bilgi bilgi;
-        openDB();
+        openDB();   //Veritabani baglanti ac
 
         //TODO: ORDER KONTROL ET
         sorguTr = sorguTr + " ORDER BY CAST(taban_puani AS INTEGER) DESC";
-        //sorguTr = "SELECT * FROM (" + sorguTr + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+
+
+        //Cursor yardımıyla db'den verileri alıp Question nesnemize yazıyoruz
         Cursor cTr = database.rawQuery(sorguTr, null);
 
-        //rawQuery yerine query kullanip filtreleme kolaylastırabilir
         if (cTr!=null && cTr.getCount()!=0)
         {
             while (cTr.moveToNext())
             {
+                //gelen veriyi bilgi nesnesine yaz(set et).
                 bilgi = new Bilgi();
 
-                //TODO: taban puani string alinirsa sayiya gore siralama sikinti, sayi alinirsa "dolmadi"lar 0 geliyor.
                 bilgi.setPr_kodu(cTr.getInt(cTr.getColumnIndex("bolum_id")));
                 bilgi.setBolum(cTr.getString(cTr.getColumnIndex("bolum_adi")));
                 bilgi.setDil(cTr.getString(cTr.getColumnIndex("dil")));
@@ -79,36 +79,43 @@ public class TercihDB {
                 bilgi.setFakulte(cTr.getString(cTr.getColumnIndex("fakulte_adi")));
                 bilgi.setPuan_turu(cTr.getString(cTr.getColumnIndex("puan_turu")));
 
-                bilgiList.add(bilgi);
+                bilgiList.add(bilgi);       //cekilen verileri arrayliste koy
             }
         }
-        closeDB();
-        return bilgiList;
+        closeDB();                          //islem bitince veritabanini kapat.
+        return bilgiList;                   //array listesini dondur
     }
 
-    public List<Bilgi> filtreCek(String[] deneme, int MaxPuan, int MinPuan){
+    public List<Bilgi> filtreCek(Bilgi bilgiAl){
+
+        //TercihFiltre sayfasinda filtreleme yaptigimizda verileri, veritabanindan ceken metodumuz
+
         List<Bilgi> filtreList = new ArrayList<>();
 
-        String universite = deneme[0];
-        String bolum = deneme[1];
-        String sehir = deneme[2];
-        String siralamaMax = deneme[3];
-        String siralamaMin = deneme[4];
-        String bolumTuru = deneme[5];
-        String puanTuru = deneme[6];
+        //Öncelikle, metodumuza yollanan nesneden, filtre verilerimizi alalım.
+        String universite = bilgiAl.getUniversite();
+        String bolum = bilgiAl.getBolum();
+        String sehir = bilgiAl.getSehir();
+        String siralamaMax = bilgiAl.getMaxSiralama();
+        String siralamaMin = bilgiAl.getMinSiralama();
+        String bolumTuru = bilgiAl.getBolum_turu();
+        String puanTuru = bilgiAl.getPuan_turu();
+        int MaxPuan = bilgiAl.getMaxPuan();
+        int MinPuan = bilgiAl.getMinPuan();
 
-
+        //Sqlite sorgumuzu tanımladık.
         String queryy = "SELECT * FROM tr_bolum b " +
                 "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
                 "INNER JOIN tr_universite u ON f.uni_id = u.uni_id";
 
 
 
+        //Filtreleme kisimlari dolduruldugunda veritabanı sorgumuza eklemeler yapılan kisim
         if (MaxPuan!=0 && MinPuan!=0) queryy += " WHERE taban_puani BETWEEN " + MinPuan + " AND " + MaxPuan;
         else if (MaxPuan!=0 && MinPuan==0) queryy += " WHERE taban_puani NOT BETWEEN " + MaxPuan + " AND 600" ;
         else queryy += " WHERE bolum_id > 0";
 
-        if(universite.length()!=0) {
+        if(universite.length()!=0) {    //eger uni kismi doldurulduysa asagidakini ekleme yap
             queryy += " AND uni_adi LIKE '%" + universite + "%'";
         }
         if(bolum.length()!=0) {
@@ -117,7 +124,7 @@ public class TercihDB {
         if(sehir.length()!=0) {
             queryy += " AND il_adi LIKE '%" + sehir + "%'";
         }
-        if(bolumTuru.length()!=0 && bolumTuru.length()!=4) {    //length=4 cunku spinnerdan tumu 4 uzunlugunda geliyo
+        if(bolumTuru.length()!=0 && bolumTuru.length()!=4) {    //length=4 cunku spinnerdan "tümü" 4 uzunlugunda geliyo
             queryy += " AND bolum_turu = '" + bolumTuru + "'";
         }
         if(puanTuru.length()!=0 && puanTuru.length()!=4) {
@@ -127,26 +134,26 @@ public class TercihDB {
         else if ( (siralamaMax.length()==0)&& (siralamaMin.length()!=0) ) queryy += " AND basari_sirasi > " + siralamaMin;
         else if ( (siralamaMax.length()!=0) && (siralamaMin.length()==0) ) queryy += " AND basari_sirasi < " + siralamaMax;
 
-        //queryy = "SELECT * FROM (" + queryy + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
-        queryy = queryy + " ORDER BY CAST(taban_puani AS INTEGER) DESC";
-        // querry += " ORDER BY taban_puani DESC"
 
-        String qq = "SELECT * FROM tr_bolum b INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id INNER JOIN tr_universite u ON f.uni_id = u.uni_id WHERE taban_puani BETWEEN 500 AND 600";
-        openDB();
+
+        //queryy = "SELECT * FROM (" + queryy + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+        //ORDER BY metoduyla sorgumuzu taban puanına gore buyukten kucuge dogru siraliyoruz
+        queryy = queryy + " ORDER BY CAST(taban_puani AS INTEGER) DESC";
+
+
+        openDB();       //Veritabani baglanti ac
         Bilgi bilgi;
 
+        //Cursor yardımıyla db'den verileri alıp bilgi nesnemize yazıyoruz
         Cursor crs = database.rawQuery(queryy, null);
-
-        //rawQuery yerine query kullanip filtreleme kolaylastırabilir
-
 
         if (crs!=null && crs.getCount()!=0)
         {
             while (crs.moveToNext())
             {
+                //gelen veriyi bilgi nesnesine yaz(set et).
                 bilgi = new Bilgi();
 
-                //TODO: taban puani string alinirsa sayiya gore siralama sikinti, sayi alinirsa "dolmadi"lar 0 geliyor.
                 bilgi.setPr_kodu(crs.getInt(crs.getColumnIndex("bolum_id")));
                 bilgi.setBolum(crs.getString(crs.getColumnIndex("bolum_adi")));
                 bilgi.setDil(crs.getString(crs.getColumnIndex("dil")));
@@ -159,19 +166,21 @@ public class TercihDB {
                 bilgi.setFakulte(crs.getString(crs.getColumnIndex("fakulte_adi")));
                 bilgi.setPuan_turu(crs.getString(crs.getColumnIndex("puan_turu")));
 
-                filtreList.add(bilgi);
+                filtreList.add(bilgi);                  //cekilen verileri arrayliste koy
             }
-            //if(filtreList.size(0)==) return hata kodu??
         }
-        closeDB();
-        
+        closeDB();                  //islem bitince veritabanini kapat.
 
-        return filtreList;
+        return filtreList;          //array listesini dondur
     }
 
     public List<Bilgi> meslekListeCek(String meslek){
+        //Meslek Testinde meslege tiklandiginda bu metod veritabanından o meslege
+        // ait tercih robotu verilerini cekiyor.
+
         List<Bilgi> meslekListe = new ArrayList<>();
 
+        //Test sonucunda basılan bazı mesleklere ozel db sorgusuna eklemeler yapiliyor.
         String sorguSade = "SELECT * FROM tr_bolum b " +
                 "INNER JOIN tr_fakulte f ON b.fakulte_id = f.fakulte_id " +
                 "INNER JOIN tr_universite u ON f.uni_id = u.uni_id " +
@@ -182,12 +191,19 @@ public class TercihDB {
                 "INNER JOIN tr_universite u ON f.uni_id = u.uni_id " +
                 "WHERE bolum_adi = '" + meslek + "'";
 
-        if ("Eğitim Fakültesi".equalsIgnoreCase(meslek)){          //"Eğitim Fakültesi" == meslek
+
+
+        //LIKE ve IN sorgulariyla tiklanan bazi mesleklere gore sorgumuza eklemeler yapıyoruz
+
+        if ("Eğitim Fakültesi".equalsIgnoreCase(meslek)){ //Egitim fakultesine tiklanirsa tum ogretmenlikleri ara
+
             meslek = " LIKE '%Öğretmenliği%'";
             meslekSorgu = sorguSade + meslek;
-        }else if ("Temel Bilimler".equalsIgnoreCase(meslek)){
+
+        }else if ("Temel Bilimler".equalsIgnoreCase(meslek)){   //Temel Bilimlere tiklanirsa asagidakileri ara
             meslek = " IN ('Fizik','Kimya','Matematik','Biyoloji')";
             meslekSorgu = sorguSade + meslek;
+
         }else if ("Dil ve Edebiyat Bölümleri".equalsIgnoreCase(meslek)){
             meslek = " LIKE '%Dili ve Edebiyatı%'";
             meslekSorgu = sorguSade + meslek;
@@ -205,12 +221,16 @@ public class TercihDB {
             meslekSorgu = sorguSade + meslek;
         }
 
+
         //meslekSorgu = "SELECT * FROM (" + meslekSorgu + " ORDER BY bolum_adi ASC) ORDER BY uni_adi ASC";
+        //ORDER BY metoduyla sorgumuzu taban puanına gore buyukten kucuge dogru siraliyoruz
         meslekSorgu = meslekSorgu + " ORDER BY CAST(taban_puani AS INTEGER) DESC";
 
 
         Bilgi bilgi;
         openDB();
+
+
         Cursor ccc = database.rawQuery(meslekSorgu, null);
         if (ccc!=null && ccc.getCount()!=0)
         {
@@ -218,7 +238,6 @@ public class TercihDB {
             {
                 bilgi = new Bilgi();
 
-                //TODO: taban puani string alinirsa sayiya gore siralama sikinti, sayi alinirsa "dolmadi"lar 0 geliyor.
                 bilgi.setPr_kodu(ccc.getInt(ccc.getColumnIndex("bolum_id")));
                 bilgi.setBolum(ccc.getString(ccc.getColumnIndex("bolum_adi")));
                 bilgi.setDil(ccc.getString(ccc.getColumnIndex("dil")));
@@ -239,13 +258,15 @@ public class TercihDB {
         return meslekListe;
     }
 
-    public String[] bolumCek(){
+    public String[] bolumCek(){     //Filtreleme ekranimizda bolum kutucuguna yazilani tamamlama ve
+        // tahmin ozelligi saglamak amaciyla tum bolumleri veritabanından cekiyoruz.
+
         String sorguBolum = "SELECT DISTINCT bolum_adi FROM tr_bolum ORDER BY bolum_adi ASC";
         int b = 0;
         openDB();
 
         Cursor cc = database.rawQuery(sorguBolum, null);
-        String[] bolum = new String[cc.getCount()];
+        String[] bolum = new String[cc.getCount()];     //bolum listesi olustur
         if (cc!=null && cc.getCount()!=0)
         {
             while (cc.moveToNext())
@@ -254,11 +275,13 @@ public class TercihDB {
                 b++;
             }
         }
-
-        return bolum;
+        closeDB();
+        return bolum;       //listeyi dondur
     }
 
-    public String[] uniCek(){
+    public String[] uniCek(){   //Filtreleme ekranimizda universite kutucuguna yazilani tamamlama ve
+        // tahmin ozelligi saglamak amaciyla tum universiteleri veritabanından cekiyoruz.
+
         String sorguUni = "SELECT * FROM tr_universite ORDER BY uni_adi ASC";
         int u = 0;
         openDB();
@@ -274,10 +297,13 @@ public class TercihDB {
                 u++;
             }
         }
+        closeDB();
         return universite;
     }
 
-    public String[] sehirCek(){
+    public String[] sehirCek(){     //Filtreleme ekranimizda sehir kutucuguna yazilani tamamlama ve
+        // tahmin ozelligi saglamak amaciyla tum sehirleri veritabanından cekiyoruz.
+
         String sorguSehir = "SELECT DISTINCT il_adi FROM tr_universite ORDER BY il_adi ASC";
         int s = 0;
         openDB();
@@ -293,6 +319,7 @@ public class TercihDB {
                 s++;
             }
         }
+        closeDB();
         return sehir;
     }
     

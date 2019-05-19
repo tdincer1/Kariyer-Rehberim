@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kariyer Rehberim</string>
+    <string name="app_name" translatable="false">Kariyer Rehberim</string>
 
     <string-array name="puan_turu">
         <item>Tümü</item>
@@ -19,4 +19,7 @@
         <item>%25 Burslu</item>
         <item>Ücretli</item>
     </string-array>
+
+    <string name="MeslekSonucBaslik" translatable="false">MESLEK GRUPLARINA OLAN YATKINLIKLARINIZ</string>
+    <string name="KisilikSonucBaslik" translatable="false">MESLEK GRUPLARINA OLAN YATKINLIKLARINIZ</string>
 </resources>

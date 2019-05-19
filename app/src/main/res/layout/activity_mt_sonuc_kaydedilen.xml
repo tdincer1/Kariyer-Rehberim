@@ -25,8 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:paddingTop="10dp"
-            android:text="MESLEK GRUPLARINA OLAN YATKINLIKLARINIZ,,"
+            android:text="@string/MeslekSonucBaslik"
             android:textColor="@color/colorAccent"
             android:textSize="28sp" />
 
@@ -35,7 +36,7 @@
             android:id="@+id/lvExp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp">
+            android:layout_marginTop="25dp">
 
         </ExpandableListView>
 

@@ -17,16 +17,12 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class MtTestActivity extends AppCompatActivity {
+public class MtTestActivity extends AppCompatActivity {     //Meslek testimizin oldugu sayfa
 
     private TextView textViewQuestion;
     private TextView textViewQuestionCount;
     private RadioGroup rbGroup;
-    private RadioButton rb1;
-    private RadioButton rb2;
-    private RadioButton rb3;
-    private RadioButton rb4;
-    private RadioButton rb5;
+    private RadioButton rb1, rb2, rb3, rb4, rb5;
     private Button buttonConfirmNext;
 
     private List<Question> questionList;
@@ -37,30 +33,15 @@ public class MtTestActivity extends AppCompatActivity {
 
     private long backPressedTime;
 
-    static int bilgisayar;
-    static int egitim;
-    static int elektronik;
-    static int gastronomi;
-    static int harita;
-    static int havacilik;
-    static int hukuk;
-    static int toplum;
-    static int isletme;
-    static int konser;
-    static int makine;
-    static int mimarlik;
-    static int saglik;
-    static int spor;
-    static int ziraat;
+    //grup puanlarini hesaplamak uzere tanimlanan degiskenler
+    static int bilgisayar, egitim, elektronik, gastronomi, harita, havacilik, hukuk, toplum;
+    static int isletme, konser, makine, mimarlik, saglik, spor, ziraat;
 
     static int answerNr;
 
-    static int ilkGrupId;
-    static int ikinciGrupId;
-    static int ucuncuGrupId;
-    static int ilkYuzde;
-    static int ikinciYuzde;
-    static int ucuncuYuzde;
+    static int ilkGrupId, ikinciGrupId, ucuncuGrupId;
+
+    static int ilkYuzde, ikinciYuzde, ucuncuYuzde;
 
 
     @Override
@@ -68,7 +49,7 @@ public class MtTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mt_test);
 
-
+        //Arayuzle olan baglantilar
         textViewQuestion = findViewById(R.id.mt_text_view_question);
         textViewQuestionCount = findViewById(R.id.mt_text_view_question_count);
         rbGroup = findViewById(R.id.mt_radio_group);
@@ -79,22 +60,21 @@ public class MtTestActivity extends AppCompatActivity {
         rb5 = findViewById(R.id.mt_radio_button5);
         buttonConfirmNext = findViewById(R.id.mt_button_confirm_next);
 
-        questionList = MeslekDB.getInstance(getApplicationContext()).getAllQuestions();     //listeye yerlestirme
+        //Veritabanından soruları cek ve listeye yerlestir
+        questionList = MeslekDB.getInstance(getApplicationContext()).getAllQuestions();
         questionCountTotal = questionList.size();           //toplam soru bulma
         Collections.shuffle(questionList);                  //soru listesini karisik listeleme
 
 
-
         showNextQuestion();                                 //siradaki soruya gec
 
+        //Secim yapildiysa cevabı kontrol et. Yapilmadiysa uyari ver.
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked() || rb5.isChecked()){
-                    checkAnswer();          //opsiyonel ama secilen_sık * katsayida kullanabiliriz. Bunu kaldırırsan
-                    //answered = true; yapmak lazım
-                    //katsayiHesapDB(currentQuestion.getSoru_id());                TODO: Buraya da konulabilir
+                    checkAnswer();
                 }else{
                     Toast.makeText(MtTestActivity.this, "Lütfen seçim yapın", Toast.LENGTH_SHORT).show();
                 }
@@ -107,37 +87,42 @@ public class MtTestActivity extends AppCompatActivity {
         rbGroup.clearCheck();                               //şık secimini temizle
 
 
-        if (questionCounter < questionCountTotal)
+        if (questionCounter < questionCountTotal)   //Eger testimiz bitmediyse
         {
+
+            //bulundugumuz soruyu Question nesnesine yerlestir.
             currentQuestion = questionList.get(questionCounter);
 
-            textViewQuestion.setText(currentQuestion.getQuestion());
+            textViewQuestion.setText(currentQuestion.getQuestion());    //soruyu texte yerlestir
 
-            questionCounter++;
-            textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
+            questionCounter++;//soru sayacini arttir
 
-            if (questionCounter < questionCountTotal){
+            //Bulundugumuz sorunun sayisini sayaca yerlestir.
+            textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);
+
+            if (questionCounter < questionCountTotal){  //buton ismini duruma gore ayarla
                 buttonConfirmNext.setText("Sıradaki soru");
             }else {
                 buttonConfirmNext.setText("Testi bitir");
             }
-        }else {     //TODO: Bu noktada gruplar karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
+        }else {     //Bu noktada kisilikler karşılaştırılır ve sonuc sayfasına basmak uzere test sona erer.
             finishQuiz();
         }
     }
 
-    public void  checkAnswer(){                         //Secilen sikkin katsayiyla carpimi burada mı olacak?
+    public void  checkAnswer(){     //Secilen şıkkın id'sini al ve katsayi hesabi yap.
 
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //secilenin id'yi al
         answerNr = rbGroup.indexOfChild(rbSelected);        //secilen id'yi answerNr'de tut
 
+        //mevcut sorunun id'sini, gruplara ait kaysayiyi cekecek olan katsayiHesapDB metoduna yolla
         MeslekDB.getInstance(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());
-        showNextQuestion();
+        showNextQuestion();     //siradaki soruya gec
 
     }
 
 
-    public static int cvp(){
+    public static int cvp(){   //secilen şıkka gore cevap katsayisi dondur.
 
         int cvp_katsayi = 0;
         switch (answerNr){
@@ -157,40 +142,40 @@ public class MtTestActivity extends AppCompatActivity {
     }
 
 
-    public static void hesap(int ks, int gId){
+    public static void hesap(int soruKatsayisi, int grupId){  //Gruplara ait katsayilari hesaplama
 
-        int cevap_katsayisi = cvp();
+        int cevap_katsayisi = cvp();    //şık katsayisini cek
 
-        switch(gId){
-            case 1: bilgisayar = bilgisayar + (ks * cevap_katsayisi);
+        switch(grupId){    //Grup Id'ye gore soru ve şık katsayasilarini toplam kişilik puanina ekle.
+            case 1: bilgisayar = bilgisayar + (soruKatsayisi * cevap_katsayisi);
                 break;
-            case 2: egitim += ks * cevap_katsayisi;
+            case 2: egitim += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 3: elektronik += ks * cevap_katsayisi;
+            case 3: elektronik += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 4: gastronomi += ks * cevap_katsayisi;
+            case 4: gastronomi += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 5: harita += ks * cevap_katsayisi;
+            case 5: harita += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 6: havacilik += ks * cevap_katsayisi;
+            case 6: havacilik += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 7: hukuk += ks * cevap_katsayisi;
+            case 7: hukuk += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 8: toplum += ks * cevap_katsayisi;
+            case 8: toplum += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 9: isletme += ks * cevap_katsayisi;
+            case 9: isletme += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 10: konser += ks * cevap_katsayisi;
+            case 10: konser += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 11: makine += ks * cevap_katsayisi;
+            case 11: makine += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 12: mimarlik += ks * cevap_katsayisi;
+            case 12: mimarlik += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 13: saglik += ks * cevap_katsayisi;
+            case 13: saglik += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 14: spor += ks * cevap_katsayisi;
+            case 14: spor += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 15: ziraat += ks * cevap_katsayisi;
+            case 15: ziraat += soruKatsayisi * cevap_katsayisi;
                 break;
         }
 
@@ -198,25 +183,16 @@ public class MtTestActivity extends AppCompatActivity {
 
     }
 
-    private void finishQuiz() { //TODO: finish metodu yerine intentle sonuc sayfasina gecis
-                                //ayrica gecisten once grup puanlarını karsılastıran metodu calıstır
-        grupPuani();
+    private void finishQuiz() { //gecisten once kisilik puanlarını karsılastıran metodu calıstırıyor
+
+        grupPuani();    //En yuksek puan alan ilk 3 grubu hesapla
+
+        //Sonuc sayfasina gec
         Intent intent = new Intent(MtTestActivity.this, MtSonucEkrani.class);
         startActivity(intent);
     }
 
-    @Override
-    public void onBackPressed() {           //2sn icinde iki defa geri basarsa cik yoksa teste devam
-        if (backPressedTime + 2000 > System.currentTimeMillis()){
-            finish();   //TODO: sonuc sayfasina gecis tamamlandiginda, bunu finish metoduna dondur
-        }else {
-            Toast.makeText(this, "Çıkmak için tekrar geriye basın", Toast.LENGTH_SHORT).show();
-        }
-
-        backPressedTime = System.currentTimeMillis();
-    }
-
-    public void grupPuani(){    //TODO: ilk 3 sec. Puan yüzde hesapla. DB'den o grupların meslegini cek.
+    public void grupPuani(){    //En yuksek puan alan ilk 3 grubu ve yuzdelerini hesapla
 
         int[] liste = new int[15];
 
@@ -244,9 +220,10 @@ public class MtTestActivity extends AppCompatActivity {
         ikinciGrupId = 0;
         ucuncuGrupId = 0;
 
-
+        //Ilk 3 grubu liste dizisinde ara ve idlerini kaydet.
         for(int i=0; i<liste.length; i++ ){
-            if (liste[i]>ilk){
+            if (liste[i]>ilk)
+            {
                 ucuncu = ikinci;
                 ucuncuGrupId = ikinciGrupId;
                 ikinci = ilk;
@@ -254,18 +231,21 @@ public class MtTestActivity extends AppCompatActivity {
                 ilk = liste[i];
                 ilkGrupId = i+1;
             }
-            else if (liste[i]> ikinci && liste[i] <= ilk) {
+            else if (liste[i]> ikinci && liste[i] <= ilk)
+            {
                 ucuncu = ikinci;
                 ucuncuGrupId = ikinciGrupId;
                 ikinci = liste[i];
                 ikinciGrupId = (i+1);
             }
-            else if (liste[i]> ucuncu && liste[i] <= ikinci){
+            else if (liste[i]> ucuncu && liste[i] <= ikinci)
+            {
                 ucuncu=liste[i];
                 ucuncuGrupId = i+1;
             }
         }
 
+        //Yuzdeleri hesapla.
         ikinciYuzde = ikinci*100 / (ilk + ikinci + ucuncu);
         ucuncuYuzde = ucuncu*100 / (ilk + ikinci + ucuncu);
         ilkYuzde = 100 - (ikinciYuzde + ucuncuYuzde);
@@ -273,4 +253,14 @@ public class MtTestActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {           //2sn icinde iki defa geri basarsa cik yoksa teste devam
+        if (backPressedTime + 2000 > System.currentTimeMillis()){
+            finish();   //TODO: sonuc sayfasina gecis tamamlandiginda, bunu finish metoduna dondur
+        }else {
+            Toast.makeText(this, "Çıkmak için tekrar geriye basın", Toast.LENGTH_SHORT).show();
+        }
+
+        backPressedTime = System.currentTimeMillis();
+    }
 }

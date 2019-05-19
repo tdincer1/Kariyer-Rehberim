@@ -12,10 +12,11 @@ import com.squad.testdeneme.R;
 
 import java.util.List;
 
-public class TercihRobotu extends AppCompatActivity {
+public class TercihRobotu extends AppCompatActivity { //Tercih Robotu sonuclarinin listelendigi ekran
+    //Bu ekranda RecyclerView, adapter ve Cardview ozelliklerini kullanarak sonuclari listeliyoruz.
 
     List<Bilgi> bilgiList;
-    List<Bilgi> denemeList;
+    List<Bilgi> filtrelemeList;
     List<Bilgi> meslekList;
     RecyclerView recyclerView;
     TrAdapter adapter;
@@ -31,74 +32,80 @@ public class TercihRobotu extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Bu kosullar, sayfa gecisi(intent) verilerine gore farklı islem yapmaya ve ona gore
+        // farklı verileri ekrana basmaya yariyor.
         if(savedInstanceState == null)
         {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null)
+            Bundle extras = getIntent().getExtras();    //Intent metoduna yerlesen extra degerlerini al
+            if (extras == null)     //Extra kismi boş ise eger tum tercih robotu verilerini cek
             {
-                //Extra bundle is null
+                //tum verileri db'den verileriCek metoduyla cekip bilgiList'e al.
                 bilgiList = TercihDB.getInstance(getApplicationContext()).verileriCek();
-                int listeBoyut = bilgiList.size();
-
+                //bilgiList'tekileri adapter'e ve recycler view'a yerlestir.
                 adapter = new TrAdapter(this, bilgiList);
                 recyclerView.setAdapter(adapter);
 
-            }else{  // else if(String "filtrelemeYap" == extras.getString("filtrele"))
-                String method = extras.getString("filtrele");
-                String meslekMethod = extras.getString("meslekSec");
-                //"filtrelemeYap"
-                //method.equals("filtrelemeYap")
-                if ("filtrelemeYap".equals(method))
+            }else{  //Bu sayfaya gecis yaparken eger onceki sayfa putExtra metoduyla veri yolladiysa
+                    //bu kosulu calistir.
+
+                String method = extras.getString("filtrele");   //TercihFiltre'den gelen degeri al
+                String meslekMethod = extras.getString("meslekSec"); //MtSonucEkranindan gelen degeri al
+
+
+                if ("filtrelemeYap".equals(method))  //Eger TercihFiltre sayfasindan buraya gecildiyse
                 {
-                    //Call method here!
+
+                    //TercihFiltre sayfasinda, intent extra icine koyulan filtreleme verilerini al.
                     Intent intent = getIntent();
 
+                    Bilgi bilgiYolla = new Bilgi();
 
-                    String uni = intent.getStringExtra("universite");
-                    String bolum = intent.getStringExtra("bolum");
-                    String sehir = intent.getStringExtra("sehir");
-                    int maximumPuan = intent.getIntExtra("maximum_puan",0);
-                    int minimumPuan = intent.getIntExtra("minimum_puan",0);
-                    String siralamaMax = intent.getStringExtra("siralamaMax");
-                    String siralamaMin = intent.getStringExtra("siralamaMin");
-                    String bolumTuru = intent.getStringExtra("bolum_turu");
-                    String puanTuru = intent.getStringExtra("puan_turu");
+                    bilgiYolla.setUniversite(intent.getStringExtra("universite"));
+                    bilgiYolla.setBolum(intent.getStringExtra("bolum"));
+                    bilgiYolla.setSehir(intent.getStringExtra("sehir"));
+                    bilgiYolla.setMaxPuan(intent.getIntExtra("maximum_puan", 0));
+                    bilgiYolla.setMinPuan(intent.getIntExtra("minimum_puan", 0));
+                    bilgiYolla.setMaxSiralama(intent.getStringExtra("siralamaMax"));
+                    bilgiYolla.setMinSiralama(intent.getStringExtra("siralamaMin"));
+                    bilgiYolla.setBolum_turu(intent.getStringExtra("bolum_turu"));
+                    bilgiYolla.setPuan_turu(intent.getStringExtra("puan_turu"));
 
-                    String[] yolla = {uni, bolum, sehir, siralamaMax, siralamaMin, bolumTuru, puanTuru};
+                    //filtreCek metoduna degerleri yerlestir. Devaminda veritabanindan donen verileri filtrelemeList'e yerlestir
+                    filtrelemeList = TercihDB.getInstance(getApplicationContext()).filtreCek(bilgiYolla);
+                    int listeBoyut = filtrelemeList.size();
 
 
-                    denemeList = TercihDB.getInstance(getApplicationContext()).filtreCek(yolla, maximumPuan, minimumPuan);
-                    int listeBoyut = denemeList.size();
-
+                    //Liste boşsa, yani filtreleme degerlerine gore sonuc bulunamadıysa, uyarı bas;
+                    // Doluysa filtrelemeList'tekileri adapter'e ve recycler view'a yerlestir.
                     if (listeBoyut==0){     //Liste boşsa sonuc bulunamadı bas, doluysa listeyi yükle
                         uyariTv.setText("Aranan kriterlere uygun sonuç bulunamadı");
                         uyariTv.getLayoutParams().height = RecyclerView.LayoutParams.WRAP_CONTENT;
                         uyariTv.setVisibility(View.VISIBLE);
-
                     }else{
-                        adapter = new TrAdapter(this, denemeList);
+                        adapter = new TrAdapter(this, filtrelemeList);
                         recyclerView.setAdapter(adapter);
                     }
-
-
                 }
-                else if ("meslekSecimi".equals(meslekMethod))   // once oncreate'e koy gerekirse
+                else if ("meslekSecimi".equals(meslekMethod))   //Eger Meslek sonuc sayfasindan buraya gecildiyse
                 {
                     Intent in = getIntent();
 
+                    //Meslek sonucu sayfasindan, intent extra icine koyulup yollanan meslegi secilenMeslek'e al.
                     String secilenMeslek = in.getStringExtra("secilen_meslek");
 
-                    //String secilenMeslek = MtSonucEkrani.secilen;
-
+                    //meslekListeCek metoduna secilen meslegi yerlestir.
+                    // Devaminda veritabanindan donen verileri meslekList'e yerlestir.
                     meslekList = TercihDB.getInstance(getApplicationContext()).meslekListeCek(secilenMeslek);
                     int meslekListBoyut = meslekList.size();
 
-                    if (meslekListBoyut==0){    //Liste boşsa sonuc bulunamadı bas, doluysa listeyi yükle
-                        uyariTv.setText("Aranan kriterlere uygun sonuç bulunamadı");
+                    //Liste boşsa, yani tercih robotunda secilen meslege gore veri bulunamadıysa, uyarı bas;
+                    // Liste doluysa, filtrelemeList'tekileri adapter'e ve recycler view'a yerlestir.
+                    if (meslekListBoyut==0){
+                        uyariTv.setText("Tercih robotunda, secilen mesleğe ait veri bulunamadı");
                         uyariTv.getLayoutParams().height = RecyclerView.LayoutParams.WRAP_CONTENT;
                         uyariTv.setVisibility(View.VISIBLE);
                         uyariTv.requestLayout();
-                    }else{      //arayuz hata verirse if'in icine de else'in icindekileri koy
+                    }else{
                         adapter = new TrAdapter(this, meslekList);
                         recyclerView.setAdapter(adapter);
                     }

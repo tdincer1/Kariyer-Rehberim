@@ -47,31 +47,34 @@ public class MeslekDB {
         database.close();
     }
 
-    public List<Question> getAllQuestions(){    //Tablo ismini String olarak alarak iki test icin de calisir
+    public List<Question> getAllQuestions(){    //Meslek testimizin sorularini db'den ceken method
         List<Question> questionList = new ArrayList<>();
 
-        openDB();
-        String sqlQuestion = "SELECT * FROM mt_soru";
+        openDB();   //Veritabani baglanti ac
+        String sqlQuestion = "SELECT * FROM mt_soru";   //Sqlite sorgumuzu tanımladık.
         Question question;
 
+
+        //Cursor yardımıyla db'den verileri alıp question nesnemize yazıyoruz
         Cursor c = database.rawQuery(sqlQuestion, null);
         if (c!=null && c.getCount()!=0)
         {
-            // baslikIdUc.moveToFirst();
             while (c.moveToNext())
             {
+                //gelen veriyi question nesnesine yaz(set et).
                 question = new Question();
+
                 question.setQuestion(c.getString(c.getColumnIndex("soru_detay")));
                 question.setSoru_id(c.getInt(c.getColumnIndex("soru_id")));
 
                 questionList.add(question);                         //cekilen verileri arrayliste koy
             }
         }
-        closeDB();
-        return questionList;
+        closeDB();                  //islem bitince veritabanini kapat.
+        return questionList;        //soru array listesini dondur
     }
 
-    public void katsayiHesapDB (int soruId){ //grup_id, kisilik_id farkı ortak kullanımda sıkıntı
+    public void katsayiHesapDB (int soruId){ //Meslek Testimizdeki soruların katsayilarini veritabanından çeker.
 
         String sql = "SELECT * FROM mt_sorumeslek WHERE soru_id = " + soruId;
         HesaplaMt hesaplaMt;
@@ -88,19 +91,14 @@ public class MeslekDB {
                 hesaplaMt.setSoruId(cb.getInt(cb.getColumnIndex("soru_id")));
                 hesaplaMt.setGrupId(cb.getInt(cb.getColumnIndex("grup_id")));
 
-                //int katsayi = cb.getInt(cb.getColumnIndex("katsayi"));
-                //int grupId = cb.getInt(cb.getColumnIndex("grup_id"));
-
+                //Cekilen katsayi ve grup id'yi, Test Sayfamizdaki hesap metoduna yolla.
                 MtTestActivity.hesap(hesaplaMt.getKatsayi(), hesaplaMt.getGrupId());
-
-                //MtTestActivity activity = new MtTestActivity();
-                //activity.hesap(hesaplaMt.getKatsayi(),hesaplaMt.getGrupId());
             }
         }
         closeDB();
     }
 
-    public String grupAdiCek(int id){
+    public String grupAdiCek(int id){   //Db'den gelen Grup Adini, meslek sonucu sayfasina dondur
 
         String sorgu = "SELECT * FROM mt_grup WHERE grup_id = " + id;
         String grupAdi = null;
@@ -119,16 +117,18 @@ public class MeslekDB {
         return grupAdi;
     }
 
+
+    //grupId'ye gore DB'den gelen Meslek Listesini, meslek sonucu sayfasina dondur
     public List<String> getMeslek(int grupId){
         List<String> meslekList = new ArrayList<>();
 
         openDB();
         String meslekSorgu = "SELECT * FROM mt_meslek WHERE grup_id = " + grupId;
 
-
         Cursor cc = database.rawQuery(meslekSorgu, null);
 
-        if(cc != null && cc.getCount()!=0){
+        if(cc != null && cc.getCount()!=0)
+        {
             while (cc.moveToNext())
             {
                 meslekList.add(cc.getString(cc.getColumnIndex("meslek_adi")));
@@ -136,53 +136,7 @@ public class MeslekDB {
         }
 
         closeDB();
-        return meslekList;
+        return meslekList;  //meslek listesini dondur
     }
-
-    public List<String> getMeslek2(){
-        List<String> meslekList = new ArrayList<>();
-
-        openDB();
-        String meslekSorgu = "SELECT * FROM mt_meslek";
-
-
-        Cursor cc = database.rawQuery(meslekSorgu, null);
-
-        if(cc != null && cc.getCount()!=0){
-            while (cc.moveToNext())
-            {
-                meslekList.add(cc.getString(cc.getColumnIndex("meslek_adi")));
-            }
-        }
-
-        closeDB();
-        return meslekList;
-    }
-
-    public ArrayList<Meslek> getMeslek1(int grupId){
-        ArrayList<Meslek> meslekList = new ArrayList<>();
-
-        openDB();
-        String meslekSorgu = "SELECT * FROM mt_meslek WHERE grup_id = " + grupId;
-        Meslek meslek;
-
-        Cursor cc = database.rawQuery(meslekSorgu, null);
-
-        if(cc != null && cc.getCount()!=0){
-            while (cc.moveToNext())
-            {
-                meslek = new Meslek();
-                meslek.setMeslek_id(cc.getInt(cc.getColumnIndex("meslek_id")));
-                meslek.setMeslek_adi(cc.getString(cc.getColumnIndex("meslek_adi")));
-                meslek.setGrup_id(cc.getInt(cc.getColumnIndex("grup_id")));
-
-                meslekList.add(meslek);
-            }
-        }
-
-        closeDB();
-        return meslekList;
-    }
-
 
 }

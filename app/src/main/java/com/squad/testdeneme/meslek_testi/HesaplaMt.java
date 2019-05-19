@@ -6,7 +6,8 @@ public class HesaplaMt {
     private int soruId;
     private int grupId;
 
-    public HesaplaMt(){}
+    public HesaplaMt(){}    //Meslek Testimizdeki soruların katsayilarini veritabanından cekerken bu
+    //nesnemizi kulllanıyoruz.
 
     public HesaplaMt(int katsayi, int soruId, int grupId) {
         this.katsayi = katsayi;

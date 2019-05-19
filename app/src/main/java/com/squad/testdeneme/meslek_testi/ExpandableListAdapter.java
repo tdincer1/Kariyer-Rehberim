@@ -14,6 +14,7 @@ import com.squad.testdeneme.R;
 import java.util.HashMap;
 import java.util.List;
 
+    //Meslek Testi sonucunda ilk uc grubu ve mesleklerini Expandable Liste yerlestirme yarar.
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
@@ -29,36 +30,36 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public int getGroupCount() {
+    public int getGroupCount() {    //Grup sayisini dondur
 
         return listDataHeader.size();
     }
 
     @Override
-    public int getChildrenCount(int groupPosition) {
+    public int getChildrenCount(int groupPosition) {    //Gruba ait meslek/eleman sayisi dondur
 
         return listHashMap.get(listDataHeader.get(groupPosition)).size();
     }
 
     @Override
-    public Object getGroup(int groupPosition) {
+    public Object getGroup(int groupPosition) {     //Grubu dondur
 
         return listDataHeader.get(groupPosition);
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosition) {
+    public Object getChild(int groupPosition, int childPosition) {  //Seciilen meslegi dondur
         return listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition);
     }
 
     @Override
-    public long getGroupId(int groupPosition) {
+    public long getGroupId(int groupPosition) { //Grubun id'sini dondur
 
         return groupPosition;
     }
 
     @Override
-    public long getChildId(int groupPosition, int childPosition) {
+    public long getChildId(int groupPosition, int childPosition) {  //Meslek pozisyonun dondur
         return childPosition;
     }
 
@@ -102,7 +103,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public boolean isChildSelectable(int groupPosition, int childPosition) {
+    public boolean isChildSelectable(int groupPosition, int childPosition) {    //Meslekleri tiklanilabilir yap.
 
         return true;
     }

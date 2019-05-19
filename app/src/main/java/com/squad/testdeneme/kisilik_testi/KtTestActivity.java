@@ -1,7 +1,6 @@
 package com.squad.testdeneme.kisilik_testi;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,38 +16,27 @@ import com.squad.testdeneme.R;
 import java.util.Collections;
 import java.util.List;
 
-public class KtTestActivity extends AppCompatActivity {
+public class KtTestActivity extends AppCompatActivity {     //Kisilik testimizin oldugu sayfa
 
     private TextView textViewQuestion;
     private TextView textViewQuestionCount;
     private RadioGroup rbGroup;
-    private RadioButton rb1;
-    private RadioButton rb2;
-    private RadioButton rb3;
-    private RadioButton rb4;
-    private RadioButton rb5;
+    private RadioButton rb1, rb2, rb3, rb4, rb5;
     private Button buttonConfirmNext;
 
-    private List<Question> questionList;
+    private List<Question> questionList;    //soru listesi
 
-    private int questionCounter;
-    private int questionCountTotal;
-    private Question currentQuestion;
-
+    private int questionCounter;        //soru sayaci
+    private int questionCountTotal;     //toplam soru
+    private Question currentQuestion;   //bulundugumuz soruya ait nesne
 
     private long backPressedTime;
 
     static int cevapNo;
 
-    static int Arastirmaci;
-    static int Barisci;
-    static int BasariOdakli;
-    static int Maceraci;
-    static int MeydanOkuyan;
-    static int Mukemmeliyetci;
-    static int Ozgun;
-    static int Sorgulayici;
-    static int Yardimsever;
+    //Kisilik puanlarini hesaplamak uzere tanimlanan degiskenler
+    static int Arastirmaci, Barisci, BasariOdakli, Maceraci, MeydanOkuyan;
+    static int Mukemmeliyetci, Ozgun, Sorgulayici, Yardimsever;
 
     static int ilkKisilikId;
 
@@ -57,7 +45,7 @@ public class KtTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kt_test);
 
-
+        //Arayuzle olan baglantilar
         textViewQuestion = findViewById(R.id.kt_text_view_question);
         textViewQuestionCount = findViewById(R.id.kt_text_view_question_count);
         rbGroup = findViewById(R.id.kt_radio_group);
@@ -68,12 +56,15 @@ public class KtTestActivity extends AppCompatActivity {
         rb5 = findViewById(R.id.kt_radio_button5);
         buttonConfirmNext = findViewById(R.id.kt_button_confirm_next);
 
-        questionList = KisilikDB.getINSTANCE(getApplicationContext()).getAllQuestions();     //listeye yerlestirme
-        questionCountTotal = questionList.size();           //toplam soru bulma
+        //Veritabanından soruları cek ve listeye yerlestir
+        questionList = KisilikDB.getINSTANCE(getApplicationContext()).getAllQuestions();
+        questionCountTotal = questionList.size();           //toplam soru hesaplama
         Collections.shuffle(questionList);                  //soru listesini karisik listeleme
 
         showNextQuestion();                                 //siradaki soruya gec
 
+
+        //Secim yapildiysa cevabı kontrol et. Yapilmadiysa uyari ver.
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +74,6 @@ public class KtTestActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(KtTestActivity.this, "Lütfen seçim yapın", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -92,37 +82,40 @@ public class KtTestActivity extends AppCompatActivity {
     public void showNextQuestion() {                       //siradaki soruya gec
         rbGroup.clearCheck();                               //şık secimini temizle
 
-        if (questionCounter < questionCountTotal)
+        if (questionCounter < questionCountTotal)   //Eger testimiz bitmediyse
         {
+            //bulundugumuz soruyu Question nesnesine yerlestir.
             currentQuestion = questionList.get(questionCounter);
 
-            textViewQuestion.setText(currentQuestion.getQuestion());
+            textViewQuestion.setText(currentQuestion.getQuestion());    //soruyu texte yerlestir
 
-            questionCounter++;
-            textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);   //Mevcut soruyu bastirma
+            questionCounter++;  //soru sayacini arttir
 
-            if (questionCounter < questionCountTotal){
+            //Bulundugumuz sorunun sayisini sayaca yerlestir.
+            textViewQuestionCount.setText("Soru: " + questionCounter + "/" + questionCountTotal);
+
+            if (questionCounter < questionCountTotal){  //buton ismini duruma gore ayarla
                 buttonConfirmNext.setText("Sıradaki soru");
             }else {
                 buttonConfirmNext.setText("Testi bitir");
             }
-        }else {     //Bu noktada kisilikler karşılaştırılır ve sonuc sayfasına basmak uzere hazırlanır
+        }else {     //Bu noktada kisilikler karşılaştırılır ve sonuc sayfasına basmak uzere test sona erer.
             finishQuiz();
         }
     }
 
-    public void  checkAnswer(){                         //Secilen sikkin katsayiyla carpimi burada mı olacak?
+    public void  checkAnswer(){     //Secilen şıkkın id'sini al ve katsayi hesabi yap.
 
 
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId()); //secilenin id'yi al
-        cevapNo = rbGroup.indexOfChild(rbSelected);        //secilen id'yi cevapNo'de tut
+        cevapNo = rbGroup.indexOfChild(rbSelected);        //secilen id'yi cevapNo'da tut
 
-
+        //mevcut sorunun id'sini, kisiliklere ait kaysayiyi cekecek olan katsayiHesapDB metoduna yolla
         KisilikDB.getINSTANCE(getApplicationContext()).katsayiHesapDB(currentQuestion.getSoru_id());
-        showNextQuestion();
+        showNextQuestion();     //siradaki soruya gec
     }
 
-    public static int cvp(){
+    public static int cvp(){    //secilen şıkka gore cevap katsayisi dondur.
 
         int cvp_katsayi = 0;
         switch (cevapNo){
@@ -140,41 +133,43 @@ public class KtTestActivity extends AppCompatActivity {
         return cvp_katsayi;
     }
 
-    public static void hesap(int ks, int kisilikId){
+    public static void hesap(int soruKatsayisi, int kisilikId){    //Kisiliklere ait katsayilari hesaplama
 
-        int cevap_katsayisi = cvp();
+        int cevap_katsayisi = cvp();    //şık katsayisini cek
 
-        switch(kisilikId){
-            case 1: Arastirmaci = Arastirmaci + (ks * cevap_katsayisi);
+        switch(kisilikId){  //Kisilik Id'ye gore soru ve şık katsayasilarini toplam kişilik puanina ekle.
+            case 1: Arastirmaci = Arastirmaci + (soruKatsayisi * cevap_katsayisi);
                 break;
-            case 2: Barisci += ks * cevap_katsayisi;
+            case 2: Barisci += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 3: BasariOdakli += ks * cevap_katsayisi;
+            case 3: BasariOdakli += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 4: Maceraci += ks * cevap_katsayisi;
+            case 4: Maceraci += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 5: MeydanOkuyan += ks * cevap_katsayisi;
+            case 5: MeydanOkuyan += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 6: Mukemmeliyetci += ks * cevap_katsayisi;
+            case 6: Mukemmeliyetci += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 7: Ozgun += ks * cevap_katsayisi;
+            case 7: Ozgun += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 8: Sorgulayici += ks * cevap_katsayisi;
+            case 8: Sorgulayici += soruKatsayisi * cevap_katsayisi;
                 break;
-            case 9: Yardimsever += ks * cevap_katsayisi;
+            case 9: Yardimsever += soruKatsayisi * cevap_katsayisi;
                 break;
         }
-
-        int deneme = 22;
     }
 
-    private void finishQuiz() {       //gecisten once kisilik puanlarını karsılastıran metodu calıstırıyor
-        kisilikPuani();
+    private void finishQuiz() { //gecisten once kisilik puanlarını karsılastıran metodu calıstırıyor
+
+        kisilikPuani();         //En yuksek puan alan kisiligi hesapla
+
+        //Sonuc sayfasina gec
         Intent intent = new Intent(KtTestActivity.this, KtSonucEkrani.class);
         startActivity(intent);
     }
 
-    public void kisilikPuani(){
+    public void kisilikPuani(){ //En yuksek puani alan kisiligi ve id'sini bulma.
+
         int[] liste = new int[9];
 
         liste[0] = Arastirmaci;
@@ -190,6 +185,7 @@ public class KtTestActivity extends AppCompatActivity {
         int ilk = 0;
         ilkKisilikId = 0;
 
+        //En yuksek puanli kisiligi liste dizisinde ara.
         for(int i=0; i<liste.length; i++){
             if (liste[i]>ilk){
                 ilk = liste[i];
@@ -202,7 +198,7 @@ public class KtTestActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {           //2sn icinde iki defa geri basarsa cik yoksa teste devam
+    public void onBackPressed() {           //2sn icinde iki defa geri basilirsa cik yoksa teste devam
         if (backPressedTime + 2000 > System.currentTimeMillis()){
             finish();
         }else {

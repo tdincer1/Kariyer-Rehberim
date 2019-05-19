@@ -11,7 +11,7 @@ import com.squad.testdeneme.Question;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KisilikDB {
+public class KisilikDB {      //Kisilik Testimizin Veritabanı bağlantısı
 
     private static KisilikDB INSTANCE;
     private static Context context;
@@ -34,7 +34,7 @@ public class KisilikDB {
         return INSTANCE;
     }
 
-    private void openDB() throws SQLException {
+    private void openDB() throws SQLException {     //db bağlantı açma
 
         database = myhelper.getWritableDatabase();
     }
@@ -44,31 +44,30 @@ public class KisilikDB {
         database.close();
     }
 
-    public List<Question> getAllQuestions(){    //Tablo ismini String olarak alarak iki test icin de calisir
+    public List<Question> getAllQuestions(){    //Kişilik testimizin sorularını db'den çeken method
         List<Question> questionList = new ArrayList<>();
 
         openDB();
-        String sqlQuestion = "SELECT * FROM kt_soru";
+        String sqlQuestion = "SELECT * FROM kt_soru";   //Sqlite sorgumuzu tanımladık.
         Question question;
 
         Cursor c = database.rawQuery(sqlQuestion, null);
-        if (c!=null && c.getCount()!=0)
+        if (c!=null && c.getCount()!=0) //Cursor yardımıyla db'den verileri alıp Question nesnemize yazıyoruz
         {
-            // c.moveToFirst();
             while (c.moveToNext())
             {
-                question = new Question();
+                question = new Question();  //Dbden gelenleri nesneye yerleştiriyoruz.
                 question.setQuestion(c.getString(c.getColumnIndex("soru_detay")));
                 question.setSoru_id(c.getInt(c.getColumnIndex("soru_id")));
 
-                questionList.add(question);                         //cekilen verileri arrayliste koy
+                questionList.add(question);           //cekilen verileri arrayliste koy
             }
         }
-        closeDB();
-        return questionList;
+        closeDB();              //islem bitince veritabanini kapat.
+        return questionList;    //soru array listesini dondur
     }
 
-    public void katsayiHesapDB (int soruId){ //grup_id, kisilik_id farkı ortak kullanımda sıkıntı
+    public void katsayiHesapDB (int soruId){ //Kişilik Testimizdeki soruların katsayilarini veritabanından çeker.
 
         String sql = "SELECT * FROM kt_sorukisilik WHERE soru_id = " + soruId;
         HesaplaKt hesapla;
@@ -77,7 +76,6 @@ public class KisilikDB {
         Cursor cb = database.rawQuery(sql, null);
         if (cb!=null && cb.getCount()!=0)
         {
-            // c.moveToFirst();
             while (cb.moveToNext())
             {
                 hesapla = new HesaplaKt();
@@ -85,14 +83,14 @@ public class KisilikDB {
                 hesapla.setSoruId(cb.getInt(cb.getColumnIndex("soru_id")));
                 hesapla.setKisilikId(cb.getInt(cb.getColumnIndex("kisilik_id")));
 
+                //Cekilen katsayi ve kisilik id'yi, Test Sayfamizdaki hesap metoduna yolla.
                 KtTestActivity.hesap(hesapla.getKatsayi(),hesapla.getKisilikId());
-
             }
         }
         closeDB();
     }
 
-    public String kisilikAdiCek(int kslkId){        //kisilik adi ve detay bereaber arraylistle cekilebilir
+    public String kisilikAdiCek(int kslkId){   //Sonuc ekranımızda basmak üzere Kişilik Adını çekiyoruz
 
         String kslk_query = "SELECT * FROM kt_kisilik WHERE kisilik_id = " + kslkId;
         String kisilikAdi = null;
@@ -110,7 +108,7 @@ public class KisilikDB {
         return kisilikAdi;
     }
 
-    public String kisilikDetayCek(int kslkkId){
+    public String kisilikDetayCek(int kslkkId){ //Sonuc ekranımızda basmak üzere Kişilik Detayini çekiyoruz
 
         String detayQuery = "SELECT * FROM kt_kisilik WHERE kisilik_id = " + kslkkId;
         String ksDetay = null;
@@ -126,7 +124,5 @@ public class KisilikDB {
         closeDB();
 
         return ksDetay;
-
-
     }
 }

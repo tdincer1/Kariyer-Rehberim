@@ -6,7 +6,8 @@ public class HesaplaKt {
     private int soruId;
     private int kisilikId;
 
-    public HesaplaKt(){}
+    public HesaplaKt(){} //Kişilik Testimizdeki soruların katsayilarini veritabanından çekerken bu
+                        //nesnemizi kulllanıyoruz.
 
     public HesaplaKt(int katsayi, int soruId, int kisilikId) {
         this.katsayi = katsayi;

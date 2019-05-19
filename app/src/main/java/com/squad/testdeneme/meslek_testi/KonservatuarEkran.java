@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.squad.testdeneme.R;
 
-public class KonservatuarEkran extends AppCompatActivity {
+public class KonservatuarEkran extends AppCompatActivity {  //Konservatuvar Bilgilerinin oldugu sayfa
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

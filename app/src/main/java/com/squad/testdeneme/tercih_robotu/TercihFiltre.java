@@ -28,14 +28,7 @@ public class TercihFiltre extends AppCompatActivity  {
     Button gecisBtn;
     EditText maxEt, minEt;
 
-    String uni;
-    String bolum;
-    String sehir;
-    String maxSiralama;
-    String minSiralama;
-    String bolumTuru;
-    String puanTuru;
-
+    String uni, bolum, sehir, maxSiralama, minSiralama, bolumTuru, puanTuru;
     int minPuan;
     int maxPuan;
 
@@ -44,7 +37,7 @@ public class TercihFiltre extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tercih_filtre);
 
-
+        //Arayuzle iliskilendirme
         rangeSeekBar = findViewById(R.id.rangeSeekbar);
         uniEt = findViewById(R.id.uniAramaTv);
         bolumEt = findViewById(R.id.bolumAramaTv);
@@ -56,17 +49,22 @@ public class TercihFiltre extends AppCompatActivity  {
         minEt = findViewById(R.id.minPuanEt);
 
 
+        //Filtreleme ekranimizda text kutucuklarina yazilani tamamlama ve
+        // tahmin ozelligi saglamak amaciyla tum uni, bolum ve sehirleri veritabanından cekiyoruz.
         String[] uniListe = TercihDB.getInstance(getApplicationContext()).uniCek();
         String[] bolumListe = TercihDB.getInstance(getApplicationContext()).bolumCek();
         String[] sehirListe = TercihDB.getInstance(getApplicationContext()).sehirCek();
 
+        //cekilen degerleri string arraye almistik. Simdi adapter'e yerlestiriyoruz.
         uniEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, uniListe));
         bolumEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, bolumListe));
         sehirEt.setAdapter(new ArrayAdapter<>(TercihFiltre.this, android.R.layout.simple_list_item_1, sehirListe));
 
+        //Puan aramak icin kullanılan kaydirma cubugunun degerleri
         rangeSeekBar.setSelectedMaxValue(600);
         rangeSeekBar.setSelectedMinValue(0);
 
+        //Puan kaydirma cubugunda secilen degerleri kaydet ve Toast mesajı olarak goster
         rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
@@ -81,7 +79,7 @@ public class TercihFiltre extends AppCompatActivity  {
         });
 
 
-        gecisBtn.setOnClickListener(new View.OnClickListener() {
+        gecisBtn.setOnClickListener(new View.OnClickListener() {    //Uygula butonuna basildiginda
             @Override
             public void onClick(View v) {
                 baslatRobot();
@@ -90,7 +88,9 @@ public class TercihFiltre extends AppCompatActivity  {
 
     }
 
-    public void baslatRobot(){
+    public void baslatRobot(){  //Girilen filtreleme degerlerini tespit edip, sayfa gecisini yap
+
+        //Girilen degerleri kaydet
         uni = uniEt.getText().toString();
         bolum = bolumEt.getText().toString();
         sehir = sehirEt.getText().toString();
@@ -99,7 +99,7 @@ public class TercihFiltre extends AppCompatActivity  {
         bolumTuru = bolumTuruSp.getSelectedItem().toString();
         puanTuru = puanTuruSp.getSelectedItem().toString();
 
-
+        //Filtreleme verilerini intent ve extra metoduyla TercihRobotu sayfasina aktar.
         Intent intent = new Intent(TercihFiltre.this, TercihRobotu.class);
         intent.putExtra("universite", uni);
         intent.putExtra("bolum", bolum);
@@ -113,7 +113,5 @@ public class TercihFiltre extends AppCompatActivity  {
         intent.putExtra("filtrele","filtrelemeYap");
         startActivity(intent);
     }
-
-
 
 }

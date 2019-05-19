@@ -13,7 +13,14 @@ public class Bilgi {
     private String siralama;
     private int kontenjan;
 
-    public Bilgi(){}
+    private int maxPuan;
+    private int minPuan;
+    private String maxSiralama;
+    private String minSiralama;
+
+
+    public Bilgi(){}    //Tercih Robotumuzun verilerini veritabanından cekerken bu
+    //nesnemizi kulllanıyoruz.
 
     public int getPr_kodu() {
         return pr_kodu;
@@ -101,5 +108,38 @@ public class Bilgi {
 
     public void setKontenjan(int kontenjan) {
         this.kontenjan = kontenjan;
+    }
+
+
+    public int getMaxPuan() {
+        return maxPuan;
+    }
+
+    public void setMaxPuan(int maxPuan) {
+        this.maxPuan = maxPuan;
+    }
+
+    public int getMinPuan() {
+        return minPuan;
+    }
+
+    public void setMinPuan(int minPuan) {
+        this.minPuan = minPuan;
+    }
+
+    public String getMaxSiralama() {
+        return maxSiralama;
+    }
+
+    public void setMaxSiralama(String maxSiralama) {
+        this.maxSiralama = maxSiralama;
+    }
+
+    public String getMinSiralama() {
+        return minSiralama;
+    }
+
+    public void setMinSiralama(String minSiralama) {
+        this.minSiralama = minSiralama;
     }
 }

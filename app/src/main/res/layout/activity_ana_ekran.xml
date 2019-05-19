@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Kariyer Rehberim"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@android:color/black"
 
@@ -266,7 +266,7 @@
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="2019 YKS'ye Kalan Süre "
+        android:text="2019 YKS'ye Kalan Süre"
         android:textAlignment="center"
         android:textColor="#ffeeee"
         android:textSize="21sp"

@@ -2,7 +2,6 @@ package com.squad.testdeneme;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,15 +35,17 @@ public class AnaEkran extends AppCompatActivity {
         buttonTercihRobotu = findViewById(R.id.button_tercih_start);
         buttonKisilikTesti = findViewById(R.id.button_kisilik_start);
 
+        //sayac elemanlarinin arayuz baglantilari
         txtTimerDay = findViewById(R.id.txtTimerDay);
         txtTimerHour = findViewById(R.id.txtTimerHour);
         txtTimerMinute = findViewById(R.id.txtTimerMinute);
         txtTimerSecond = findViewById(R.id.txtTimerSecond);
         tvEvent = findViewById(R.id.tvhappyevent);
 
-        countDownStart();
+        countDownStart();   //Sinava kalan sureyi gosteren geri sayimi baslat
 
 
+        //Meslek Testi Ana Sayfasina gecis
         buttonMeslekTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +54,7 @@ public class AnaEkran extends AppCompatActivity {
             }
         });
 
+        //Kisilik Testi Ana Sayfasina gecis
         buttonKisilikTesti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +63,7 @@ public class AnaEkran extends AppCompatActivity {
             }
         });
 
+        //Tercih Robotu Filtreleme Sayfasina gecis
         buttonTercihRobotu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +75,7 @@ public class AnaEkran extends AppCompatActivity {
 
     }
 
-    public void countDownStart() {
+    public void countDownStart() {      //Sinava kalan sureyi gosteren geri sayimi baslat
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -81,10 +84,10 @@ public class AnaEkran extends AppCompatActivity {
                 try {
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
                             "yyyy-MM-dd");
-                    // Please here set your event date//YYYY-MM-DD
+                    // Sinav Tarihi
                     Date futureDate = dateFormat.parse("2019-06-15");
                     Date currentDate = new Date();
-                    if (!currentDate.after(futureDate)) {
+                    if (!currentDate.after(futureDate)) { //Degerleri goster
                         long diff = futureDate.getTime()
                                 - currentDate.getTime();
                         long days = diff / (24 * 60 * 60 * 1000);
@@ -100,7 +103,7 @@ public class AnaEkran extends AppCompatActivity {
                                 + String.format("%02d", minutes));
                         txtTimerSecond.setText(""
                                 + String.format("%02d", seconds));
-                    } else {
+                    } else {                //Sinav gerceklestiyse eger
                         tvEvent.setVisibility(View.VISIBLE);
                         tvEvent.setText("Sınav Yapılmıştır !");
                         textViewGone();
@@ -110,10 +113,10 @@ public class AnaEkran extends AppCompatActivity {
                 }
             }
         };
-        handler.postDelayed(runnable, 1 * 1000);
+        handler.postDelayed(runnable, 10);
     }
 
-    public void textViewGone() {
+    public void textViewGone() {    //Sinav gerceklestiginde sayaci gizle
         findViewById(R.id.LinearLayout10).setVisibility(View.GONE);
         findViewById(R.id.LinearLayout11).setVisibility(View.GONE);
         findViewById(R.id.LinearLayout12).setVisibility(View.GONE);
